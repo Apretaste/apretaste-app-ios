@@ -132,7 +132,28 @@ class ServicesVC: UIViewController {
             
             let done = UIAlertAction(title: "Aceptar", style: .default, handler: { (_) in
                 
-               // let searchString = alertText.textFields![0].text!
+                let searchString = alertText.textFields![0].text!
+                
+                self.startAnimating(message:"cargando")
+                
+                let newCommand = "\(command) \(searchString)"
+                
+                ConnectionManager.shared.request(command: newCommand) { (error,html) in
+                    
+                    self.stopAnimating()
+                    // validate error //
+                    if error != nil{
+                        return
+                    }
+                    
+                    let storyboard = UIStoryboard(name: "Services", bundle: nil)
+                    let servicesVC = storyboard.instantiateInitialViewController()! as! ServicesVC
+                    servicesVC.urlHtml = html
+                    servicesVC.title = String(command.split(separator: " ").first!)
+                    TEMPManager.shared.saveOpenServices()
+                    self.navigationController?.pushViewController(servicesVC, animated: true)
+                    
+                }
 
             })
             

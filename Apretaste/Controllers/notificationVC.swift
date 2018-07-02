@@ -13,6 +13,7 @@ class notificationVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = "Notificaciones"
         // Do any additional setup after loading the view.
     }
 

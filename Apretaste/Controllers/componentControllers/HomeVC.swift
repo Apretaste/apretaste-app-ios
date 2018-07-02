@@ -11,8 +11,6 @@ import UIKit
 class HomeVC: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    
     private let reuseIdentifier = "HomeCell"
     
     var fetchData: FetchModel!
@@ -22,8 +20,10 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
+        self.setupView()
+        self.setupNavigationBar()
+        self.setupCell()
+                
         // load data//
         
         fetchData = TEMPManager.shared.fetchData
@@ -34,8 +34,7 @@ class HomeVC: UIViewController {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         
-        self.setupView()
-        self.setupCell()
+        
 
     }
     
@@ -45,6 +44,79 @@ class HomeVC: UIViewController {
         
         self.navigationController?.navigationBar.topItem?.backBarButtonItem?.tintColor = .white
 
+    }
+    
+    private func setupNavigationBar(){
+        
+        // set image //
+        let dataUrl = TEMPManager.shared.urlFiles!
+        
+        let urlImage = dataUrl.appendingPathComponent("user.jpg")
+        
+        do{
+            let dataImage = try Data.init(contentsOf: urlImage)
+            let image = UIImage(data: dataImage)
+            let containView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
+            
+            let title = UILabel(frame: CGRect(x: 35, y: 5, width: 100, height: 15))
+            let imageview = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+            
+            imageview.image = image
+            imageview.contentMode = .scaleAspectFit
+            title.text = TEMPManager.shared.fetchData.username
+            title.textColor = .white
+            title.font = UIFont.systemFont(ofSize: 15)
+            imageview.layer.cornerRadius = 20
+            imageview.layer.masksToBounds = true
+            containView.addSubview(imageview)
+            containView.addSubview(title)
+            let rightBarButton = UIBarButtonItem(customView: containView)
+            self.navigationItem.leftBarButtonItem = rightBarButton
+            
+        }catch{
+            print("error load image")
+        }
+        
+        // set search bar //
+        
+        self.title = "Apretaste"
+        
+//        if #available(iOS 11.0, *) {
+//            
+//            self.view.backgroundColor = .greenApp
+//            self.navigationController?.navigationBar.barTintColor = .greenApp
+//            self.navigationController?.navigationBar.backgroundColor = UIColor.greenApp
+//            navigationController?.navigationBar.prefersLargeTitles = true
+//            navigationController?.navigationBar.largeTitleTextAttributes =
+//                [NSAttributedStringKey.foregroundColor: UIColor.white]
+//            
+//            let searchController = UISearchController(searchResultsController: nil)
+//            
+//             searchController.searchBar.tintColor = UIColor.white
+//             searchController.searchBar.barTintColor = UIColor.white
+//            searchController.searchBar.backgroundColor = .greenApp
+//            
+//            if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
+//                //textfield.textColor = // Set text color
+//                if let backgroundview = textfield.subviews.first {
+//                    
+//                    // Background color
+//                    backgroundview.backgroundColor = UIColor.white
+//                    
+//                    // Rounded corner
+//                    backgroundview.layer.cornerRadius = 10;
+//                    backgroundview.clipsToBounds = true;
+//                    
+//                }
+//            }
+//            
+//            
+//            navigationItem.searchController = searchController
+//           
+//          
+//        } else {
+//            // Fallback on earlier versions
+//        }
     }
     
     private func setupCell(){

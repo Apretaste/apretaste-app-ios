@@ -34,7 +34,7 @@ class optionsVC: UIViewController, UITableViewDelegate,UITableViewDataSource {
     
     private func setupView(){
 
-        
+        self.title = "Opciones"
         self.tableView.tableFooterView = UIView()
 
     }

@@ -76,36 +76,7 @@ class TabBarMenuVC: UITabBarController {
         }
         // set navigation bar style //
         
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        
-        let dataUrl = TEMPManager.shared.urlFiles!
-        
-        let urlImage = dataUrl.appendingPathComponent("user.jpg")
-        
-        do{
-            let dataImage = try Data.init(contentsOf: urlImage)
-            let image = UIImage(data: dataImage)
-            let containView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 50, height: 30))
-            
-            let title = UILabel(frame: CGRect(x: 35, y: 5, width: 100, height: 15))
-            let imageview = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-            
-            imageview.image = image
-            imageview.contentMode = .scaleAspectFit
-            title.text = TEMPManager.shared.fetchData.username
-            title.textColor = .white
-            title.font = UIFont.systemFont(ofSize: 15)
-            imageview.layer.cornerRadius = 20
-            imageview.layer.masksToBounds = true
-            containView.addSubview(imageview)
-            containView.addSubview(title)
-            let rightBarButton = UIBarButtonItem(customView: containView)
-            self.navigationItem.leftBarButtonItem = rightBarButton
-            
-        }catch{
-            print("error load image")
-        }
-
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         
     }
     
