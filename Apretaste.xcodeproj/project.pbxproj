@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		79E769695881B709FB9382A0 /* Pods_Apretaste.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E210877DE56CC90694440F /* Pods_Apretaste.framework */; };
+		771E642BAC008239D3589DF3 /* Pods_Apretaste.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92954E860EC3CBFCFDB14EDC /* Pods_Apretaste.framework */; };
 		A824466120A7C6390028AEC8 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824466020A7C6390028AEC8 /* Utilities.swift */; };
 		A824466320A7F49B0028AEC8 /* RandomGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824466220A7F49B0028AEC8 /* RandomGenerator.swift */; };
 		A82542E120AE39B60000A206 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82542E020AE39B60000A206 /* ProfileVC.swift */; };
@@ -30,6 +30,13 @@
 		A8553ED620A75272008BC393 /* ConfigurationLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8553ED520A75272008BC393 /* ConfigurationLogin.storyboard */; };
 		A8553ED820A75965008BC393 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8553ED720A75965008BC393 /* LoginVC.swift */; };
 		A8553EDA20A75972008BC393 /* ConfigurationLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8553ED920A75972008BC393 /* ConfigurationLoginVC.swift */; };
+		A857CFAD20E9505900292FF8 /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A857CFAC20E9505900292FF8 /* About.storyboard */; };
+		A857CFAF20E9506B00292FF8 /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A857CFAE20E9506B00292FF8 /* Detail.storyboard */; };
+		A857CFB120E9507D00292FF8 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A857CFB020E9507C00292FF8 /* DetailVC.swift */; };
+		A857CFB320E9508800292FF8 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A857CFB220E9508800292FF8 /* AboutVC.swift */; };
+		A857CFB520E96EEA00292FF8 /* PrincipalNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A857CFB420E96EEA00292FF8 /* PrincipalNavigation.swift */; };
+		A857CFB720E96F2800292FF8 /* UIIMageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A857CFB620E96F2800292FF8 /* UIIMageExtension.swift */; };
+		A857CFBC20E9A5B600292FF8 /* resource.js in Resources */ = {isa = PBXBuildFile; fileRef = A857CFBB20E9A5B600292FF8 /* resource.js */; };
 		A87EDE8920CDC7AC0047009C /* Services.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A87EDE8820CDC7AC0047009C /* Services.storyboard */; };
 		A87EDE8B20CDC8070047009C /* ServicesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87EDE8A20CDC8070047009C /* ServicesVC.swift */; };
 		A87EDE8D20CDFA740047009C /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87EDE8C20CDFA740047009C /* ConnectionManager.swift */; };
@@ -70,9 +77,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1D2CFAC07431F2E6533E24E7 /* Pods-Apretaste.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apretaste.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Apretaste/Pods-Apretaste.debug.xcconfig"; sourceTree = "<group>"; };
-		2EC18CF92597F571E0401DE7 /* Pods-Apretaste.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apretaste.release.xcconfig"; path = "Pods/Target Support Files/Pods-Apretaste/Pods-Apretaste.release.xcconfig"; sourceTree = "<group>"; };
-		84E210877DE56CC90694440F /* Pods_Apretaste.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Apretaste.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FD24E5ACDA8A95B1995D8E4 /* Pods-Apretaste.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apretaste.release.xcconfig"; path = "Pods/Target Support Files/Pods-Apretaste/Pods-Apretaste.release.xcconfig"; sourceTree = "<group>"; };
+		92954E860EC3CBFCFDB14EDC /* Pods_Apretaste.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Apretaste.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A824465F20A7C2C60028AEC8 /* sendMail_bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sendMail_bridge.h; sourceTree = "<group>"; };
 		A824466020A7C6390028AEC8 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		A824466220A7F49B0028AEC8 /* RandomGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomGenerator.swift; sourceTree = "<group>"; };
@@ -98,6 +104,15 @@
 		A8553ED520A75272008BC393 /* ConfigurationLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConfigurationLogin.storyboard; sourceTree = "<group>"; };
 		A8553ED720A75965008BC393 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		A8553ED920A75972008BC393 /* ConfigurationLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationLoginVC.swift; sourceTree = "<group>"; };
+		A857CFAC20E9505900292FF8 /* About.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = About.storyboard; sourceTree = "<group>"; };
+		A857CFAE20E9506B00292FF8 /* Detail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
+		A857CFB020E9507C00292FF8 /* DetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
+		A857CFB220E9508800292FF8 /* AboutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
+		A857CFB420E96EEA00292FF8 /* PrincipalNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrincipalNavigation.swift; sourceTree = "<group>"; };
+		A857CFB620E96F2800292FF8 /* UIIMageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIIMageExtension.swift; sourceTree = "<group>"; };
+		A857CFB820E9727A00292FF8 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		A857CFB920E9727A00292FF8 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		A857CFBB20E9A5B600292FF8 /* resource.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = resource.js; sourceTree = "<group>"; };
 		A87EDE8820CDC7AC0047009C /* Services.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Services.storyboard; sourceTree = "<group>"; };
 		A87EDE8A20CDC8070047009C /* ServicesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesVC.swift; sourceTree = "<group>"; };
 		A87EDE8C20CDFA740047009C /* ConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
@@ -123,6 +138,7 @@
 		A8D8C5D620A781E700CDE7C0 /* HTTPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPManager.swift; sourceTree = "<group>"; };
 		A8D8C68420A7990600CDE7C0 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		A8DE3DF020ACD00E00DA5B20 /* LoginHttp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginHttp.storyboard; sourceTree = "<group>"; };
+		BD477D8E762C302344CC42F4 /* Pods-Apretaste.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apretaste.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Apretaste/Pods-Apretaste.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,26 +146,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79E769695881B709FB9382A0 /* Pods_Apretaste.framework in Frameworks */,
+				771E642BAC008239D3589DF3 /* Pods_Apretaste.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		50652F9AA4D04A9E3B1B42C4 /* Frameworks */ = {
+		4B9B86F6E6BD382340B732D4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				84E210877DE56CC90694440F /* Pods_Apretaste.framework */,
+				92954E860EC3CBFCFDB14EDC /* Pods_Apretaste.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		864A7F0AC45060F5F20F124E /* Pods */ = {
+		7815EE84D72D9A60584CDFF8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1D2CFAC07431F2E6533E24E7 /* Pods-Apretaste.debug.xcconfig */,
-				2EC18CF92597F571E0401DE7 /* Pods-Apretaste.release.xcconfig */,
+				BD477D8E762C302344CC42F4 /* Pods-Apretaste.debug.xcconfig */,
+				3FD24E5ACDA8A95B1995D8E4 /* Pods-Apretaste.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -169,8 +185,8 @@
 				A824465F20A7C2C60028AEC8 /* sendMail_bridge.h */,
 				A8553EBB20A74238008BC393 /* Apretaste */,
 				A8553EBA20A74238008BC393 /* Products */,
-				864A7F0AC45060F5F20F124E /* Pods */,
-				50652F9AA4D04A9E3B1B42C4 /* Frameworks */,
+				7815EE84D72D9A60584CDFF8 /* Pods */,
+				4B9B86F6E6BD382340B732D4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -186,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				A88F31E320B28D380036AAED /* Apretaste.entitlements */,
+				A857CFBA20E9A59700292FF8 /* resources */,
 				A8D8C68320A798F300CDE7C0 /* Extension */,
 				A8553ED220A74267008BC393 /* Utilities */,
 				A8553ED120A7425A008BC393 /* Controllers */,
@@ -214,6 +231,8 @@
 				A836E18820AFD2E6007AB39F /* Notification.storyboard */,
 				A88F31DA20B1A1F50036AAED /* tabBarMenu.storyboard */,
 				A87EDE8820CDC7AC0047009C /* Services.storyboard */,
+				A857CFAE20E9506B00292FF8 /* Detail.storyboard */,
+				A857CFAC20E9505900292FF8 /* About.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -250,7 +269,9 @@
 				A8CB815E20AFC6AC00B1AE2A /* setupVC.swift */,
 				A836E18A20AFD437007AB39F /* notificationVC.swift */,
 				A88F31DC20B1A3C80036AAED /* tabBarMenuVC.swift */,
+				A857CFB020E9507C00292FF8 /* DetailVC.swift */,
 				A87EDE8A20CDC8070047009C /* ServicesVC.swift */,
+				A857CFB220E9508800292FF8 /* AboutVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -268,6 +289,14 @@
 				A87EDE8C20CDFA740047009C /* ConnectionManager.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		A857CFBA20E9A59700292FF8 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				A857CFBB20E9A5B600292FF8 /* resource.js */,
+			);
+			path = resources;
 			sourceTree = "<group>";
 		};
 		A88D866820A8A1220073FA33 /* componentViews */ = {
@@ -291,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				A88D866D20A8A1B10073FA33 /* cellsControllers */,
+				A857CFB420E96EEA00292FF8 /* PrincipalNavigation.swift */,
 			);
 			path = componentControllers;
 			sourceTree = "<group>";
@@ -320,6 +350,7 @@
 			children = (
 				A8D8C68420A7990600CDE7C0 /* UIViewControllerExtension.swift */,
 				A88F31E020B246F30036AAED /* UIColorExtension.swift */,
+				A857CFB620E96F2800292FF8 /* UIIMageExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -331,13 +362,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A8553ECB20A74238008BC393 /* Build configuration list for PBXNativeTarget "Apretaste" */;
 			buildPhases = (
-				4529FB68CBADB80823941C06 /* [CP] Check Pods Manifest.lock */,
+				BE7C6A628AD94984A2309429 /* [CP] Check Pods Manifest.lock */,
 				A8553EB520A74238008BC393 /* Sources */,
 				A8553EB620A74238008BC393 /* Frameworks */,
 				A8553EB720A74238008BC393 /* Resources */,
-				27830C7A3C9281DDCF230E69 /* [CP] Embed Pods Frameworks */,
-				3F49E786653542E0DB9224FE /* [CP] Copy Pods Resources */,
 				A8D8C6E920A7AEBA00CDE7C0 /* Embed Frameworks */,
+				9B81236C4AFB80BCF5488412 /* [CP] Embed Pods Frameworks */,
+				5C393CBBDABAAE7A6205B3FA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -374,7 +405,6 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = A8553EB020A74238008BC393;
@@ -396,12 +426,15 @@
 				A836E18D20B08A28007AB39F /* HttpCode.storyboard in Resources */,
 				A8DE3DF120ACD00E00DA5B20 /* LoginHttp.storyboard in Resources */,
 				A8553EC720A74238008BC393 /* LaunchScreen.storyboard in Resources */,
+				A857CFAD20E9505900292FF8 /* About.storyboard in Resources */,
 				A836E18920AFD2E6007AB39F /* Notification.storyboard in Resources */,
 				A88F31DB20B1A1F50036AAED /* tabBarMenu.storyboard in Resources */,
 				A8553EC420A74238008BC393 /* Assets.xcassets in Resources */,
 				A8553EC220A74238008BC393 /* Main.storyboard in Resources */,
 				A8553ED420A742ED008BC393 /* Login.storyboard in Resources */,
 				A8553ED620A75272008BC393 /* ConfigurationLogin.storyboard in Resources */,
+				A857CFAF20E9506B00292FF8 /* Detail.storyboard in Resources */,
+				A857CFBC20E9A5B600292FF8 /* resource.js in Resources */,
 				A8B6839620ACA41100FB193A /* ProfileVC.storyboard in Resources */,
 				A8CB815B20AFC60B00B1AE2A /* setup.storyboard in Resources */,
 				A88D866720A89F460073FA33 /* Home.storyboard in Resources */,
@@ -414,7 +447,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		27830C7A3C9281DDCF230E69 /* [CP] Embed Pods Frameworks */ = {
+		5C393CBBDABAAE7A6205B3FA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Apretaste/Pods-Apretaste-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B81236C4AFB80BCF5488412 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -442,22 +490,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Apretaste/Pods-Apretaste-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3F49E786653542E0DB9224FE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Apretaste/Pods-Apretaste-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4529FB68CBADB80823941C06 /* [CP] Check Pods Manifest.lock */ = {
+		BE7C6A628AD94984A2309429 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -487,6 +520,7 @@
 				A836E18F20B08BA8007AB39F /* HTTPCodeVC.swift in Sources */,
 				A8CB815F20AFC6AC00B1AE2A /* setupVC.swift in Sources */,
 				A8D8C5D720A781E700CDE7C0 /* HTTPManager.swift in Sources */,
+				A857CFB520E96EEA00292FF8 /* PrincipalNavigation.swift in Sources */,
 				A88D867120A8A2120073FA33 /* HomeVC.swift in Sources */,
 				A8553EBF20A74238008BC393 /* ViewController.swift in Sources */,
 				A82B8E9820A8786E00E98599 /* FetchModel.swift in Sources */,
@@ -496,6 +530,7 @@
 				A88F31DD20B1A3C80036AAED /* tabBarMenuVC.swift in Sources */,
 				A82B8E9620A7FEA400E98599 /* Task.swift in Sources */,
 				A8553ED820A75965008BC393 /* LoginVC.swift in Sources */,
+				A857CFB120E9507D00292FF8 /* DetailVC.swift in Sources */,
 				A87EDE8B20CDC8070047009C /* ServicesVC.swift in Sources */,
 				A82542E820AE5B170000A206 /* SimpleTextField.swift in Sources */,
 				A88F31E120B246F30036AAED /* UIColorExtension.swift in Sources */,
@@ -507,8 +542,10 @@
 				A8CB815920AF521200B1AE2A /* optionsTableVC.swift in Sources */,
 				A8D8C5D320A781B400CDE7C0 /* AppSettings.swift in Sources */,
 				A88F31DF20B2443A0036AAED /* TEMPManager.swift in Sources */,
+				A857CFB720E96F2800292FF8 /* UIIMageExtension.swift in Sources */,
 				A87EDE8D20CDFA740047009C /* ConnectionManager.swift in Sources */,
 				A82542EA20AE5B340000A206 /* CustomPickerTextField.swift in Sources */,
+				A857CFB320E9508800292FF8 /* AboutVC.swift in Sources */,
 				A824466120A7C6390028AEC8 /* Utilities.swift in Sources */,
 				A8553EDA20A75972008BC393 /* ConfigurationLoginVC.swift in Sources */,
 				A8D8C5D520A781C500CDE7C0 /* SMTPManager.swift in Sources */,
@@ -522,6 +559,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A8553EC120A74238008BC393 /* Base */,
+				A857CFB820E9727A00292FF8 /* es */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -530,6 +568,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A8553EC620A74238008BC393 /* Base */,
+				A857CFB920E9727A00292FF8 /* es */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -646,7 +685,7 @@
 		};
 		A8553ECC20A74238008BC393 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1D2CFAC07431F2E6533E24E7 /* Pods-Apretaste.debug.xcconfig */;
+			baseConfigurationReference = BD477D8E762C302344CC42F4 /* Pods-Apretaste.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -675,7 +714,7 @@
 		};
 		A8553ECD20A74238008BC393 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2EC18CF92597F571E0401DE7 /* Pods-Apretaste.release.xcconfig */;
+			baseConfigurationReference = 3FD24E5ACDA8A95B1995D8E4 /* Pods-Apretaste.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

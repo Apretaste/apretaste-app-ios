@@ -68,19 +68,43 @@ class TabBarMenuVC: UITabBarController {
         
         self.tabBar.tintColor = UIColor.white
         self.tabBar.barTintColor = UIColor.greenApp
+        self.tabBar.isTranslucent = false
+
+        
         if #available(iOS 10.0, *) {
             self.tabBar.unselectedItemTintColor = UIColor.darkGray
-        } else {
-            // Fallback on earlier versions
         }
-        
         // set navigation bar style //
         
-        self.title = "Apretaste"
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
-        let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
-        navigationItem.leftBarButtonItem = backButton
+        let dataUrl = TEMPManager.shared.urlFiles!
+        
+        let urlImage = dataUrl.appendingPathComponent("user.jpg")
+        
+        do{
+            let dataImage = try Data.init(contentsOf: urlImage)
+            let image = UIImage(data: dataImage)
+            let containView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 50, height: 30))
+            
+            let title = UILabel(frame: CGRect(x: 35, y: 5, width: 100, height: 15))
+            let imageview = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+            
+            imageview.image = image
+            imageview.contentMode = .scaleAspectFit
+            title.text = TEMPManager.shared.fetchData.username
+            title.textColor = .white
+            title.font = UIFont.systemFont(ofSize: 15)
+            imageview.layer.cornerRadius = 20
+            imageview.layer.masksToBounds = true
+            containView.addSubview(imageview)
+            containView.addSubview(title)
+            let rightBarButton = UIBarButtonItem(customView: containView)
+            self.navigationItem.leftBarButtonItem = rightBarButton
+            
+        }catch{
+            print("error load image")
+        }
 
         
     }

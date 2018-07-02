@@ -27,18 +27,36 @@ class ConnectionManager{
     
     //Methods //
     
+    func requestAwait(command: String,completion:@escaping(_ success:Bool) -> Void){
+        
+        if connectionType == .http{
+            
+            HTTPManager.shared.executeCommandAwait(task: command) { (success) in
+                completion(success)
+                return
+            }
+        }
+        if connectionType == .smtp{
+            
+            SMTPManager.shared.sendMail(task: command) { (_) in
+                
+                completion(true)
+                return
+            }
+            
+        }
+        
+    }
+    
     func request(command: String,completion:@escaping(Error?,URL) -> Void){
         
         if connectionType == .http{
             
-            
             HTTPManager.shared.executeCommand(task: command) { (error,html) in
-                
                 completion(error,html)
                 return
             }
         }
-        
         if connectionType == .smtp{
 
             SMTPManager.shared.sendMail(task: command) { (subject) in

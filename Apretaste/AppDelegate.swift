@@ -32,6 +32,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         
+        // set navigationSyles //
+        
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+        
         self.window?.rootViewController = menuVC
         self.window?.makeKeyAndVisible()
  

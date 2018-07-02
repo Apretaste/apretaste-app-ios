@@ -12,9 +12,20 @@ class setupVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupView()
 
-        // Do any additional setup after loading the view.
     }
+    
+    
+    //MARK: setups
+    
+    
+    private func setupView(){
+    
+    
+    }
+    
+    //MARK: - funcs
 
     @IBAction func passChangeButton(_ sender: Any) {
     }

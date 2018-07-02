@@ -81,7 +81,7 @@ class HTTPManager{
         }
     }
     
-    private func internalRequest(task: String,completion:@escaping(Data,String) -> Void){
+    private func internalRequest(task: String,completion:@escaping(_ data:Data,_ url: String,_ await:Bool) -> Void){
         
         let zip = UtilitesMethods.writeZip(task: task)
         
@@ -107,7 +107,10 @@ class HTTPManager{
                     guard let responseJSON = data.result.value as? NSDictionary else {return}
                     
                     let urlString = responseJSON["file"] as! String
-                    let urlFile = URL(string:urlString)!
+                    guard let urlFile = URL(string:urlString) else{
+                        completion(Data(),"",true)
+                        return
+                    }
                     let destination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory)
                     
                     
@@ -126,7 +129,7 @@ class HTTPManager{
                             let zipData = try! Data.init(contentsOf: response.destinationURL!)
                             let name = String(urlString.split(separator: "/").last!)
                             
-                            completion(zipData,name)
+                            completion(zipData,name,false)
                             
                            
                         })
@@ -145,7 +148,7 @@ class HTTPManager{
     
     func executeCommand(task: String,completion:@escaping(Error?,URL) -> Void){
         
-        self.internalRequest(task: task) { (zipData, name) in
+        self.internalRequest(task: task) { (zipData, name, _)  in
            
             let unzipFolder = UtilitesMethods.receiveZip(data: zipData, filename: name)
             
@@ -157,14 +160,21 @@ class HTTPManager{
             
             completion(nil, urlHTML)
         }
+    }
+    
+    
+    func executeCommandAwait(task: String,completion:@escaping(Bool) -> Void){
         
-       
+        self.internalRequest(task: task) { (_, _,await) in
+            
+           completion(await)
+        }
     }
     
     
     func sendRequest(task: String,completion:@escaping(Error?,FetchModel?,String?) -> Void){
         
-        self.internalRequest(task: task) { (zipData, name) in
+        self.internalRequest(task: task) { (zipData, name,_) in
             
             let unzipFolder = UtilitesMethods.receiveZip(data: zipData, filename: name)
             

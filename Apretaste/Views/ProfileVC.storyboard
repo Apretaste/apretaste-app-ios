@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,29 +15,33 @@
             <objects>
                 <viewController id="KHX-6v-M34" customClass="ProfileVC" customModule="Apretaste" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eVE-ub-buj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l6Z-I8-Msw">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="960"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Pcx-6K-6hh">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="960"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a0W-Af-e2x">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="960"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="V65-Xl-TPl">
-                                                        <rect key="frame" x="30" y="40" width="315" height="240"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roundProfile" translatesAutoresizingMaskIntoConstraints="NO" id="V65-Xl-TPl">
+                                                        <rect key="frame" x="137.66666666666666" y="10" width="100" height="100"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="100" id="K9l-oj-NTk"/>
+                                                            <constraint firstAttribute="width" constant="100" id="OCS-Vf-LoH"/>
+                                                        </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UNX-Yb-JKs">
-                                                        <rect key="frame" x="30" y="310" width="26" height="30"/>
+                                                        <rect key="frame" x="20" y="120" width="26" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                                         <color key="textColor" red="0.66535588940000001" green="0.66701922629999999" blue="0.67505262310000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wpt-4G-1Uc" customClass="simpleTextField" customModule="Apretaste" customModuleProvider="target">
-                                                        <rect key="frame" x="58" y="310" width="287" height="30"/>
+                                                        <rect key="frame" x="48" y="120" width="307" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="tjN-bC-jwe"/>
                                                         </constraints>
@@ -47,97 +50,97 @@
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nombre" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fsV-XL-BtR" customClass="simpleTextField" customModule="Apretaste" customModuleProvider="target">
-                                                        <rect key="frame" x="30" y="360" width="315" height="30"/>
+                                                        <rect key="frame" x="20" y="170" width="335" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Fecha de nacimiento" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sRd-vc-wMK" customClass="CustomDatePickerTextField" customModule="Apretaste" customModuleProvider="target">
-                                                        <rect key="frame" x="30" y="410" width="315" height="30"/>
+                                                        <rect key="frame" x="20" y="220" width="335" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sexo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w2c-t4-Bni" customClass="PickerTextField" customModule="Apretaste" customModuleProvider="target">
-                                                        <rect key="frame" x="30" y="460" width="315" height="30"/>
+                                                        <rect key="frame" x="20" y="270" width="335" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Orientación Sexual" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m1O-FD-UmB" customClass="PickerTextField" customModule="Apretaste" customModuleProvider="target">
-                                                        <rect key="frame" x="30" y="510" width="315" height="30"/>
+                                                    <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Orientación Sexual" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m1O-FD-UmB" customClass="PickerTextField" customModule="Apretaste" customModuleProvider="target">
+                                                        <rect key="frame" x="20" y="320" width="335" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Celular" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7F3-L2-nh1" customClass="simpleTextField" customModule="Apretaste" customModuleProvider="target">
-                                                        <rect key="frame" x="30" y="560" width="315" height="30"/>
+                                                    <textField opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Celular" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7F3-L2-nh1" customClass="simpleTextField" customModule="Apretaste" customModuleProvider="target">
+                                                        <rect key="frame" x="20" y="370" width="335" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cuerpo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bPb-Ss-o6d" customClass="PickerTextField" customModule="Apretaste" customModuleProvider="target">
-                                                        <rect key="frame" x="30" y="610" width="315" height="30"/>
+                                                    <textField opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cuerpo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bPb-Ss-o6d" customClass="PickerTextField" customModule="Apretaste" customModuleProvider="target">
+                                                        <rect key="frame" x="20" y="420" width="335" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ojos" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AKB-OJ-iuq" customClass="PickerTextField" customModule="Apretaste" customModuleProvider="target">
-                                                        <rect key="frame" x="30" y="660" width="315" height="30"/>
+                                                    <textField opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ojos" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AKB-OJ-iuq" customClass="PickerTextField" customModule="Apretaste" customModuleProvider="target">
+                                                        <rect key="frame" x="20" y="470" width="335" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Piel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gsc-VF-atV" customClass="PickerTextField" customModule="Apretaste" customModuleProvider="target">
-                                                        <rect key="frame" x="30" y="710" width="315" height="30"/>
+                                                    <textField opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Piel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gsc-VF-atV" customClass="PickerTextField" customModule="Apretaste" customModuleProvider="target">
+                                                        <rect key="frame" x="20" y="520" width="335" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pelo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GSs-ky-D4K" customClass="PickerTextField" customModule="Apretaste" customModuleProvider="target">
-                                                        <rect key="frame" x="30" y="760" width="315" height="30"/>
+                                                    <textField opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pelo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GSs-ky-D4K" customClass="PickerTextField" customModule="Apretaste" customModuleProvider="target">
+                                                        <rect key="frame" x="20" y="570" width="335" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Estado Civil" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Niv-rW-D7q" customClass="PickerTextField" customModule="Apretaste" customModuleProvider="target">
-                                                        <rect key="frame" x="30" y="810" width="315" height="30"/>
+                                                    <textField opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Estado Civil" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Niv-rW-D7q" customClass="PickerTextField" customModule="Apretaste" customModuleProvider="target">
+                                                        <rect key="frame" x="20" y="620" width="335" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nivel Escolar" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9hP-ak-tQB" customClass="PickerTextField" customModule="Apretaste" customModuleProvider="target">
-                                                        <rect key="frame" x="30" y="860" width="315" height="30"/>
+                                                    <textField opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nivel Escolar" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9hP-ak-tQB" customClass="PickerTextField" customModule="Apretaste" customModuleProvider="target">
+                                                        <rect key="frame" x="20" y="670" width="335" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Profesión" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wh9-lo-dZH" customClass="simpleTextField" customModule="Apretaste" customModuleProvider="target">
-                                                        <rect key="frame" x="30" y="910" width="315" height="30"/>
+                                                    <textField opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Profesión" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wh9-lo-dZH" customClass="simpleTextField" customModule="Apretaste" customModuleProvider="target">
+                                                        <rect key="frame" x="20" y="720" width="335" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ciudad" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fbH-s0-nQE" customClass="simpleTextField" customModule="Apretaste" customModuleProvider="target">
-                                                        <rect key="frame" x="30" y="960" width="315" height="30"/>
+                                                    <textField opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ciudad" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fbH-s0-nQE" customClass="simpleTextField" customModule="Apretaste" customModuleProvider="target">
+                                                        <rect key="frame" x="20" y="770" width="335" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Provincia" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Idp-R4-iOk" customClass="PickerTextField" customModule="Apretaste" customModuleProvider="target">
-                                                        <rect key="frame" x="30" y="1010" width="315" height="30"/>
+                                                    <textField opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Provincia" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Idp-R4-iOk" customClass="PickerTextField" customModule="Apretaste" customModuleProvider="target">
+                                                        <rect key="frame" x="20" y="820" width="335" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Interés" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Znu-F8-CjR" customClass="simpleTextField" customModule="Apretaste" customModuleProvider="target">
-                                                        <rect key="frame" x="30" y="1060" width="315" height="30"/>
+                                                    <textField opaque="NO" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Interés" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Znu-F8-CjR" customClass="simpleTextField" customModule="Apretaste" customModuleProvider="target">
+                                                        <rect key="frame" x="20" y="870" width="335" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Religión" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fYX-Yz-6nR" customClass="PickerTextField" customModule="Apretaste" customModuleProvider="target">
-                                                        <rect key="frame" x="30" y="1110" width="315" height="30"/>
+                                                    <textField opaque="NO" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Religión" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fYX-Yz-6nR" customClass="PickerTextField" customModule="Apretaste" customModuleProvider="target">
+                                                        <rect key="frame" x="20" y="920" width="335" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -162,12 +165,11 @@
                                                     <constraint firstItem="gsc-VF-atV" firstAttribute="top" secondItem="AKB-OJ-iuq" secondAttribute="bottom" constant="20" id="GCT-NI-cPb"/>
                                                     <constraint firstItem="Wpt-4G-1Uc" firstAttribute="leading" secondItem="UNX-Yb-JKs" secondAttribute="trailing" constant="2" id="HGu-Aj-Qpo"/>
                                                     <constraint firstItem="7F3-L2-nh1" firstAttribute="trailing" secondItem="m1O-FD-UmB" secondAttribute="trailing" id="Hwc-7r-eed"/>
+                                                    <constraint firstItem="UNX-Yb-JKs" firstAttribute="leading" secondItem="a0W-Af-e2x" secondAttribute="leading" constant="20" id="IEh-UY-OIG"/>
+                                                    <constraint firstItem="V65-Xl-TPl" firstAttribute="centerX" secondItem="a0W-Af-e2x" secondAttribute="centerX" id="J52-AG-noL"/>
                                                     <constraint firstItem="fYX-Yz-6nR" firstAttribute="leading" secondItem="Znu-F8-CjR" secondAttribute="leading" id="JtX-qN-Tfm"/>
-                                                    <constraint firstItem="UNX-Yb-JKs" firstAttribute="leading" secondItem="V65-Xl-TPl" secondAttribute="leading" id="LrC-4C-B3K"/>
-                                                    <constraint firstItem="Wpt-4G-1Uc" firstAttribute="trailing" secondItem="V65-Xl-TPl" secondAttribute="trailing" id="MO6-gX-jOC"/>
                                                     <constraint firstItem="Idp-R4-iOk" firstAttribute="leading" secondItem="fbH-s0-nQE" secondAttribute="leading" id="MTP-y7-oAn"/>
                                                     <constraint firstItem="m1O-FD-UmB" firstAttribute="top" secondItem="w2c-t4-Bni" secondAttribute="bottom" constant="20" id="OjC-iQ-60j"/>
-                                                    <constraint firstItem="V65-Xl-TPl" firstAttribute="height" secondItem="a0W-Af-e2x" secondAttribute="height" multiplier="0.2" id="PH3-2F-z7i"/>
                                                     <constraint firstItem="Wpt-4G-1Uc" firstAttribute="top" secondItem="UNX-Yb-JKs" secondAttribute="top" id="QXi-3J-9iJ"/>
                                                     <constraint firstItem="m1O-FD-UmB" firstAttribute="trailing" secondItem="w2c-t4-Bni" secondAttribute="trailing" id="QfQ-F2-tor"/>
                                                     <constraint firstItem="fbH-s0-nQE" firstAttribute="leading" secondItem="Wh9-lo-dZH" secondAttribute="leading" id="S3P-gq-wWg"/>
@@ -181,7 +183,7 @@
                                                     <constraint firstItem="Znu-F8-CjR" firstAttribute="leading" secondItem="Idp-R4-iOk" secondAttribute="leading" id="Vw7-4t-13x"/>
                                                     <constraint firstItem="Idp-R4-iOk" firstAttribute="trailing" secondItem="fbH-s0-nQE" secondAttribute="trailing" id="WER-hr-pMF"/>
                                                     <constraint firstItem="Znu-F8-CjR" firstAttribute="top" secondItem="Idp-R4-iOk" secondAttribute="bottom" constant="20" id="XLO-Zg-uzr"/>
-                                                    <constraint firstItem="V65-Xl-TPl" firstAttribute="top" secondItem="a0W-Af-e2x" secondAttribute="top" constant="40" id="XoO-mp-lP2"/>
+                                                    <constraint firstItem="V65-Xl-TPl" firstAttribute="top" secondItem="a0W-Af-e2x" secondAttribute="top" constant="10" id="XoO-mp-lP2"/>
                                                     <constraint firstItem="AKB-OJ-iuq" firstAttribute="top" secondItem="bPb-Ss-o6d" secondAttribute="bottom" constant="20" id="c7u-Tv-Plb"/>
                                                     <constraint firstItem="Wpt-4G-1Uc" firstAttribute="bottom" secondItem="UNX-Yb-JKs" secondAttribute="bottom" id="daQ-CL-g07"/>
                                                     <constraint firstItem="sRd-vc-wMK" firstAttribute="leading" secondItem="fsV-XL-BtR" secondAttribute="leading" id="egW-1h-SsL"/>
@@ -192,22 +194,21 @@
                                                     <constraint firstItem="fsV-XL-BtR" firstAttribute="top" secondItem="Wpt-4G-1Uc" secondAttribute="bottom" constant="20" id="i6T-YQ-uld"/>
                                                     <constraint firstItem="9hP-ak-tQB" firstAttribute="leading" secondItem="Niv-rW-D7q" secondAttribute="leading" id="jyo-YS-99z"/>
                                                     <constraint firstItem="Niv-rW-D7q" firstAttribute="trailing" secondItem="GSs-ky-D4K" secondAttribute="trailing" id="jzF-4H-z91"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Wpt-4G-1Uc" secondAttribute="trailing" constant="20" id="l8a-nf-Mjc"/>
                                                     <constraint firstItem="fbH-s0-nQE" firstAttribute="top" secondItem="Wh9-lo-dZH" secondAttribute="bottom" constant="20" id="lWv-Fy-UFS"/>
-                                                    <constraint firstAttribute="trailing" secondItem="V65-Xl-TPl" secondAttribute="trailing" constant="30" id="mqh-wP-LQA"/>
                                                     <constraint firstItem="7F3-L2-nh1" firstAttribute="leading" secondItem="m1O-FD-UmB" secondAttribute="leading" id="qfT-pi-Lia"/>
-                                                    <constraint firstItem="UNX-Yb-JKs" firstAttribute="top" secondItem="V65-Xl-TPl" secondAttribute="bottom" constant="30" id="rU3-2s-PcB"/>
+                                                    <constraint firstItem="UNX-Yb-JKs" firstAttribute="top" secondItem="V65-Xl-TPl" secondAttribute="bottom" constant="10" id="rU3-2s-PcB"/>
                                                     <constraint firstItem="Niv-rW-D7q" firstAttribute="top" secondItem="GSs-ky-D4K" secondAttribute="bottom" constant="20" id="wc5-bo-Qkj"/>
                                                     <constraint firstItem="m1O-FD-UmB" firstAttribute="leading" secondItem="w2c-t4-Bni" secondAttribute="leading" id="xCh-Rh-9d7"/>
                                                     <constraint firstItem="AKB-OJ-iuq" firstAttribute="leading" secondItem="bPb-Ss-o6d" secondAttribute="leading" id="y0S-J9-Snn"/>
                                                     <constraint firstItem="Wh9-lo-dZH" firstAttribute="leading" secondItem="9hP-ak-tQB" secondAttribute="leading" id="y6Z-wD-jH6"/>
                                                     <constraint firstItem="GSs-ky-D4K" firstAttribute="top" secondItem="gsc-VF-atV" secondAttribute="bottom" constant="20" id="yHI-lr-n1o"/>
                                                     <constraint firstItem="w2c-t4-Bni" firstAttribute="trailing" secondItem="sRd-vc-wMK" secondAttribute="trailing" id="yzD-OV-lv0"/>
-                                                    <constraint firstItem="V65-Xl-TPl" firstAttribute="leading" secondItem="a0W-Af-e2x" secondAttribute="leading" constant="30" id="zfc-7I-4Dq"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="1200" id="1Qw-Yh-vMa"/>
+                                            <constraint firstAttribute="height" constant="960" id="1Qw-Yh-vMa"/>
                                             <constraint firstAttribute="bottom" secondItem="a0W-Af-e2x" secondAttribute="bottom" id="Nhl-mw-Bcn"/>
                                             <constraint firstAttribute="trailing" secondItem="a0W-Af-e2x" secondAttribute="trailing" id="Pfm-m7-d4k"/>
                                             <constraint firstItem="a0W-Af-e2x" firstAttribute="top" secondItem="Pcx-6K-6hh" secondAttribute="top" id="Qio-aN-W57"/>
@@ -233,7 +234,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="c0Y-yv-aLD"/>
                     </view>
-                    <size key="freeformSize" width="375" height="1200"/>
+                    <size key="freeformSize" width="375" height="960"/>
                     <connections>
                         <outlet property="birthdateTextField" destination="sRd-vc-wMK" id="t4r-30-heh"/>
                         <outlet property="bodyTextField" destination="bPb-Ss-o6d" id="hso-Pq-w8W"/>
@@ -242,6 +243,7 @@
                         <outlet property="civilStatusTextField" destination="Niv-rW-D7q" id="ifv-vH-U8l"/>
                         <outlet property="eyesTextField" destination="AKB-OJ-iuq" id="Pls-kV-JLA"/>
                         <outlet property="hairTextField" destination="GSs-ky-D4K" id="M0m-BJ-Tg6"/>
+                        <outlet property="imageProfile" destination="V65-Xl-TPl" id="X7T-Mz-0TH"/>
                         <outlet property="interestTextField" destination="Znu-F8-CjR" id="oU5-6I-EBC"/>
                         <outlet property="nameTextField" destination="fsV-XL-BtR" id="E1a-Lv-Gcv"/>
                         <outlet property="orientationSexTextField" destination="m1O-FD-UmB" id="pPd-11-yld"/>
@@ -249,6 +251,7 @@
                         <outlet property="provinceTextField" destination="Idp-R4-iOk" id="PJe-UZ-h9T"/>
                         <outlet property="religionTextField" destination="fYX-Yz-6nR" id="IUP-qW-VxX"/>
                         <outlet property="schoolLevelTextField" destination="9hP-ak-tQB" id="rda-0p-Xvo"/>
+                        <outlet property="scrollView" destination="l6Z-I8-Msw" id="xUg-2J-8dZ"/>
                         <outlet property="sexTextField" destination="w2c-t4-Bni" id="aNR-uX-g99"/>
                         <outlet property="skinTextField" destination="gsc-VF-atV" id="sYK-d1-HmA"/>
                         <outlet property="userNameTextField" destination="Wpt-4G-1Uc" id="t0a-u7-edk"/>
@@ -259,4 +262,7 @@
             <point key="canvasLocation" x="-237.59999999999999" y="170.01499250374815"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="roundProfile" width="200" height="200"/>
+    </resources>
 </document>
