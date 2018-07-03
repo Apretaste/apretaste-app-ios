@@ -217,7 +217,7 @@ class ServicesVC: UIViewController {
                     servicesVC.urlHtml = html
                     servicesVC.command = newCommand
                     servicesVC.title = String(command.split(separator: " ").first!)
-                    TEMPManager.shared.saveOpenServices()
+                    TEMPManager.shared.saveChangesInServices()
                     self.navigationController?.pushViewController(servicesVC, animated: true)
                     
                 }
@@ -249,7 +249,7 @@ class ServicesVC: UIViewController {
             servicesVC.urlHtml = html
             servicesVC.command = command
             servicesVC.title = String(command.split(separator: " ").first!)
-            TEMPManager.shared.saveOpenServices()
+            TEMPManager.shared.saveChangesInServices()
             self.navigationController?.pushViewController(servicesVC, animated: true)
             
         }

@@ -42,7 +42,7 @@ class TEMPManager{
     static var keychainAccess = KeychainSwift()
     
     
-    func saveOpenServices(){
+    func saveChangesInServices(){
         
         TEMPManager.keychainAccess.set(fetchData.toJSONString()!, forKey: KeychainKeys.UserKeys.rawValue)
     }

@@ -163,7 +163,6 @@ class HomeVC: UIViewController {
     
     func openServices(indexPath:IndexPath, search searching:String = ""){
         
-        self.fetchData.services[indexPath.item].isVisited = true
         let currentItem = self.fetchData.services[indexPath.item]
         
         let storyboard = UIStoryboard(name: "Services", bundle: nil)
@@ -185,7 +184,8 @@ class HomeVC: UIViewController {
             servicesVC.urlHtml = html
             servicesVC.command = commandString
             servicesVC.title = self.fetchData.services[indexPath.item].name
-            TEMPManager.shared.saveOpenServices()
+            self.fetchData.services[indexPath.item].isVisited = true
+            TEMPManager.shared.saveChangesInServices()
             self.collectionView.reloadItems(at: [indexPath])
             self.navigationController?.pushViewController(servicesVC, animated: true)
         }
