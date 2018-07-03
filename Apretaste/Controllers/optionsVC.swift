@@ -12,14 +12,14 @@ class optionsVC: UIViewController, UITableViewDelegate,UITableViewDataSource {
     
     enum CellType: Int{
         
-        case profile = 0 , recents , options , quiz , refferAndWin , about, exit
+        case profile = 0 , recents  , quiz , refferAndWin ,cupons, about, exit, options
     }
     
     @IBOutlet weak var tableView: UITableView!
 
-    let options = ["Perfil", "Recientes", "Opciones", "Retos", "Referir y ganar", "Acerca de", "Salir"]
+    let options = ["Perfil", "Recientes", "Retos", "Referir y ganar","cupones", "Acerca de", "Salir"]
     
-    let imgs = ["user","recents","configuration","flag","referir","about","exit"]
+    let imgs = ["user","recents","flag","referir","ticket","about","exit"]
 
     
 
@@ -27,9 +27,9 @@ class optionsVC: UIViewController, UITableViewDelegate,UITableViewDataSource {
         super.viewDidLoad()
         self.setupView()
         
-        self.tableView.delegate = self
         self.tableView.dataSource = self
-        
+        self.tableView.delegate = self
+ 
     }
     
     private func setupView(){
@@ -64,23 +64,31 @@ class optionsVC: UIViewController, UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let cellType:CellType = CellType(rawValue: indexPath.row)!
+
         
         if cellType == .exit{
-
+            
             let alert = UIAlertController(title: "Salir", message: "Seguro que desea salir de la aplicación?", preferredStyle: .alert)
 
             let exit = UIAlertAction(title: "Salir", style: .default) { (_) in
 
                 TEMPManager.shared.clearData()
-                //self.dismiss(animated: true, completion: nil)
+                let appDelegate = UIApplication.shared.delegate
+                let storyboard = UIStoryboard(name: "MenuLogin", bundle: nil)
+                let rootVC = storyboard.instantiateInitialViewController()!
+                appDelegate?.window??.rootViewController = rootVC
+                appDelegate?.window??.makeKeyAndVisible()
             }
 
             let cancel = UIAlertAction(title: "Cancelar", style: .cancel)
 
             alert.addAction(exit)
             alert.addAction(cancel)
+            
+            DispatchQueue.main.async {
+                self.present(alert, animated: true, completion: nil)
 
-            self.present(alert, animated: true, completion: nil)
+            }
             return
 
         }
@@ -89,8 +97,9 @@ class optionsVC: UIViewController, UITableViewDelegate,UITableViewDataSource {
 
            
             self.startAnimating(message:"cargando")
+            let command = "PERFIL EDITAR"
             
-            ConnectionManager.shared.request(command: "PERFIL EDITAR") { (error, url) in
+            ConnectionManager.shared.request(command: command) { (error, url) in
                 
                 self.stopAnimating()
                 
@@ -100,6 +109,7 @@ class optionsVC: UIViewController, UITableViewDelegate,UITableViewDataSource {
                 let storyboard = UIStoryboard(name: "Services", bundle: nil)
                 let servicesVC = storyboard.instantiateInitialViewController()! as! ServicesVC
                 servicesVC.urlHtml = url
+                servicesVC.command = command
                 self.navigationController?.pushViewController(servicesVC, animated: true)
 
             }
@@ -127,6 +137,69 @@ class optionsVC: UIViewController, UITableViewDelegate,UITableViewDataSource {
             let recentVC = storyboard.instantiateInitialViewController()!
             self.navigationController?.pushViewController(recentVC, animated: true)
             
+        }
+        
+        if cellType == .quiz{
+            
+            self.startAnimating(message:"cargando")
+            let command = "retos"
+            
+            ConnectionManager.shared.request(command: command) { (error, url) in
+                
+                self.stopAnimating()
+                
+                if error != nil{
+                    return
+                }
+                let storyboard = UIStoryboard(name: "Services", bundle: nil)
+                let servicesVC = storyboard.instantiateInitialViewController()! as! ServicesVC
+                servicesVC.urlHtml = url
+                servicesVC.command = command
+                self.navigationController?.pushViewController(servicesVC, animated: true)
+                
+            }
+        }
+        
+        if cellType == .refferAndWin{
+            
+            self.startAnimating(message:"cargando")
+            let command = "referir"
+            
+            ConnectionManager.shared.request(command: command) { (error, url) in
+                
+                self.stopAnimating()
+                
+                if error != nil{
+                    return
+                }
+                let storyboard = UIStoryboard(name: "Services", bundle: nil)
+                let servicesVC = storyboard.instantiateInitialViewController()! as! ServicesVC
+                servicesVC.urlHtml = url
+                servicesVC.command = command
+                self.navigationController?.pushViewController(servicesVC, animated: true)
+                
+            }
+        }
+        
+        if cellType == .cupons{
+            
+            self.startAnimating(message:"cargando")
+            let command = "cupones"
+            
+            ConnectionManager.shared.request(command: command) { (error, url) in
+                
+                self.stopAnimating()
+                
+                if error != nil{
+                    return
+                }
+                let storyboard = UIStoryboard(name: "Services", bundle: nil)
+                let servicesVC = storyboard.instantiateInitialViewController()! as! ServicesVC
+                servicesVC.urlHtml = url
+                servicesVC.command = command
+                self.navigationController?.pushViewController(servicesVC, animated: true)
+                
+            }
         }
 
     }

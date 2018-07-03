@@ -8,17 +8,16 @@
 
 import UIKit
 import JavaScriptCore
-import WebKit
 
 class ServicesVC: UIViewController {
 
     @IBOutlet weak var webView: UIWebView!
     
+    var command:String!
     var urlHtml:URL!
-    
     var jsContext: JSContext!
+    
 
-    var t = WKWebView()
     
     //MARK: life cycle
     
@@ -42,6 +41,10 @@ class ServicesVC: UIViewController {
         
        self.webView.backgroundColor = .white
         
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(self.refreshButtonTapped))
+        refreshButton.tintColor = .white
+        self.navigationItem.rightBarButtonItem = refreshButton
+        
 
     }
     
@@ -54,6 +57,30 @@ class ServicesVC: UIViewController {
     }
     
     //MARK: - funcs
+    
+    
+    @objc func refreshButtonTapped(){
+        
+        self.startAnimating(message:"Refrescando")
+        
+        ConnectionManager.shared.request(withCaching:false,command: self.command) { (error, url) in
+            
+            self.stopAnimating()
+            
+            if error != nil{
+                return
+            }
+            
+            let storyboard = UIStoryboard(name: "Services", bundle: nil)
+            let serviceVC = storyboard.instantiateInitialViewController()! as! ServicesVC
+            serviceVC.command = self.command
+            serviceVC.urlHtml = url
+            self.navigationController?.pushViewController(serviceVC, animated: true)
+
+        }
+        
+        
+    }
     
     private func procesingHtmlContent() -> String{
         
@@ -188,6 +215,7 @@ class ServicesVC: UIViewController {
                     let storyboard = UIStoryboard(name: "Services", bundle: nil)
                     let servicesVC = storyboard.instantiateInitialViewController()! as! ServicesVC
                     servicesVC.urlHtml = html
+                    servicesVC.command = newCommand
                     servicesVC.title = String(command.split(separator: " ").first!)
                     TEMPManager.shared.saveOpenServices()
                     self.navigationController?.pushViewController(servicesVC, animated: true)
@@ -219,6 +247,7 @@ class ServicesVC: UIViewController {
             let storyboard = UIStoryboard(name: "Services", bundle: nil)
             let servicesVC = storyboard.instantiateInitialViewController()! as! ServicesVC
             servicesVC.urlHtml = html
+            servicesVC.command = command
             servicesVC.title = String(command.split(separator: " ").first!)
             TEMPManager.shared.saveOpenServices()
             self.navigationController?.pushViewController(servicesVC, animated: true)

@@ -49,13 +49,17 @@ class ConnectionManager{
         
     }
     
-    func request(command: String,completion:@escaping(Error?,URL) -> Void){
+    func request(withCaching cache: Bool = true , command: String,completion:@escaping(Error?,URL) -> Void){
         
-        let detectingCached = self.isCahed(command: command)
+        if cache{
         
-        if detectingCached != nil{
-            completion(nil,detectingCached!)
-            return
+            let detectingCached = self.isCahed(command: command)
+            
+            if detectingCached != nil{
+                completion(nil,detectingCached!)
+                return
+            }
+                
         }
         
         let newCommand = Command.generateCommand(command: command)
@@ -92,6 +96,55 @@ class ConnectionManager{
 
         }
         
+    }
+    
+    
+    func refreshProfile(completion: @escaping(_ success:Bool) -> Void){
+        
+        if connectionType == .http{
+        
+            HTTPManager.shared.sendRequest(task: Command.getProfile.rawValue, completion: { (error, fetchData, urlFiles) in
+                
+                if error != nil{
+                    completion(false)
+                    return
+                }
+                // save data //
+                TEMPManager.shared.fetchData = fetchData!
+                TEMPManager.shared.relativePath = urlFiles!
+                
+                completion(true)
+               
+            })
+        }
+        
+        if connectionType == .smtp{
+            
+            
+            SMTPManager.shared.sendMail(task: Command.getProfile.rawValue) { (subject) in
+                
+                //MARK: To do // validate subject //
+                
+                // wait for receive mail //
+                sleep(10)
+                
+                SMTPManager.shared.receiveMail(subject: subject!, completion: { (error, data, urlFiles) in
+                    
+                    if error != nil{
+                        completion(false)
+                        return
+                    }
+                    
+                    // save data //
+                    TEMPManager.shared.fetchData = data!
+                    TEMPManager.shared.relativePath = urlFiles!
+                    completion(true)
+                    
+                })
+            }
+            
+            
+        }
     }
     
     

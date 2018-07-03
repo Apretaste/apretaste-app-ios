@@ -20,7 +20,6 @@ class notificationVC: UIViewController {
 
         self.title = "Notificaciones"
         
-        self.notifications = TEMPManager.shared.fetchData.notifications
         self.tableView.tableFooterView = UIView()
         
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width , height: 200))
@@ -32,11 +31,19 @@ class notificationVC: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
+        
+    }
+
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+         self.notifications = TEMPManager.shared.fetchData.notifications
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+        
     }
-
   
 }
 
@@ -77,6 +84,7 @@ extension notificationVC:UITableViewDelegate, UITableViewDataSource{
             let storyboard = UIStoryboard(name: "Services", bundle: nil)
             let servicesVC = storyboard.instantiateInitialViewController()! as! ServicesVC
             servicesVC.urlHtml = url
+            servicesVC.command = currentNotification.link
             self.navigationController?.pushViewController(servicesVC, animated: true)
         }
     }

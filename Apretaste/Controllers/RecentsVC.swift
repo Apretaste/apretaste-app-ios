@@ -85,6 +85,7 @@ class RecentsVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let storyboard = UIStoryboard(name: "Services", bundle: nil)
         let servicesVC = storyboard.instantiateInitialViewController()! as! ServicesVC
         servicesVC.urlHtml = currentItem.url
+        servicesVC.command = currentItem.command
         self.navigationController?.pushViewController(servicesVC, animated: true)
 
     }

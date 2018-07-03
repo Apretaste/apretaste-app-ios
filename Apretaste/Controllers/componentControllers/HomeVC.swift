@@ -43,8 +43,16 @@ class HomeVC: UIViewController {
     private func setupView(){
         
         self.navigationController?.navigationBar.topItem?.backBarButtonItem?.tintColor = .white
+        
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(self.refreshButtonTapped))
+        refreshButton.tintColor = .white
+        self.navigationItem.rightBarButtonItem = refreshButton
 
     }
+    
+
+    
+
     
     private func setupNavigationBar(){
         
@@ -58,7 +66,8 @@ class HomeVC: UIViewController {
             let image = UIImage(data: dataImage)
             let containView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
             
-            let title = UILabel(frame: CGRect(x: 35, y: 5, width: 100, height: 15))
+            let title = UILabel(frame: CGRect(x: 35, y: 3, width: 100, height: 15))
+            let credit = UILabel(frame: CGRect(x: 35, y: 20, width: 100, height: 15))
             let imageview = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
             
             imageview.image = image
@@ -66,10 +75,14 @@ class HomeVC: UIViewController {
             title.text = TEMPManager.shared.fetchData.username
             title.textColor = .white
             title.font = UIFont.systemFont(ofSize: 15)
+            credit.text = "$ \(TEMPManager.shared.fetchData.credit)"
+            credit.textColor = .white
+            credit.font = UIFont.systemFont(ofSize: 12)
             imageview.layer.cornerRadius = 20
             imageview.layer.masksToBounds = true
             containView.addSubview(imageview)
             containView.addSubview(title)
+            containView.addSubview(credit)
             let rightBarButton = UIBarButtonItem(customView: containView)
             self.navigationItem.leftBarButtonItem = rightBarButton
             
@@ -127,6 +140,27 @@ class HomeVC: UIViewController {
     
     //MARK: - funcs
     
+    @objc func refreshButtonTapped(){
+        
+        self.startAnimating(message:"Refrescando")
+        
+        ConnectionManager.shared.refreshProfile { (success) in
+            
+            self.stopAnimating()
+            
+            if success{
+                
+                DispatchQueue.main.async {
+                    
+                    self.fetchData = TEMPManager.shared.fetchData
+                    self.dataUrl = TEMPManager.shared.urlFiles
+                    self.collectionView.reloadData()
+                }
+            }
+        }
+        
+    }
+    
     func openServices(indexPath:IndexPath, search searching:String = ""){
         
         self.fetchData.services[indexPath.item].isVisited = true
@@ -149,6 +183,7 @@ class HomeVC: UIViewController {
             }
             
             servicesVC.urlHtml = html
+            servicesVC.command = commandString
             servicesVC.title = self.fetchData.services[indexPath.item].name
             TEMPManager.shared.saveOpenServices()
             self.collectionView.reloadItems(at: [indexPath])
