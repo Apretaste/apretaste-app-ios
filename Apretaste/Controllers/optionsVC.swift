@@ -72,7 +72,7 @@ class optionsVC: UIViewController, UITableViewDelegate,UITableViewDataSource {
             let exit = UIAlertAction(title: "Salir", style: .default) { (_) in
 
                 TEMPManager.shared.clearData()
-                self.navigationController?.popToRootViewController(animated: true)
+                //self.dismiss(animated: true, completion: nil)
             }
 
             let cancel = UIAlertAction(title: "Cancelar", style: .cancel)
@@ -81,14 +81,29 @@ class optionsVC: UIViewController, UITableViewDelegate,UITableViewDataSource {
             alert.addAction(cancel)
 
             self.present(alert, animated: true, completion: nil)
+            return
 
         }
 
         if cellType == .profile{
 
-            let storyboard = UIStoryboard(name: "ProfileVC", bundle: nil)
-            let profileVC = storyboard.instantiateInitialViewController()!
-            self.navigationController?.pushViewController(profileVC, animated: true)
+           
+            self.startAnimating(message:"cargando")
+            
+            ConnectionManager.shared.request(command: "PERFIL EDITAR") { (error, url) in
+                
+                self.stopAnimating()
+                
+                if error != nil{
+                    return
+                }
+                let storyboard = UIStoryboard(name: "Services", bundle: nil)
+                let servicesVC = storyboard.instantiateInitialViewController()! as! ServicesVC
+                servicesVC.urlHtml = url
+                self.navigationController?.pushViewController(servicesVC, animated: true)
+
+            }
+            
 
         }
         
@@ -104,6 +119,14 @@ class optionsVC: UIViewController, UITableViewDelegate,UITableViewDataSource {
             let storyboard = UIStoryboard(name: "setup", bundle: nil)
             let options = storyboard.instantiateInitialViewController()!
             self.navigationController?.pushViewController(options, animated: true)
+        }
+        
+        if cellType == .recents{
+            
+            let storyboard = UIStoryboard(name: "Recents", bundle: nil)
+            let recentVC = storyboard.instantiateInitialViewController()!
+            self.navigationController?.pushViewController(recentVC, animated: true)
+            
         }
 
     }

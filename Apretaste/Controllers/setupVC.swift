@@ -17,7 +17,7 @@ class setupVC: UIViewController {
     }
     
     
-    //MARK: setups
+    //MARK: - setups
     
     
     private func setupView(){
@@ -27,9 +27,7 @@ class setupVC: UIViewController {
     
     //MARK: - funcs
 
-    @IBAction func passChangeButton(_ sender: Any) {
-    }
-    
+
     @IBAction func mailboxButton(_ sender: Any) {
     }
     
@@ -39,13 +37,9 @@ class setupVC: UIViewController {
     @IBAction func conectionChangeButton(_ sender: Any) {
     }
     
-    @IBAction func dateDeleteButton(_ sender: Any) {
-    }
-    
+
     @IBAction func SubscriptsSwitch(_ sender: Any) {
     }
-    
-    @IBAction func LogoutButton(_ sender: Any) {
-    }
+
 }
 

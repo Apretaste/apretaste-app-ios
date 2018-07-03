@@ -13,6 +13,7 @@ enum KeychainKeys: String{
     
     case UserKeys = "UserKeys1"
     case UserFile = "UnzipPath1"
+    case CacheData = "cacheData1"
     
     
 }

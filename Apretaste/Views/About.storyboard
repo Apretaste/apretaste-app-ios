@@ -34,19 +34,19 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apretaste" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RnB-Ff-b3O">
-                                                        <rect key="frame" x="120" y="175" width="135" height="26.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                        <rect key="frame" x="10" y="175" width="355" height="23"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="swS-28-F4y">
-                                                        <rect key="frame" x="120" y="206.5" width="135" height="0.0"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                        <rect key="frame" x="110" y="203" width="155" height="0.0"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="35" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sa7-Hd-Vh9">
-                                                        <rect key="frame" x="20" y="211.5" width="335" height="507.5"/>
+                                                        <rect key="frame" x="20" y="208" width="335" height="507.5"/>
                                                         <string key="text">Nuestra app es una colección de servicios gratuitos y nuestra meta es ofrecerle herramientas productivas, mantenerle más informado y entretenido. Esperamos que Apretaste sea de su agrado y esté a la altura de sus necesidades.
 
 Cuando tenga dudas o sugerencias, escríbanos al soporte y le responderemos en 72 horas. La mayoría de nuestras ideas vienen de usuarios como usted. Si tiene una buena idea, no dude en compartirla y nosotros la haremos realidad.
@@ -67,12 +67,12 @@ Esta app adquiere información personal para ofrecerle un mejor servicio, por ej
                                                     <constraint firstItem="MJj-eD-WMV" firstAttribute="top" secondItem="cjs-m2-dnb" secondAttribute="top" constant="40" id="96g-z1-gC7"/>
                                                     <constraint firstItem="MJj-eD-WMV" firstAttribute="leading" secondItem="cjs-m2-dnb" secondAttribute="leading" constant="50" id="F0d-Q2-KC9"/>
                                                     <constraint firstItem="swS-28-F4y" firstAttribute="top" secondItem="RnB-Ff-b3O" secondAttribute="bottom" constant="5" id="GsQ-ed-rsq"/>
-                                                    <constraint firstItem="swS-28-F4y" firstAttribute="leading" secondItem="cjs-m2-dnb" secondAttribute="leading" constant="120" id="RIN-Ap-fED"/>
+                                                    <constraint firstItem="swS-28-F4y" firstAttribute="leading" secondItem="cjs-m2-dnb" secondAttribute="leading" constant="110" id="RIN-Ap-fED"/>
                                                     <constraint firstAttribute="trailing" secondItem="sa7-Hd-Vh9" secondAttribute="trailing" constant="20" id="Ywf-T5-iza"/>
                                                     <constraint firstItem="sa7-Hd-Vh9" firstAttribute="top" secondItem="swS-28-F4y" secondAttribute="bottom" constant="5" id="ksJ-FV-BmB"/>
-                                                    <constraint firstItem="RnB-Ff-b3O" firstAttribute="leading" secondItem="cjs-m2-dnb" secondAttribute="leading" constant="120" id="kvc-NC-6Wr"/>
-                                                    <constraint firstAttribute="trailing" secondItem="swS-28-F4y" secondAttribute="trailing" constant="120" id="sDs-0R-HOV"/>
-                                                    <constraint firstAttribute="trailing" secondItem="RnB-Ff-b3O" secondAttribute="trailing" constant="120" id="vL9-eS-ZDc"/>
+                                                    <constraint firstItem="RnB-Ff-b3O" firstAttribute="leading" secondItem="cjs-m2-dnb" secondAttribute="leading" constant="10" id="kvc-NC-6Wr"/>
+                                                    <constraint firstAttribute="trailing" secondItem="swS-28-F4y" secondAttribute="trailing" constant="110" id="sDs-0R-HOV"/>
+                                                    <constraint firstAttribute="trailing" secondItem="RnB-Ff-b3O" secondAttribute="trailing" constant="10" id="vL9-eS-ZDc"/>
                                                 </constraints>
                                             </view>
                                         </subviews>

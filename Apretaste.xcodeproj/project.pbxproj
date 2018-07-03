@@ -37,6 +37,7 @@
 		A857CFB520E96EEA00292FF8 /* PrincipalNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A857CFB420E96EEA00292FF8 /* PrincipalNavigation.swift */; };
 		A857CFB720E96F2800292FF8 /* UIIMageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A857CFB620E96F2800292FF8 /* UIIMageExtension.swift */; };
 		A857CFBC20E9A5B600292FF8 /* resource.js in Resources */ = {isa = PBXBuildFile; fileRef = A857CFBB20E9A5B600292FF8 /* resource.js */; };
+		A857CFBE20EAF07E00292FF8 /* cacheRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A857CFBD20EAF07E00292FF8 /* cacheRequestModel.swift */; };
 		A87EDE8920CDC7AC0047009C /* Services.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A87EDE8820CDC7AC0047009C /* Services.storyboard */; };
 		A87EDE8B20CDC8070047009C /* ServicesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87EDE8A20CDC8070047009C /* ServicesVC.swift */; };
 		A87EDE8D20CDFA740047009C /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87EDE8C20CDFA740047009C /* ConnectionManager.swift */; };
@@ -49,6 +50,10 @@
 		A88F31DD20B1A3C80036AAED /* tabBarMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88F31DC20B1A3C80036AAED /* tabBarMenuVC.swift */; };
 		A88F31DF20B2443A0036AAED /* TEMPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88F31DE20B2443A0036AAED /* TEMPManager.swift */; };
 		A88F31E120B246F30036AAED /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A88F31E020B246F30036AAED /* UIColorExtension.swift */; };
+		A8954AD720EBB0CB00CE9361 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8954AD620EBB0CB00CE9361 /* NotificationCell.swift */; };
+		A8AAB89D20EAF970007B66D7 /* RecentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AAB89C20EAF970007B66D7 /* RecentsVC.swift */; };
+		A8AAB89F20EAF989007B66D7 /* Recents.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8AAB89E20EAF989007B66D7 /* Recents.storyboard */; };
+		A8AAB8A120EAFAA1007B66D7 /* RecentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AAB8A020EAFAA1007B66D7 /* RecentCell.swift */; };
 		A8B6839620ACA41100FB193A /* ProfileVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8B6839520ACA41100FB193A /* ProfileVC.storyboard */; };
 		A8B6839820ACBAEF00FB193A /* MenuLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8B6839720ACBAEF00FB193A /* MenuLogin.storyboard */; };
 		A8CB814D20AF4B6800B1AE2A /* options.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8CB814C20AF4B6800B1AE2A /* options.storyboard */; };
@@ -113,6 +118,7 @@
 		A857CFB820E9727A00292FF8 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		A857CFB920E9727A00292FF8 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		A857CFBB20E9A5B600292FF8 /* resource.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = resource.js; sourceTree = "<group>"; };
+		A857CFBD20EAF07E00292FF8 /* cacheRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cacheRequestModel.swift; sourceTree = "<group>"; };
 		A87EDE8820CDC7AC0047009C /* Services.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Services.storyboard; sourceTree = "<group>"; };
 		A87EDE8A20CDC8070047009C /* ServicesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesVC.swift; sourceTree = "<group>"; };
 		A87EDE8C20CDFA740047009C /* ConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
@@ -126,6 +132,10 @@
 		A88F31DE20B2443A0036AAED /* TEMPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEMPManager.swift; sourceTree = "<group>"; };
 		A88F31E020B246F30036AAED /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		A88F31E320B28D380036AAED /* Apretaste.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Apretaste.entitlements; sourceTree = "<group>"; };
+		A8954AD620EBB0CB00CE9361 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		A8AAB89C20EAF970007B66D7 /* RecentsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentsVC.swift; sourceTree = "<group>"; };
+		A8AAB89E20EAF989007B66D7 /* Recents.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Recents.storyboard; sourceTree = "<group>"; };
+		A8AAB8A020EAFAA1007B66D7 /* RecentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentCell.swift; sourceTree = "<group>"; };
 		A8B6839520ACA41100FB193A /* ProfileVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileVC.storyboard; sourceTree = "<group>"; };
 		A8B6839720ACBAEF00FB193A /* MenuLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MenuLogin.storyboard; sourceTree = "<group>"; };
 		A8CB814C20AF4B6800B1AE2A /* options.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = options.storyboard; sourceTree = "<group>"; };
@@ -233,6 +243,7 @@
 				A87EDE8820CDC7AC0047009C /* Services.storyboard */,
 				A857CFAE20E9506B00292FF8 /* Detail.storyboard */,
 				A857CFAC20E9505900292FF8 /* About.storyboard */,
+				A8AAB89E20EAF989007B66D7 /* Recents.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -241,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				A82B8E9720A8786E00E98599 /* FetchModel.swift */,
+				A857CFBD20EAF07E00292FF8 /* cacheRequestModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -272,6 +284,7 @@
 				A857CFB020E9507C00292FF8 /* DetailVC.swift */,
 				A87EDE8A20CDC8070047009C /* ServicesVC.swift */,
 				A857CFB220E9508800292FF8 /* AboutVC.swift */,
+				A8AAB89C20EAF970007B66D7 /* RecentsVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -329,6 +342,8 @@
 			isa = PBXGroup;
 			children = (
 				A88D866E20A8A1D10073FA33 /* HomeCellVC.swift */,
+				A8AAB8A020EAFAA1007B66D7 /* RecentCell.swift */,
+				A8954AD620EBB0CB00CE9361 /* NotificationCell.swift */,
 			);
 			path = cellsControllers;
 			sourceTree = "<group>";
@@ -423,6 +438,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8B6839820ACBAEF00FB193A /* MenuLogin.storyboard in Resources */,
+				A8AAB89F20EAF989007B66D7 /* Recents.storyboard in Resources */,
 				A836E18D20B08A28007AB39F /* HttpCode.storyboard in Resources */,
 				A8DE3DF120ACD00E00DA5B20 /* LoginHttp.storyboard in Resources */,
 				A8553EC720A74238008BC393 /* LaunchScreen.storyboard in Resources */,
@@ -522,12 +538,14 @@
 				A8D8C5D720A781E700CDE7C0 /* HTTPManager.swift in Sources */,
 				A857CFB520E96EEA00292FF8 /* PrincipalNavigation.swift in Sources */,
 				A88D867120A8A2120073FA33 /* HomeVC.swift in Sources */,
+				A8AAB89D20EAF970007B66D7 /* RecentsVC.swift in Sources */,
 				A8553EBF20A74238008BC393 /* ViewController.swift in Sources */,
 				A82B8E9820A8786E00E98599 /* FetchModel.swift in Sources */,
 				A836E18B20AFD437007AB39F /* notificationVC.swift in Sources */,
 				A824466320A7F49B0028AEC8 /* RandomGenerator.swift in Sources */,
 				A8553EBD20A74238008BC393 /* AppDelegate.swift in Sources */,
 				A88F31DD20B1A3C80036AAED /* tabBarMenuVC.swift in Sources */,
+				A8AAB8A120EAFAA1007B66D7 /* RecentCell.swift in Sources */,
 				A82B8E9620A7FEA400E98599 /* Task.swift in Sources */,
 				A8553ED820A75965008BC393 /* LoginVC.swift in Sources */,
 				A857CFB120E9507D00292FF8 /* DetailVC.swift in Sources */,
@@ -537,7 +555,9 @@
 				A8D8C68520A7990600CDE7C0 /* UIViewControllerExtension.swift in Sources */,
 				A82542E320AE3A7A0000A206 /* LoginHttpVC.swift in Sources */,
 				A82542E120AE39B60000A206 /* ProfileVC.swift in Sources */,
+				A857CFBE20EAF07E00292FF8 /* cacheRequestModel.swift in Sources */,
 				A88D866F20A8A1D10073FA33 /* HomeCellVC.swift in Sources */,
+				A8954AD720EBB0CB00CE9361 /* NotificationCell.swift in Sources */,
 				A82542E520AE3B210000A206 /* MenuLoginVC.swift in Sources */,
 				A8CB815920AF521200B1AE2A /* optionsTableVC.swift in Sources */,
 				A8D8C5D320A781B400CDE7C0 /* AppSettings.swift in Sources */,

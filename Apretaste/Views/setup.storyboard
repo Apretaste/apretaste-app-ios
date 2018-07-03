@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7UR-Uy-022">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7UR-Uy-022">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,19 +27,8 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Xa-s5-Sam">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="700"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ecm-jw-JVL">
-                                                        <rect key="frame" x="40" y="40" width="295" height="32"/>
-                                                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                        <state key="normal" title="Cambiar Contraseña Nauta">
-                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="passChangeButton:" destination="7UR-Uy-022" eventType="touchUpInside" id="JXQ-6b-JqV"/>
-                                                        </connections>
-                                                    </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fS-J9-NLN">
-                                                        <rect key="frame" x="40" y="102" width="295" height="32"/>
+                                                        <rect key="frame" x="40" y="40" width="295" height="32"/>
                                                         <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <state key="normal" title="Cambiar Buzón Personal o Dominio">
@@ -50,7 +39,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nFn-1c-NvD">
-                                                        <rect key="frame" x="40" y="164" width="295" height="32"/>
+                                                        <rect key="frame" x="40" y="102" width="295" height="32"/>
                                                         <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <state key="normal" title="Cambiar Calidad de la Imagen">
@@ -61,7 +50,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gBO-ch-CPS">
-                                                        <rect key="frame" x="40" y="226" width="295" height="32"/>
+                                                        <rect key="frame" x="40" y="164" width="295" height="32"/>
                                                         <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <state key="normal" title=" Cambiar Método de Conexión">
@@ -71,65 +60,35 @@
                                                             <action selector="conectionChangeButton:" destination="7UR-Uy-022" eventType="touchUpInside" id="W7g-Mb-h6O"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DVU-r5-crY">
-                                                        <rect key="frame" x="40" y="288" width="295" height="32"/>
-                                                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                        <state key="normal" title="Borrar Data Guardada">
-                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="dateDeleteButton:" destination="7UR-Uy-022" eventType="touchUpInside" id="iBP-xA-Tpq"/>
-                                                        </connections>
-                                                    </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Suscribierse a la Lista de Correos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BXR-b7-zTv">
-                                                        <rect key="frame" x="40" y="360" width="242" height="19.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Suscribir a Lista de Correos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BXR-b7-zTv">
+                                                        <rect key="frame" x="40" y="226" width="241" height="17"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ma-Kb-IpE">
-                                                        <rect key="frame" x="287" y="355" width="51" height="31"/>
+                                                        <rect key="frame" x="286" y="219" width="51" height="31"/>
                                                         <connections>
                                                             <action selector="SubscriptsSwitch:" destination="7UR-Uy-022" eventType="valueChanged" id="yt0-fX-Qc3"/>
                                                         </connections>
                                                     </switch>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PIj-jR-epn">
-                                                        <rect key="frame" x="40" y="426" width="295" height="32"/>
-                                                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                        <state key="normal" title="Cerrar Sesión">
-                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="LogoutButton:" destination="7UR-Uy-022" eventType="touchUpInside" id="r38-I9-jC8"/>
-                                                        </connections>
-                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
+                                                    <constraint firstItem="6fS-J9-NLN" firstAttribute="top" secondItem="4Xa-s5-Sam" secondAttribute="top" constant="40" id="1J3-Rf-1GK"/>
+                                                    <constraint firstItem="BXR-b7-zTv" firstAttribute="leading" secondItem="gBO-ch-CPS" secondAttribute="leading" id="2Y2-Bs-iHs"/>
                                                     <constraint firstItem="5ma-Kb-IpE" firstAttribute="leading" secondItem="BXR-b7-zTv" secondAttribute="trailing" constant="5" id="FRT-fU-ZKh"/>
-                                                    <constraint firstItem="DVU-r5-crY" firstAttribute="leading" secondItem="gBO-ch-CPS" secondAttribute="leading" id="IBQ-6g-Z3z"/>
                                                     <constraint firstItem="6fS-J9-NLN" firstAttribute="leading" secondItem="4Xa-s5-Sam" secondAttribute="leading" constant="40" id="KLh-Rj-5Ea"/>
                                                     <constraint firstItem="nFn-1c-NvD" firstAttribute="trailing" secondItem="6fS-J9-NLN" secondAttribute="trailing" id="KvL-xz-lny"/>
                                                     <constraint firstItem="nFn-1c-NvD" firstAttribute="leading" secondItem="6fS-J9-NLN" secondAttribute="leading" id="LFX-FS-8OH"/>
-                                                    <constraint firstItem="PIj-jR-epn" firstAttribute="top" secondItem="5ma-Kb-IpE" secondAttribute="bottom" constant="40" id="M7z-d5-5NE"/>
-                                                    <constraint firstItem="ecm-jw-JVL" firstAttribute="leading" secondItem="4Xa-s5-Sam" secondAttribute="leading" constant="40" id="N0i-fb-szv"/>
-                                                    <constraint firstItem="BXR-b7-zTv" firstAttribute="leading" secondItem="DVU-r5-crY" secondAttribute="leading" id="OqZ-lL-qbS"/>
-                                                    <constraint firstItem="6fS-J9-NLN" firstAttribute="top" secondItem="ecm-jw-JVL" secondAttribute="bottom" constant="30" id="T9m-bp-OXI"/>
+                                                    <constraint firstItem="BXR-b7-zTv" firstAttribute="top" secondItem="gBO-ch-CPS" secondAttribute="bottom" constant="30" id="Ulh-GU-14p"/>
                                                     <constraint firstItem="gBO-ch-CPS" firstAttribute="leading" secondItem="nFn-1c-NvD" secondAttribute="leading" id="Uw6-Nq-uxr"/>
                                                     <constraint firstAttribute="trailing" secondItem="6fS-J9-NLN" secondAttribute="trailing" constant="40" id="VPv-Zl-4ef"/>
-                                                    <constraint firstItem="DVU-r5-crY" firstAttribute="top" secondItem="gBO-ch-CPS" secondAttribute="bottom" constant="30" id="WEg-M3-I7F"/>
-                                                    <constraint firstItem="BXR-b7-zTv" firstAttribute="top" secondItem="DVU-r5-crY" secondAttribute="bottom" constant="40" id="Y0o-rv-loN"/>
                                                     <constraint firstItem="gBO-ch-CPS" firstAttribute="top" secondItem="nFn-1c-NvD" secondAttribute="bottom" constant="30" id="YL1-vA-dFk"/>
+                                                    <constraint firstItem="5ma-Kb-IpE" firstAttribute="trailing" secondItem="gBO-ch-CPS" secondAttribute="trailing" id="bS3-ef-FIA"/>
                                                     <constraint firstItem="gBO-ch-CPS" firstAttribute="trailing" secondItem="nFn-1c-NvD" secondAttribute="trailing" id="byi-Ak-Njw"/>
-                                                    <constraint firstItem="ecm-jw-JVL" firstAttribute="top" secondItem="4Xa-s5-Sam" secondAttribute="top" constant="40" id="e0u-Go-2dc"/>
-                                                    <constraint firstItem="DVU-r5-crY" firstAttribute="trailing" secondItem="gBO-ch-CPS" secondAttribute="trailing" id="nyW-y8-dzF"/>
-                                                    <constraint firstAttribute="trailing" secondItem="PIj-jR-epn" secondAttribute="trailing" constant="40" id="udE-78-uro"/>
-                                                    <constraint firstAttribute="trailing" secondItem="ecm-jw-JVL" secondAttribute="trailing" constant="40" id="wf5-da-ccw"/>
-                                                    <constraint firstItem="PIj-jR-epn" firstAttribute="leading" secondItem="4Xa-s5-Sam" secondAttribute="leading" constant="40" id="wjU-C8-dkY"/>
+                                                    <constraint firstItem="5ma-Kb-IpE" firstAttribute="centerY" secondItem="BXR-b7-zTv" secondAttribute="centerY" id="egq-JK-1ZM"/>
                                                     <constraint firstItem="nFn-1c-NvD" firstAttribute="top" secondItem="6fS-J9-NLN" secondAttribute="bottom" constant="30" id="xBO-Ko-kwX"/>
-                                                    <constraint firstItem="5ma-Kb-IpE" firstAttribute="top" secondItem="DVU-r5-crY" secondAttribute="bottom" constant="35" id="xbM-vb-ir0"/>
                                                 </constraints>
                                             </view>
                                         </subviews>

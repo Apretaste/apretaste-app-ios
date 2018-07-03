@@ -139,9 +139,8 @@ class HomeVC: UIViewController {
         
         let commandString = "\(currentItem.name) \(searching)"
         
-        let command = Command.generateCommand(command: commandString)
         
-        ConnectionManager.shared.request(command: command) { (error,html) in
+        ConnectionManager.shared.request(command: commandString) { (error,html) in
             
             self.stopAnimating()
             // validate error //

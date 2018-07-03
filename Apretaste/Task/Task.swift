@@ -11,7 +11,7 @@ import Foundation
 
 enum Command: String{
     
-    case getProfile = "perfil status"
+    case getProfile = "perfil status 2017-04-25 19:46:01"
     case updateProfile = "q"
     case getData = "d"
     
@@ -21,7 +21,6 @@ enum Command: String{
        let token = TEMPManager.shared.fetchData.token
        let json = "{\"appversion\":\"3.0\",\"command\":\"\(command)\",\"osversion\":\"8.0.0\",\"timestamp\":\"\",\"token\":\"\(token)\"}"
         
-        //MUxvdmVBcHJldGFzdGU=
         return json
         
     }

@@ -48,7 +48,7 @@ class ServicesVC: UIViewController {
     private func loadWebView(){
         
         let formatHTML = self.procesingHtmlContent()
-        self.webView.loadHTMLString(formatHTML, baseURL: nil)
+        self.webView.loadHTMLString(formatHTML, baseURL:self.urlHtml)
 
 
     }
@@ -106,6 +106,45 @@ class ServicesVC: UIViewController {
     func handlerOnClicked(command:String, popup:Bool,message:String, wait: Bool){
         
         if !wait{
+            
+            if popup{
+                
+                let alertText = UIAlertController(title: self.title, message: message, preferredStyle: .alert)
+                
+                alertText.addTextField(configurationHandler: nil)
+                
+                let done = UIAlertAction(title: "Aceptar", style: .default, handler: { (_) in
+                    
+                    let searchString = alertText.textFields![0].text!
+                    
+                    self.startAnimating(message:"cargando")
+                    
+                    let newCommand = "\(command) \(searchString)"
+                    
+                    ConnectionManager.shared.requestAwait(command: newCommand) { (success) in
+                        
+                        self.stopAnimating()
+                      
+                        let message = "Operación realizada exitosamente"
+                        let title = "Éxito" 
+                        let alert = UIAlertController(title: title , message: message, preferredStyle: .alert)
+                        let actionButton = UIAlertAction(title: "OK", style: .cancel)
+                        alert.addAction(actionButton)
+                        self.present(alert, animated: true)
+                        
+                    }
+                    
+                })
+                
+                let cancel = UIAlertAction(title: "Cancelar", style: .cancel)
+                
+                alertText.addAction(cancel)
+                alertText.addAction(done)
+                self.present(alertText, animated: true)
+                
+                return
+                
+            }
             
             self.startAnimating(message:"cargando")
             

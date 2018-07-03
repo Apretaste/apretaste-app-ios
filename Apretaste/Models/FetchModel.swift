@@ -21,7 +21,9 @@ class FetchModel: Mappable{
     var img_quality = ""
     var token = ""
     var domain = ""
+    var credit = 0.0
     var active: [String] = []
+    var notifications:[NotificationModel] = []
     var services: [ServicesModel] = []
     
     required init?(map: Map) {
@@ -39,11 +41,34 @@ class FetchModel: Mappable{
         domain <- map["domain"]
         active <- map["active"]
         services <- map["services"]
+        credit <- map["credit"]
+        notifications <- map["notifications"]
         
     }
 }
 
 //MARK: sub models
+
+class NotificationModel: Mappable{
+    
+    var text = ""
+    var service = ""
+    var link = ""
+    var received = ""
+
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        
+        text <- map["text"]
+        service <-  map["service"]
+        link <- map["link"]
+        received <- map["received"]
+        
+    }
+}
 
 
 class ServicesModel:Mappable{

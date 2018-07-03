@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import KeychainSwift
 
 enum ConnectionType: String{
     
@@ -50,10 +51,23 @@ class ConnectionManager{
     
     func request(command: String,completion:@escaping(Error?,URL) -> Void){
         
+        let detectingCached = self.isCahed(command: command)
+        
+        if detectingCached != nil{
+            completion(nil,detectingCached!)
+            return
+        }
+        
+        let newCommand = Command.generateCommand(command: command)
+        
         if connectionType == .http{
             
-            HTTPManager.shared.executeCommand(task: command) { (error,html) in
+            HTTPManager.shared.executeCommand(task: newCommand) { (error,html) in
                 completion(error,html)
+                // save request//
+                if error == nil{
+                    self.saveRequest(url: html.absoluteString, command: command)
+                }
                 return
             }
         }
@@ -67,15 +81,67 @@ class ConnectionManager{
                 sleep(10)
 
                 SMTPManager.shared.receiveCommandMail(subject: subject!, completion: { (error,html) in
-
-                    
                     completion(error,html!)
+                    // save request //
+                    if error == nil{
+                        self.saveRequest(url: html!.absoluteString, command: command)
+                    }
                     return
                 })
             }
 
         }
         
+    }
+    
+    
+    private func saveRequest(url:String,command:String){
+        
+        let keychain = KeychainSwift()
+        
+        // save existing cache ///
+        if let cacheData = keychain.get(KeychainKeys.CacheData.rawValue){
+            
+            guard let data = cacheRequestModel(JSONString: cacheData) else{
+                return
+            }
+            
+            let newRequest = requestModel(command: command, url: url,date:Date())
+            data.arrayRequest.append(newRequest)
+            keychain.set(data.toJSONString()!, forKey: KeychainKeys.CacheData.rawValue)
+            return
+        }
+        
+        // create new cache data //
+        let cacheData = cacheRequestModel()
+        let newRequest = requestModel(command: command, url: url,date:Date())
+        cacheData.arrayRequest.append(newRequest)
+        keychain.set(cacheData.toJSONString()!, forKey: KeychainKeys.CacheData.rawValue)
+        
+    }
+    
+    private func isCahed(command:String) -> URL?{
+        
+        let keychain = KeychainSwift()
+        if let cacheData = keychain.get(KeychainKeys.CacheData.rawValue){
+            
+            guard let data = cacheRequestModel(JSONString: cacheData) else{
+                return nil
+            }
+            
+            let cacheRequest = data.arrayRequest.filter { (request) -> Bool in
+                return request.command == command
+            }.last
+            
+            if cacheRequest == nil{
+                return nil
+            }
+            
+            return cacheRequest!.url
+        
+        }
+        
+        return nil
     }
     
 }

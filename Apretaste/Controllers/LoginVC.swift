@@ -142,6 +142,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ConfigurationLoginDelegate
     
     @IBAction func loginActionButton(_ sender: Any) {
         
+        self.view.endEditing(true)
         
         if !validate(){
             

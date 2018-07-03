@@ -36,6 +36,8 @@ class HTTPCodeVC: UIViewController {
   
     @IBAction func nextButtonAction(_ sender: Any) {
         
+        self.view.endEditing(true)
+        
         if self.codeTextField.text!.isEmpty{
             
             let alert = UIAlertController(title: "Error", message: "Ingrese un codigo", preferredStyle: .alert)
