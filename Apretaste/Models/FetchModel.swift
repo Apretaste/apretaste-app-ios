@@ -21,7 +21,7 @@ class FetchModel: Mappable{
     var img_quality = ""
     var token = ""
     var domain = ""
-    var credit = 0.0
+    var credit = ""
     var active: [String] = []
     var notifications:[NotificationModel] = []
     var services: [ServicesModel] = []

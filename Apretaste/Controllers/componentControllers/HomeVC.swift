@@ -15,6 +15,9 @@ class HomeVC: UIViewController {
     
     var fetchData: FetchModel!
     var dataUrl: URL!
+    var isFilter = false
+    
+    var filterServices: [ServicesModel] = []
     
     //MARK: - life cycle
     override func viewDidLoad() {
@@ -38,6 +41,14 @@ class HomeVC: UIViewController {
 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
+    }
+    
     //MARK: -  setups
     
     private func setupView(){
@@ -49,9 +60,6 @@ class HomeVC: UIViewController {
         self.navigationItem.rightBarButtonItem = refreshButton
 
     }
-    
-
-    
 
     
     private func setupNavigationBar(){
@@ -94,42 +102,45 @@ class HomeVC: UIViewController {
         
         self.title = "Apretaste"
         
-//        if #available(iOS 11.0, *) {
-//            
-//            self.view.backgroundColor = .greenApp
-//            self.navigationController?.navigationBar.barTintColor = .greenApp
-//            self.navigationController?.navigationBar.backgroundColor = UIColor.greenApp
-//            navigationController?.navigationBar.prefersLargeTitles = true
-//            navigationController?.navigationBar.largeTitleTextAttributes =
-//                [NSAttributedStringKey.foregroundColor: UIColor.white]
-//            
-//            let searchController = UISearchController(searchResultsController: nil)
-//            
-//             searchController.searchBar.tintColor = UIColor.white
-//             searchController.searchBar.barTintColor = UIColor.white
-//            searchController.searchBar.backgroundColor = .greenApp
-//            
-//            if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
-//                //textfield.textColor = // Set text color
-//                if let backgroundview = textfield.subviews.first {
-//                    
-//                    // Background color
-//                    backgroundview.backgroundColor = UIColor.white
-//                    
-//                    // Rounded corner
-//                    backgroundview.layer.cornerRadius = 10;
-//                    backgroundview.clipsToBounds = true;
-//                    
-//                }
-//            }
-//            
-//            
-//            navigationItem.searchController = searchController
-//           
-//          
-//        } else {
-//            // Fallback on earlier versions
-//        }
+        if #available(iOS 11.0, *) {
+            
+            self.view.backgroundColor = .greenApp
+            self.navigationController?.navigationBar.barTintColor = .greenApp
+            self.navigationController?.navigationBar.backgroundColor = UIColor.greenApp
+            
+            navigationController?.navigationBar.largeTitleTextAttributes =
+                [NSAttributedStringKey.foregroundColor: UIColor.white]
+            
+            let searchController = UISearchController(searchResultsController: nil)
+            
+            searchController.searchBar.tintColor = UIColor.white
+            searchController.searchBar.barTintColor = UIColor.greenApp
+            searchController.searchBar.backgroundColor = .greenApp
+            
+            if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
+                //textfield.textColor = // Set text color
+                if let backgroundview = textfield.subviews.first {
+                    
+                    // Background color
+                    backgroundview.backgroundColor = UIColor.white
+                    
+                    // Rounded corner
+                    backgroundview.layer.cornerRadius = 10;
+                    backgroundview.clipsToBounds = true;
+                    
+                }
+            }
+            
+            searchController.delegate = self
+            searchController.searchResultsUpdater = self
+            searchController.obscuresBackgroundDuringPresentation = false
+            navigationItem.searchController = searchController
+            definesPresentationContext = true
+           
+          
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     private func setupCell(){
@@ -163,7 +174,7 @@ class HomeVC: UIViewController {
     
     func openServices(indexPath:IndexPath, search searching:String = ""){
         
-        let currentItem = self.fetchData.services[indexPath.item]
+        let currentItem = self.isFilter ? self.filterServices[indexPath.item] :  self.fetchData.services[indexPath.item]
         
         let storyboard = UIStoryboard(name: "Services", bundle: nil)
         let servicesVC = storyboard.instantiateInitialViewController()! as! ServicesVC
@@ -171,7 +182,6 @@ class HomeVC: UIViewController {
         self.startAnimating(message:"Cargando")
         
         let commandString = "\(currentItem.name) \(searching)"
-        
         
         ConnectionManager.shared.request(command: commandString) { (error,html) in
             
@@ -183,10 +193,22 @@ class HomeVC: UIViewController {
             
             servicesVC.urlHtml = html
             servicesVC.command = commandString
-            servicesVC.title = self.fetchData.services[indexPath.item].name
-            self.fetchData.services[indexPath.item].isVisited = true
+            servicesVC.title = currentItem.name
+            
+            if self.isFilter{
+                
+                let index = self.fetchData.services.index(where: { (services) -> Bool in
+                    return services.name == currentItem.name
+                })!
+                
+                self.fetchData.services[index].isVisited = true
+                
+            }else{
+                self.fetchData.services[indexPath.item].isVisited = true
+            }
+            
             TEMPManager.shared.saveChangesInServices()
-            self.collectionView.reloadItems(at: [indexPath])
+            self.collectionView.reloadData()
             self.navigationController?.pushViewController(servicesVC, animated: true)
         }
     }
@@ -198,7 +220,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-        return fetchData.services.count
+        return self.isFilter ? self.filterServices.count : fetchData.services.count
     }
     
     
@@ -213,7 +235,8 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         
         let cell = cell as! HomeCellVC
        
-        let currentServices = self.fetchData.services[indexPath.item]
+        let currentServices = self.isFilter ? self.filterServices[indexPath.item] :  self.fetchData.services[indexPath.item]
+        
         let urlImage = self.dataUrl.appendingPathComponent(currentServices.icon)
         cell.serviceNameLabel.text = currentServices.name
         cell.isNew = !currentServices.isVisited
@@ -292,4 +315,24 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         
     }
     
+}
+
+extension HomeVC: UISearchControllerDelegate,UISearchBarDelegate,UISearchResultsUpdating{
+   
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        let searchText = searchController.searchBar.text!
+        
+        self.isFilter = !searchText.isEmpty
+        
+        self.filterServices = self.fetchData.services.filter { (service) -> Bool in
+            
+            return service.name.lowercased().contains(searchText.lowercased())
+        }
+        
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+
 }

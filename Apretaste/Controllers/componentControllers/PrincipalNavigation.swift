@@ -25,5 +25,7 @@ class PrincipalNavigation: UINavigationController {
         self.navigationBar.titleTextAttributes = textAttributes
         
         self.navigationBar.isTranslucent = false
+        self.view.backgroundColor = .greenApp
+
     }
 }

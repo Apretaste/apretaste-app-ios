@@ -45,6 +45,10 @@ class ServicesVC: UIViewController {
         refreshButton.tintColor = .white
         self.navigationItem.rightBarButtonItem = refreshButton
         
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = false
+        }
+        
 
     }
     
