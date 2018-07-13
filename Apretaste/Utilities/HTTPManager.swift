@@ -9,6 +9,10 @@
 import Foundation
 import Alamofire
 
+enum HttpManagerError: Error {
+    case badRequest
+}
+
 class HTTPManager{
     
     var email = ""
@@ -146,17 +150,24 @@ class HTTPManager{
     }
     
     
-    func executeCommand(task: String,completion:@escaping(Error?,URL) -> Void){
+    func executeCommand(task: String,completion:@escaping(Error?,URL?) -> Void){
+        
         
         self.internalRequest(task: task) { (zipData, name, _)  in
            
             let unzipFolder = UtilitesMethods.receiveZip(data: zipData, filename: name)
             
-            let urlHTML = unzipFolder.0.filter({ (filePath) -> Bool in
+            guard let urlHTML = unzipFolder.0.filter({ (filePath) -> Bool in
                 
                 return filePath.absoluteString.contains("html")
                 
-            }).first!
+            }).first else{
+                
+                let error = HttpManagerError.badRequest
+                completion(error,nil)
+                return
+            }
+            
             
             completion(nil, urlHTML)
         }

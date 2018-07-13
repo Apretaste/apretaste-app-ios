@@ -10,7 +10,6 @@ import UIKit
 
 class DetailVC: UIViewController {
     
-    @IBOutlet weak var sender: UIButton!
     @IBOutlet weak var serviceImage: UIImageView!
     @IBOutlet weak var serviceName: UILabel!
     @IBOutlet weak var serviceDescription: UILabel!
@@ -22,19 +21,38 @@ class DetailVC: UIViewController {
     var selectedServices: ServicesModel!
     var urlImage: URL!
     
-    //MARK: life cycle
+    //MARK: -  life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
 
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if #available(iOS 11.0, *) {
+            self.navigationController?.navigationBar.prefersLargeTitles = false
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if #available(iOS 11.0, *) {
+            self.navigationController?.navigationBar.prefersLargeTitles = true
+        }
+
+    }
 
     
-    //MARK: Setups
+    //MARK: - Setups
     
     private func setupView(){
         
+        
+        self.title = "Detalles"
         // set data //
         
         self.serviceName.text = selectedServices.name
@@ -51,7 +69,6 @@ class DetailVC: UIViewController {
             print("error load image")
         }
         
-        self.paintStarImage(sender: self.sender)
     }
     
     

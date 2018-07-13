@@ -49,7 +49,7 @@ class ConnectionManager{
         
     }
     
-    func request(withCaching cache: Bool = true , command: String,completion:@escaping(Error?,URL) -> Void){
+    func request(withCaching cache: Bool = true , command: String,completion:@escaping(Error?,URL?  ) -> Void){
         
         if cache{
         
@@ -66,33 +66,44 @@ class ConnectionManager{
         
         if connectionType == .http{
             
-            HTTPManager.shared.executeCommand(task: newCommand) { (error,html) in
-                completion(error,html)
-                // save request//
-                if error == nil{
-                    self.saveRequest(url: html.absoluteString, command: command)
-                }
-                return
-            }
-        }
-        if connectionType == .smtp{
-
-            SMTPManager.shared.sendMail(task: command) { (subject) in
-
-                //MARK: To do // validate subject //
-
-                // wait for receive mail //
-                sleep(10)
-
-                SMTPManager.shared.receiveCommandMail(subject: subject!, completion: { (error,html) in
-                    completion(error,html!)
-                    // save request //
+            self.refreshProfile { (_) in
+                
+                HTTPManager.shared.executeCommand(task: newCommand) { (error,html) in
+                    completion(error,html)
+                    
+                    // save request//
                     if error == nil{
                         self.saveRequest(url: html!.absoluteString, command: command)
                     }
                     return
-                })
+                }
+                
             }
+            
+        }
+        if connectionType == .smtp{
+            
+            self.refreshProfile { (_) in
+                
+                SMTPManager.shared.sendMail(task: command) { (subject) in
+                    
+                    //MARK: To do // validate subject //
+                    
+                    // wait for receive mail //
+                    
+                    SMTPManager.shared.receiveCommandMail(subject: subject!, completion: { (error,html) in
+                        completion(error,html!)
+                        // save request //
+                        if error == nil{
+                            self.saveRequest(url: html!.absoluteString, command: command)
+                        }
+                        return
+                    })
+                }
+                
+            }
+
+            
 
         }
         

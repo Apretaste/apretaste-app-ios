@@ -11,18 +11,24 @@ import UIKit
 
 class TabBarMenuVC: UITabBarController {
     
-    //MARK: life cycle
+    //MARK: - vars
+    
+    var observers = [NSKeyValueObservation]()
+
+    
+    //MARK: - life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setupTabs()
         self.setupView()
+        self.observeModel()
         
     }
     
     
-    //MARK: setups
+    //MARK: - setups
     
     private func setupTabs(){
         
@@ -77,6 +83,32 @@ class TabBarMenuVC: UITabBarController {
         // set navigation bar style //
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
+    }
+    
+    func observeModel() {
+        
+        self.observers = [
+            
+            TEMPManager.shared.metaNotification.observe(\.notificationsCount, options: [.initial]) { (model, change) in
+                
+                let badge: String? = TEMPManager.shared.metaNotification.notificationsCount == 0 ? nil :  String(TEMPManager.shared.metaNotification.notificationsCount)
+               
+                self.tabBar.items![0].badgeValue = badge
+                
+            },
+            
+        
+            TEMPManager.shared.metaNotification.observe(\.notificationTapped, options: [.initial]) { (model, change) in
+                
+                if model.notificationTapped{
+                    
+                    self.selectedIndex = 0
+
+                }
+                
+            }]
+        
         
     }
     

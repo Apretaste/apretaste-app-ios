@@ -28,6 +28,12 @@ class notificationVC: UIViewController {
         label.numberOfLines = 0
         self.tableView.backgroundView = label
         
+        // add delete button //
+        
+        let button = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(self.deleteButtonTapped))
+        
+        self.navigationItem.rightBarButtonItem = button
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
@@ -35,14 +41,68 @@ class notificationVC: UIViewController {
     }
 
     
+    @objc func deleteButtonTapped(){
+        
+        let alert = UIAlertController(title: "Atención", message: "¿Desea eliminar todas las notificaciones?", preferredStyle: .alert)
+        
+        let deleteButton = UIAlertAction(title: "Borrar", style: .default) { (_) in
+            
+            TEMPManager.shared.notifications = []
+            self.notifications = []
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+        
+        let cancelButton = UIAlertAction(title: "Cancelar", style: .cancel)
+        
+        alert.addAction(deleteButton)
+        alert.addAction(cancelButton)
+        
+        self.present(alert, animated: true, completion: nil)
+        
+       
+        
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-         self.notifications = TEMPManager.shared.fetchData.notifications
+         self.notifications = TEMPManager.shared.notifications
+        // delete badge
+        
+         TEMPManager.shared.metaNotification.notificationsCount = 0
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
         
+    }
+    
+    //MARK: - helpers
+    
+    func formatingDate(stringDate:String) ->String{
+        
+        let splitData = stringDate.split(separator: " ")
+        
+       let temporalDate = String(splitData.first!)
+       var temporalHour = String(splitData.last!)
+        
+        let splitTemporalDate = temporalDate.split(separator: "-")
+        
+        let year = String(splitTemporalDate[0])
+        let month = String(splitTemporalDate[1])
+        let day = String(splitTemporalDate[2])
+
+        
+        temporalHour.removeLast()
+        temporalHour.removeLast()
+        temporalHour.removeLast()
+        
+        
+        return "\(day)/\(month)/\(year) \(temporalHour)"
+    
     }
   
 }
@@ -63,7 +123,7 @@ extension notificationVC:UITableViewDelegate, UITableViewDataSource{
         let currentNotification = self.notifications[indexPath.row]
         cell.serviceName.text = currentNotification.service
         cell.messageLabel.text = currentNotification.text
-        cell.dateLabel.text = currentNotification.received
+        cell.dateLabel.text = self.formatingDate(stringDate: currentNotification.received)
     
         return cell
     }
@@ -87,6 +147,16 @@ extension notificationVC:UITableViewDelegate, UITableViewDataSource{
             servicesVC.command = currentNotification.link
             self.navigationController?.pushViewController(servicesVC, animated: true)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            self.notifications.remove(at: indexPath.row)
+            TEMPManager.shared.notifications.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

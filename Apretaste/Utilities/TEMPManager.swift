@@ -9,13 +9,25 @@
 import Foundation
 import KeychainSwift
 
+class MetadataNotification : NSObject {
+    
+    @objc dynamic var notificationsCount = 0
+    @objc dynamic var notificationTapped = false
+
+}
+
 class TEMPManager{
+    
+    var metaNotification = MetadataNotification()
+    
+    var notifications: [NotificationModel] = []
     
     var fetchData: FetchModel!{
        
         didSet{
             
           TEMPManager.keychainAccess.set(fetchData.toJSONString()!, forKey: KeychainKeys.UserKeys.rawValue)
+           self.receiveNotification()
         }
     }
     
@@ -47,6 +59,26 @@ class TEMPManager{
         TEMPManager.keychainAccess.set(fetchData.toJSONString()!, forKey: KeychainKeys.UserKeys.rawValue)
     }
     
+    //MARK: - funcs
+    
+    
+    func receiveNotification(){
+        
+        // send push notification //
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        for notification in self.fetchData.notifications{
+            
+            self.notifications.append(notification)
+            appDelegate.scheduleNotification(at: Date(), body: notification.text)
+            self.metaNotification.notificationsCount = self.notifications.count
+
+        }
+        
+
+        
+    }
     
     func automaticConfig(){
         

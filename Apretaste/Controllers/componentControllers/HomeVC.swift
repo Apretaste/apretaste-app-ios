@@ -10,6 +10,8 @@ import UIKit
 
 class HomeVC: UIViewController {
 
+    //MARK: - vars
+    
     @IBOutlet weak var collectionView: UICollectionView!
     private let reuseIdentifier = "HomeCell"
     
@@ -102,44 +104,47 @@ class HomeVC: UIViewController {
         
         self.title = "Apretaste"
         
+        self.view.backgroundColor = .greenApp
+        self.navigationController?.navigationBar.barTintColor = .greenApp
+        self.navigationController?.navigationBar.backgroundColor = UIColor.greenApp
+        
+        
+        let searchController = UISearchController(searchResultsController: nil)
+        
+        searchController.searchBar.tintColor = UIColor.white
+        searchController.searchBar.barTintColor = UIColor.greenApp
+        searchController.searchBar.backgroundColor = .greenApp
+        
+        if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
+            //textfield.textColor = // Set text color
+            if let backgroundview = textfield.subviews.first {
+                
+                // Background color
+                backgroundview.backgroundColor = UIColor.white
+                
+                // Rounded corner
+                backgroundview.layer.cornerRadius = 10;
+                backgroundview.clipsToBounds = true;
+                
+            }
+        }
+        
+        searchController.delegate = self
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        
         if #available(iOS 11.0, *) {
-            
-            self.view.backgroundColor = .greenApp
-            self.navigationController?.navigationBar.barTintColor = .greenApp
-            self.navigationController?.navigationBar.backgroundColor = UIColor.greenApp
             
             navigationController?.navigationBar.largeTitleTextAttributes =
                 [NSAttributedStringKey.foregroundColor: UIColor.white]
             
-            let searchController = UISearchController(searchResultsController: nil)
-            
-            searchController.searchBar.tintColor = UIColor.white
-            searchController.searchBar.barTintColor = UIColor.greenApp
-            searchController.searchBar.backgroundColor = .greenApp
-            
-            if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
-                //textfield.textColor = // Set text color
-                if let backgroundview = textfield.subviews.first {
-                    
-                    // Background color
-                    backgroundview.backgroundColor = UIColor.white
-                    
-                    // Rounded corner
-                    backgroundview.layer.cornerRadius = 10;
-                    backgroundview.clipsToBounds = true;
-                    
-                }
-            }
-            
-            searchController.delegate = self
-            searchController.searchResultsUpdater = self
-            searchController.obscuresBackgroundDuringPresentation = false
             navigationItem.searchController = searchController
-            definesPresentationContext = true
-           
           
         } else {
-            // Fallback on earlier versions
+            
+            
+           
         }
     }
     
@@ -226,31 +231,35 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        return collectionView.dequeueReusableCell(withReuseIdentifier: self.reuseIdentifier, for: indexPath)
-       
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: self.reuseIdentifier, for: indexPath) as! HomeCellVC
         
-        let cell = cell as! HomeCellVC
-       
         let currentServices = self.isFilter ? self.filterServices[indexPath.item] :  self.fetchData.services[indexPath.item]
         
         let urlImage = self.dataUrl.appendingPathComponent(currentServices.icon)
         cell.serviceNameLabel.text = currentServices.name
         cell.isNew = !currentServices.isVisited
         
-        do{
-            let dataImage = try Data.init(contentsOf: urlImage)
-            let image = UIImage(data: dataImage)
-            cell.imageView.image = image
-        }catch{
-            print("error load image")
+        DispatchQueue.global().async {
+            
+            do{
+                let dataImage = try Data.init(contentsOf: urlImage)
+                let image = UIImage(data: dataImage)
+                DispatchQueue.main.async {
+                    cell.imageView.image = image
+                }
+                
+            }catch{
+                print("error load image")
+            }
+            
         }
         
+        return cell
+       
     }
     
+    
+ 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)

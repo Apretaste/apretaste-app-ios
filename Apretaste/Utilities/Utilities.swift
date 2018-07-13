@@ -33,11 +33,18 @@ class UtilitesMethods{
         
         guard let writePath = NSURL(fileURLWithPath: path).appendingPathComponent(folder) else { return nil }
         
-        try? FileManager.default.createDirectory(atPath: writePath.path, withIntermediateDirectories: true)
-        let file = writePath.appendingPathComponent(fileNamed)
-        try! data.write(to: file)
         
+        do{
+        
+        try FileManager.default.createDirectory(atPath: writePath.path, withIntermediateDirectories: true)
+        let file = writePath.appendingPathComponent(fileNamed)
+        try data.write(to: file)
         return file
+
+        }catch{
+            return nil
+        }
+        
     }
     
     //** genera zip */
@@ -61,19 +68,27 @@ class UtilitesMethods{
         
         // save zip
         
-        let zipPath = UtilitesMethods.readZip(data: data, to: filename)
-        
         // unzip response
         
-        let unzipPath = try! Zip.quickUnzipFile(zipPath!, progress: { (progress) in
-            print(progress)
-        })
+        do {
+            
+            guard let zipPath = UtilitesMethods.readZip(data: data, to: filename) else{
+                return ([],"")
+            }
+           
+            let unzipPath = try Zip.quickUnzipFile(zipPath, progress: { (progress) in
+                print(progress)
+            })
+            
+            let unzipFolder = try FileManager.default.contentsOfDirectory(at: unzipPath, includingPropertiesForKeys: nil)
+            let relativePath = String(unzipPath.absoluteString.split(separator: "/").last!)
+            return (unzipFolder,relativePath)
         
-        let unzipFolder = try! FileManager.default.contentsOfDirectory(at: unzipPath, includingPropertiesForKeys: nil)
-        
-        let relativePath = String(unzipPath.absoluteString.split(separator: "/").last!)
-       
-        return (unzipFolder,relativePath)
+        }catch{
+            
+            return ([],"")
+            
+        }
         
     }
     

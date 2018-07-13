@@ -20,10 +20,13 @@ class HTTPCodeVC: UIViewController {
         self.setupView()
         
         self.addObserversForHandlerKeyboard(scrollView: self.scrollView)
+        
+        self.codeTextField.addTarget(self, action: #selector(self.codeValidator(_:)), for: .editingChanged)
+        
 
     }
     
-    //MARK: setups //
+    //MARK: - setups //
 
     
     private func setupView(){
@@ -32,7 +35,18 @@ class HTTPCodeVC: UIViewController {
 
     }
     
-    //MARK: action buttons //
+    //MARK: - funcs
+    
+    
+    @objc func codeValidator(_ textField:UITextField){
+        
+        if textField.text!.count > 4{
+            textField.text!.removeLast()
+        }
+        
+    }
+    
+    //MARK: -  action buttons //
   
     @IBAction func nextButtonAction(_ sender: Any) {
         
@@ -46,6 +60,8 @@ class HTTPCodeVC: UIViewController {
             self.present(alert, animated: true)
             return
         }
+        
+        
         
         self.startAnimating(message:"Validando código")
 

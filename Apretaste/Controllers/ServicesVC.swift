@@ -17,6 +17,9 @@ class ServicesVC: UIViewController {
     var urlHtml:URL!
     var jsContext: JSContext!
     
+    var selectComponents:[String] = []
+    
+    var textField: UITextField!
 
     
     //MARK: life cycle
@@ -88,11 +91,25 @@ class ServicesVC: UIViewController {
     
     private func procesingHtmlContent() -> String{
         
-        let contentFile = try! String.init(contentsOf: self.urlHtml)
+        var contentFile = ""
+        let stringError = "<h4>Existe un problema con este servicio. Intente más tarde.</h4>"
+        do{
+             contentFile = try String.init(contentsOf: self.urlHtml)
+        }catch{
+            return stringError
+        }
         
         let cleanContentFile = contentFile.replacingOccurrences(of: "return false;", with: "")
         
-        return "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html;charset=utf-8\"/> </head><body> \(cleanContentFile) </body></html>"
+        if let cssSourcePath = Bundle.main.path(forResource: "styles", ofType: "css") {
+            
+            let importCss = "<link rel=\"stylesheet\" type=\"text/css\" href=\"\(cssSourcePath)\" />"
+            
+              return "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html;charset=utf-8\"/> \(importCss)</head><body> \(cleanContentFile) </body></html>"           
+        }
+        
+      
+        return stringError
         
     }
     
@@ -111,6 +128,87 @@ class ServicesVC: UIViewController {
             }
         }
 
+    }
+    
+    
+    func createCustomTextField(_ textField: UITextField,message:String) {
+        
+        if message.hasPrefix("m:"){
+            
+            // delete prefix //
+            var newMessage = message
+            
+            newMessage.removeFirst()
+            newMessage.removeFirst()
+            
+            var tempItems = newMessage.components(separatedBy: "[").last!
+            tempItems.removeLast()
+            
+            let items = tempItems.components(separatedBy: ",")
+
+            self.selectComponents = items
+            self.textField = textField
+            
+            let picker = UIPickerView()
+            
+            picker.dataSource = self
+            picker.delegate = self
+            
+            textField.text = items.first!
+            textField.inputView = picker
+
+            
+        }
+        
+        if message.hasPrefix("d:"){
+            
+            let datePicker = UIDatePicker()
+            datePicker.datePickerMode = .date
+            textField.inputView = datePicker
+            
+            self.textField = textField
+            
+            datePicker.addTarget(self, action: #selector(self.changeDataPicker(_:)), for: .valueChanged)
+            
+            
+            
+        }
+
+    }
+    
+    @objc func changeDataPicker(_ datePicker: UIDatePicker){
+        
+        let dateString = UtilitesMethods.formatDateToPrettyDateString(date: datePicker.date, format: "dd/MM/YYYY")
+        
+        self.textField.text = dateString
+    }
+    
+    func extractMessage(message:String) -> String{
+        
+        if message.hasPrefix("m:"){
+            
+            // delete prefix //
+            var newMessage = message
+            newMessage.removeFirst()
+            newMessage.removeFirst()
+            
+            let message = newMessage.components(separatedBy: "[").first!
+            
+            return message
+            
+        }
+        
+        if message.hasPrefix("d:"){
+            
+            // delete prefix //
+            var newMessage = message
+            newMessage.removeFirst()
+            newMessage.removeFirst()
+            return newMessage
+            
+        }
+        
+        return message
     }
     
     func captureOnClicked() {
@@ -140,9 +238,15 @@ class ServicesVC: UIViewController {
             
             if popup{
                 
-                let alertText = UIAlertController(title: self.title, message: message, preferredStyle: .alert)
+                let userMessage = self.extractMessage(message: message)
                 
-                alertText.addTextField(configurationHandler: nil)
+                let alertText = UIAlertController(title: self.title, message: userMessage, preferredStyle: .alert)
+                
+                alertText.addTextField { (textfield) in
+                    
+                    self.createCustomTextField(textfield, message: message)
+                }
+                
                 
                 let done = UIAlertAction(title: "Aceptar", style: .default, handler: { (_) in
                     
@@ -196,9 +300,15 @@ class ServicesVC: UIViewController {
         
         if popup{
             
-            let alertText = UIAlertController(title: self.title, message: message, preferredStyle: .alert)
+            let userMessage = self.extractMessage(message: message)
             
-            alertText.addTextField(configurationHandler: nil)
+            let alertText = UIAlertController(title: self.title, message: userMessage, preferredStyle: .alert)
+            
+            alertText.addTextField { (textField) in
+                
+                self.createCustomTextField(textField, message: message)
+                
+            }
             
             let done = UIAlertAction(title: "Aceptar", style: .default, handler: { (_) in
                 
@@ -274,5 +384,27 @@ extension ServicesVC: UIWebViewDelegate{
         }
         return true
     }
+}
 
+extension ServicesVC: UIPickerViewDelegate, UIPickerViewDataSource{
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+       return self.selectComponents.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return self.selectComponents[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.textField.text = self.selectComponents[row]
+        
+    }
+    
+    
+    
 }

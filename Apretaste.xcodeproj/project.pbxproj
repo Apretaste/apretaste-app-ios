@@ -56,6 +56,7 @@
 		A8AAB8A120EAFAA1007B66D7 /* RecentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AAB8A020EAFAA1007B66D7 /* RecentCell.swift */; };
 		A8B6839620ACA41100FB193A /* ProfileVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8B6839520ACA41100FB193A /* ProfileVC.storyboard */; };
 		A8B6839820ACBAEF00FB193A /* MenuLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8B6839720ACBAEF00FB193A /* MenuLogin.storyboard */; };
+		A8B7A6BF20F7CD5D009A2302 /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = A8B7A6BE20F7CD5D009A2302 /* styles.css */; };
 		A8CB814D20AF4B6800B1AE2A /* options.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8CB814C20AF4B6800B1AE2A /* options.storyboard */; };
 		A8CB815120AF4C4400B1AE2A /* optionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CB815020AF4C4400B1AE2A /* optionsVC.swift */; };
 		A8CB815920AF521200B1AE2A /* optionsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CB815820AF521200B1AE2A /* optionsTableVC.swift */; };
@@ -138,6 +139,7 @@
 		A8AAB8A020EAFAA1007B66D7 /* RecentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentCell.swift; sourceTree = "<group>"; };
 		A8B6839520ACA41100FB193A /* ProfileVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileVC.storyboard; sourceTree = "<group>"; };
 		A8B6839720ACBAEF00FB193A /* MenuLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MenuLogin.storyboard; sourceTree = "<group>"; };
+		A8B7A6BE20F7CD5D009A2302 /* styles.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = styles.css; sourceTree = "<group>"; };
 		A8CB814C20AF4B6800B1AE2A /* options.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = options.storyboard; sourceTree = "<group>"; };
 		A8CB815020AF4C4400B1AE2A /* optionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = optionsVC.swift; sourceTree = "<group>"; };
 		A8CB815820AF521200B1AE2A /* optionsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = optionsTableVC.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				A857CFBB20E9A5B600292FF8 /* resource.js */,
+				A8B7A6BE20F7CD5D009A2302 /* styles.css */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -411,6 +414,9 @@
 							com.apple.Keychain = {
 								enabled = 0;
 							};
+							com.apple.Push = {
+								enabled = 1;
+							};
 						};
 					};
 				};
@@ -443,6 +449,7 @@
 				A8DE3DF120ACD00E00DA5B20 /* LoginHttp.storyboard in Resources */,
 				A8553EC720A74238008BC393 /* LaunchScreen.storyboard in Resources */,
 				A857CFAD20E9505900292FF8 /* About.storyboard in Resources */,
+				A8B7A6BF20F7CD5D009A2302 /* styles.css in Resources */,
 				A836E18920AFD2E6007AB39F /* Notification.storyboard in Resources */,
 				A88F31DB20B1A1F50036AAED /* tabBarMenu.storyboard in Resources */,
 				A8553EC420A74238008BC393 /* Assets.xcassets in Resources */,
@@ -713,6 +720,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Apretaste/Apretaste.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QUCFZW9EL8;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -742,6 +750,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Apretaste/Apretaste.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QUCFZW9EL8;
 				FRAMEWORK_SEARCH_PATHS = (
