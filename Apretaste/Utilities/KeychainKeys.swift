@@ -11,9 +11,9 @@ import Foundation
 
 enum KeychainKeys: String{
     
-    case UserKeys = "UserKeys1"
-    case UserFile = "UnzipPath1"
-    case CacheData = "cacheData1"
+    case UserKeys = "UserKeys2"
+    case UserFile = "UnzipPath2"
+    case CacheData = "cacheData2"
     
     
 }
