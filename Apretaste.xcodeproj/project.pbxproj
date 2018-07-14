@@ -57,6 +57,8 @@
 		A8B6839620ACA41100FB193A /* ProfileVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8B6839520ACA41100FB193A /* ProfileVC.storyboard */; };
 		A8B6839820ACBAEF00FB193A /* MenuLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8B6839720ACBAEF00FB193A /* MenuLogin.storyboard */; };
 		A8B7A6BF20F7CD5D009A2302 /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = A8B7A6BE20F7CD5D009A2302 /* styles.css */; };
+		A8B7A6C120F8CA3E009A2302 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8B7A6C020F8CA3E009A2302 /* Settings.storyboard */; };
+		A8B7A6C320F8CC3D009A2302 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B7A6C220F8CC3D009A2302 /* SettingsVC.swift */; };
 		A8CB814D20AF4B6800B1AE2A /* options.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8CB814C20AF4B6800B1AE2A /* options.storyboard */; };
 		A8CB815120AF4C4400B1AE2A /* optionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CB815020AF4C4400B1AE2A /* optionsVC.swift */; };
 		A8CB815920AF521200B1AE2A /* optionsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CB815820AF521200B1AE2A /* optionsTableVC.swift */; };
@@ -140,6 +142,8 @@
 		A8B6839520ACA41100FB193A /* ProfileVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileVC.storyboard; sourceTree = "<group>"; };
 		A8B6839720ACBAEF00FB193A /* MenuLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MenuLogin.storyboard; sourceTree = "<group>"; };
 		A8B7A6BE20F7CD5D009A2302 /* styles.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = styles.css; sourceTree = "<group>"; };
+		A8B7A6C020F8CA3E009A2302 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		A8B7A6C220F8CC3D009A2302 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		A8CB814C20AF4B6800B1AE2A /* options.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = options.storyboard; sourceTree = "<group>"; };
 		A8CB815020AF4C4400B1AE2A /* optionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = optionsVC.swift; sourceTree = "<group>"; };
 		A8CB815820AF521200B1AE2A /* optionsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = optionsTableVC.swift; sourceTree = "<group>"; };
@@ -246,6 +250,7 @@
 				A857CFAE20E9506B00292FF8 /* Detail.storyboard */,
 				A857CFAC20E9505900292FF8 /* About.storyboard */,
 				A8AAB89E20EAF989007B66D7 /* Recents.storyboard */,
+				A8B7A6C020F8CA3E009A2302 /* Settings.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -287,6 +292,7 @@
 				A87EDE8A20CDC8070047009C /* ServicesVC.swift */,
 				A857CFB220E9508800292FF8 /* AboutVC.swift */,
 				A8AAB89C20EAF970007B66D7 /* RecentsVC.swift */,
+				A8B7A6C220F8CC3D009A2302 /* SettingsVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -456,6 +462,7 @@
 				A8553EC220A74238008BC393 /* Main.storyboard in Resources */,
 				A8553ED420A742ED008BC393 /* Login.storyboard in Resources */,
 				A8553ED620A75272008BC393 /* ConfigurationLogin.storyboard in Resources */,
+				A8B7A6C120F8CA3E009A2302 /* Settings.storyboard in Resources */,
 				A857CFAF20E9506B00292FF8 /* Detail.storyboard in Resources */,
 				A857CFBC20E9A5B600292FF8 /* resource.js in Resources */,
 				A8B6839620ACA41100FB193A /* ProfileVC.storyboard in Resources */,
@@ -564,6 +571,7 @@
 				A82542E120AE39B60000A206 /* ProfileVC.swift in Sources */,
 				A857CFBE20EAF07E00292FF8 /* cacheRequestModel.swift in Sources */,
 				A88D866F20A8A1D10073FA33 /* HomeCellVC.swift in Sources */,
+				A8B7A6C320F8CC3D009A2302 /* SettingsVC.swift in Sources */,
 				A8954AD720EBB0CB00CE9361 /* NotificationCell.swift in Sources */,
 				A82542E520AE3B210000A206 /* MenuLoginVC.swift in Sources */,
 				A8CB815920AF521200B1AE2A /* optionsTableVC.swift in Sources */,

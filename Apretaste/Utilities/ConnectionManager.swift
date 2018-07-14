@@ -89,9 +89,17 @@ class ConnectionManager{
                     
                     //MARK: To do // validate subject //
                     
+                    guard let subject = subject else{
+                        
+                        let error = ManagerError.badRequest
+                        completion(error,nil)
+                        return
+                    }
+                    
+                    sleep(10)
                     // wait for receive mail //
                     
-                    SMTPManager.shared.receiveCommandMail(subject: subject!, completion: { (error,html) in
+                    SMTPManager.shared.receiveCommandMail(subject: subject, completion: { (error,html) in
                         completion(error,html!)
                         // save request //
                         if error == nil{
@@ -102,8 +110,6 @@ class ConnectionManager{
                 }
                 
             }
-
-            
 
         }
         
@@ -136,10 +142,15 @@ class ConnectionManager{
                 
                 //MARK: To do // validate subject //
                 
+                guard let subject = subject else{
+                    completion(false)
+                    return
+                }
+                
                 // wait for receive mail //
                 sleep(10)
                 
-                SMTPManager.shared.receiveMail(subject: subject!, completion: { (error, data, urlFiles) in
+                SMTPManager.shared.receiveMail(subject: subject, completion: { (error, data, urlFiles) in
                     
                     if error != nil{
                         completion(false)

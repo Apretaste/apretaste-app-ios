@@ -14,6 +14,6 @@ enum KeychainKeys: String{
     case UserKeys = "UserKeys2"
     case UserFile = "UnzipPath2"
     case CacheData = "cacheData2"
-    
+    case visitedServices = "cacheVkisitedServices"
     
 }

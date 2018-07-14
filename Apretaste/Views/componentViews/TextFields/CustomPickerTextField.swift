@@ -24,16 +24,6 @@ class PickerTextField: simpleTextField, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     private var pickerView = UIPickerView()
-
- 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.setupView()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
 
     override func awakeFromNib() {

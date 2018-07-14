@@ -79,8 +79,6 @@ class ServicesModel:Mappable{
     var creator = ""
     var update = ""
     var icon = ""
-    var isVisited = false
-    var isFavorite = false
 
     
     required init?(map: Map) {
@@ -95,7 +93,5 @@ class ServicesModel:Mappable{
         creator <- map["creator"]
         update <- map["update"]
         icon <- map["icon"]
-        isVisited <- map["isVisited"]
-        isFavorite <- map["isFavorite"]
     }
 }

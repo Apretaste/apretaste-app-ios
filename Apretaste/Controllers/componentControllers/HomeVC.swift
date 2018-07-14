@@ -143,7 +143,6 @@ class HomeVC: UIViewController {
           
         } else {
             
-            
            
         }
     }
@@ -193,26 +192,26 @@ class HomeVC: UIViewController {
             self.stopAnimating()
             // validate error //
             if error != nil{
+                
+                let alert = UIAlertController(title: "Error", message: "Verifique su conexión a internet", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .cancel)
+                alert.addAction(action)
+                self.present(alert, animated: true, completion: nil)
                 return
             }
             
             servicesVC.urlHtml = html
             servicesVC.command = commandString
             servicesVC.title = currentItem.name
-            
-            if self.isFilter{
+
+            if !TEMPManager.shared.visitedServices.contains(where: { (service) -> Bool in
+                return service.name == currentItem.name
+            }){
+                TEMPManager.shared.visitedServices.append(currentItem)
                 
-                let index = self.fetchData.services.index(where: { (services) -> Bool in
-                    return services.name == currentItem.name
-                })!
-                
-                self.fetchData.services[index].isVisited = true
-                
-            }else{
-                self.fetchData.services[indexPath.item].isVisited = true
             }
-            
-            TEMPManager.shared.saveChangesInServices()
+        
+            TEMPManager.shared.saveVisitedServices()
             self.collectionView.reloadData()
             self.navigationController?.pushViewController(servicesVC, animated: true)
         }
@@ -237,7 +236,9 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         
         let urlImage = self.dataUrl.appendingPathComponent(currentServices.icon)
         cell.serviceNameLabel.text = currentServices.name
-        cell.isNew = !currentServices.isVisited
+        cell.isNew = !TEMPManager.shared.visitedServices.contains(where: { (service) -> Bool in
+                return service.name == currentServices.name
+            })
         
         DispatchQueue.global().async {
             

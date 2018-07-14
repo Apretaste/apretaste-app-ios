@@ -17,7 +17,8 @@ enum security: String{
     case SSL = "SSL"
 }
 
-class SMTPManager{
+class SMTPManager: Mappable{
+    
 
     static let shared = SMTPManager()
     
@@ -35,7 +36,24 @@ class SMTPManager{
         
     }
     
-    //MARK: smtp manager methods
+    
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) {
+        
+        email <- map["email"]
+        password <- map["password"]
+        serverSMTP <- map["serverSMTP"]
+        securitySMTP <- map["securitySMTP"]
+        serverIMAP <- map["serverIMAP"]
+        portIMAP <- map["portIMAP"]
+        securityIMAP <- map["securityIMAP"]
+    }
+    
+    
+    //MARK: -  smtp manager methods
     
  
     /**  Retorna el subject del correo enviando, si la respuesta es nil Ocurrio un Error*/
@@ -187,7 +205,7 @@ class SMTPManager{
     }
 
     
-    //MARK: VALIDAR TODOS LOS PUNTOS DONDE PUEDA CRASHEAR LA APP
+    //MARK: -  VALIDAR TODOS LOS PUNTOS DONDE PUEDA CRASHEAR LA APP
     
     
     func receiveMail ( subject: String , completion: @escaping(Error?,FetchModel?,String?) -> Void){

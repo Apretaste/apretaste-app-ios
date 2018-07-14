@@ -8,6 +8,7 @@
 
 import Foundation
 import KeychainSwift
+import ObjectMapper
 
 class MetadataNotification : NSObject {
     
@@ -21,6 +22,8 @@ class TEMPManager{
     var metaNotification = MetadataNotification()
     
     var notifications: [NotificationModel] = []
+    
+    var visitedServices:[ServicesModel] = []
     
     var fetchData: FetchModel!{
        
@@ -54,9 +57,9 @@ class TEMPManager{
     static var keychainAccess = KeychainSwift()
     
     
-    func saveChangesInServices(){
+    func saveVisitedServices(){
         
-        TEMPManager.keychainAccess.set(fetchData.toJSONString()!, forKey: KeychainKeys.UserKeys.rawValue)
+        TEMPManager.keychainAccess.set(visitedServices.toJSONString()!, forKey: KeychainKeys.visitedServices.rawValue)
     }
     
     //MARK: - funcs
@@ -82,6 +85,10 @@ class TEMPManager{
     
     func automaticConfig(){
         
+        // save email //
+        
+        
+        
         // se accede al keychain //
         
         if let fetchData = TEMPManager.keychainAccess.get(KeychainKeys.UserKeys.rawValue){
@@ -89,6 +96,7 @@ class TEMPManager{
             // se guarda la data local //
             
             self.fetchData = FetchModel(JSONString: fetchData)!
+            self.loadCacheData()
             
             // se guarda la url de los media files //
             
@@ -102,7 +110,19 @@ class TEMPManager{
                 self.isAlive = true
             }
         }
+        
     }
+    
+    func loadCacheData(){
+        
+        // se cargan servicios visitados
+        
+        if let visitedServices = TEMPManager.keychainAccess.get(KeychainKeys.visitedServices.rawValue){
+            
+            // se guarda la data local //
+            self.visitedServices = Mapper<ServicesModel>().mapArray(JSONString: visitedServices)!
+            }
+        }
     
     func clearData(){
         TEMPManager.keychainAccess.clear()

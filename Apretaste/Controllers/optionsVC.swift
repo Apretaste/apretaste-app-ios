@@ -12,14 +12,14 @@ class optionsVC: UIViewController, UITableViewDelegate,UITableViewDataSource {
     
     enum CellType: Int{
         
-        case profile = 0 , recents  , quiz , refferAndWin ,cupons, about, exit, options
+        case profile = 0 , recents  ,settings, quiz , refferAndWin ,cupons, about, exit, options
     }
     
     @IBOutlet weak var tableView: UITableView!
 
-    let options = ["Perfil", "Recientes", "Retos", "Referir y ganar","cupones", "Acerca de", "Salir"]
+    let options = ["Perfil", "Recientes","Configuraciones", "Retos", "Referir y ganar","cupones", "Acerca de", "Salir"]
     
-    let imgs = ["user","recents","flag","referir","ticket","about","exit"]
+    let imgs = ["user","recents","configuration","flag","referir","ticket","about","exit"]
 
     
 
@@ -92,6 +92,13 @@ class optionsVC: UIViewController, UITableViewDelegate,UITableViewDataSource {
             return
 
         }
+        
+        if cellType == .settings{
+            
+            let storyboard = UIStoryboard(name: "Settings", bundle: nil)
+            let settingsVC = storyboard.instantiateInitialViewController()!
+            self.navigationController?.pushViewController(settingsVC, animated: true)
+        }
 
         if cellType == .profile{
 
@@ -104,6 +111,11 @@ class optionsVC: UIViewController, UITableViewDelegate,UITableViewDataSource {
                 self.stopAnimating()
                 
                 if error != nil{
+                   
+                    let alert = UIAlertController(title: "Error", message: "Verifique su conexión a internet", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "OK", style: .cancel)
+                    alert.addAction(action)
+                    self.present(alert, animated: true, completion: nil)
                     return
                 }
                 let storyboard = UIStoryboard(name: "Services", bundle: nil)
@@ -149,6 +161,11 @@ class optionsVC: UIViewController, UITableViewDelegate,UITableViewDataSource {
                 self.stopAnimating()
                 
                 if error != nil{
+                   
+                    let alert = UIAlertController(title: "Error", message: "Verifique su conexión a internet", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "OK", style: .cancel)
+                    alert.addAction(action)
+                    self.present(alert, animated: true, completion: nil)
                     return
                 }
                 let storyboard = UIStoryboard(name: "Services", bundle: nil)
@@ -170,6 +187,10 @@ class optionsVC: UIViewController, UITableViewDelegate,UITableViewDataSource {
                 self.stopAnimating()
                 
                 if error != nil{
+                    let alert = UIAlertController(title: "Error", message: "Verifique su conexión a internet", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "OK", style: .cancel)
+                    alert.addAction(action)
+                    self.present(alert, animated: true, completion: nil)
                     return
                 }
                 let storyboard = UIStoryboard(name: "Services", bundle: nil)
@@ -191,6 +212,11 @@ class optionsVC: UIViewController, UITableViewDelegate,UITableViewDataSource {
                 self.stopAnimating()
                 
                 if error != nil{
+                    
+                    let alert = UIAlertController(title: "Error", message: "Verifique su conexión a internet", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "OK", style: .cancel)
+                    alert.addAction(action)
+                    self.present(alert, animated: true, completion: nil)
                     return
                 }
                 let storyboard = UIStoryboard(name: "Services", bundle: nil)

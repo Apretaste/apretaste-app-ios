@@ -72,38 +72,8 @@ class DetailVC: UIViewController {
     }
     
     
-    @IBAction func favoriteButtonTapped(_ sender: UIButton) {
-//        
-//        let index = TEMPManager.shared.fetchData.services.index { (service) -> Bool in
-//            return service.name == self.selectedServices.name
-//        }!
-//        
-//        TEMPManager.shared.fetchData.services[index].isFavorite =  !TEMPManager.shared.fetchData.services[index].isFavorite
-//        TEMPManager.shared.saveChangesInServices()
-//       
-//        self.paintStarImage(sender:sender)
-        
-    }
+
     
-    func paintStarImage(sender: UIButton){
-        
-        let image = UIImage(named: "star")?.withRenderingMode(.alwaysTemplate)
-        
-        let index = TEMPManager.shared.fetchData.services.index { (service) -> Bool in
-            return service.name == self.selectedServices.name
-            }!
-        
-        if TEMPManager.shared.fetchData.services[index].isFavorite{
-            
-            sender.tintColor = .greenApp
-            sender.setImage(image, for: .normal)
-            
-            
-        }else{
-            
-            sender.tintColor = .black
-            sender.setImage(image, for: .normal)
-        }
-    }
+   
     
 }

@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-enum HttpManagerError: Error {
+enum ManagerError: Error {
     case badRequest
 }
 
@@ -85,7 +85,7 @@ class HTTPManager{
         }
     }
     
-    private func internalRequest(task: String,completion:@escaping(_ data:Data,_ url: String,_ await:Bool) -> Void){
+    private func internalRequest(task: String,completion:@escaping(_ data:Data?,_ url: String?,_ await:Bool) -> Void){
         
         let zip = UtilitesMethods.writeZip(task: task)
         
@@ -108,7 +108,13 @@ class HTTPManager{
                 
                 upload.responseJSON(completionHandler: { (data) in
                     
-                    guard let responseJSON = data.result.value as? NSDictionary else {return}
+                    guard let responseJSON = data.result.value as? NSDictionary else {
+                        
+                        // no internet connection //
+                        completion(nil,nil,false)
+                        return
+                        
+                    }
                     
                     let urlString = responseJSON["file"] as! String
                     guard let urlFile = URL(string:urlString) else{
@@ -130,21 +136,26 @@ class HTTPManager{
                             
                         }).response(completionHandler: { (response) in
                             
-                            let zipData = try! Data.init(contentsOf: response.destinationURL!)
-                            let name = String(urlString.split(separator: "/").last!)
-                            
-                            completion(zipData,name,false)
-                            
-                           
+                            do{
+                               
+                                let zipData = try Data.init(contentsOf: response.destinationURL!)
+                                let name = String(urlString.split(separator: "/").last!)
+                                completion(zipData,name,false)
+                          
+                            }catch{
+                                
+                                completion(nil,nil,false)
+                                return
+                            }
+
                         })
                     
                 })
                 
-                
             case .failure(let encodingError):
+                completion(nil,nil,false)
                 print(encodingError)
             }
-            
             
         })
     }
@@ -154,6 +165,19 @@ class HTTPManager{
         
         
         self.internalRequest(task: task) { (zipData, name, _)  in
+            
+            guard let zipData = zipData else{
+                
+                let error = ManagerError.badRequest
+                completion(error,nil)
+                return
+            }
+            
+            guard let name = name else{
+                let error = ManagerError.badRequest
+                completion(error,nil)
+                return
+            }
            
             let unzipFolder = UtilitesMethods.receiveZip(data: zipData, filename: name)
             
@@ -163,7 +187,7 @@ class HTTPManager{
                 
             }).first else{
                 
-                let error = HttpManagerError.badRequest
+                let error = ManagerError.badRequest
                 completion(error,nil)
                 return
             }
@@ -186,6 +210,19 @@ class HTTPManager{
     func sendRequest(task: String,completion:@escaping(Error?,FetchModel?,String?) -> Void){
         
         self.internalRequest(task: task) { (zipData, name,_) in
+            
+            guard let zipData = zipData else{
+                let error = ManagerError.badRequest
+                completion(error,nil,nil)
+                return
+            }
+            
+            guard let name = name else{
+                
+                let error = ManagerError.badRequest
+                completion(error,nil,nil)
+                return
+            }
             
             let unzipFolder = UtilitesMethods.receiveZip(data: zipData, filename: name)
             

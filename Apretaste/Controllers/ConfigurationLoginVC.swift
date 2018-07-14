@@ -110,8 +110,8 @@ class ConfigurationLoginVC: UIViewController , UIPickerViewDelegate, UIPickerVie
     
     @IBAction func nextButton(_ sender: Any) {
        
-        self.delegate?.loginAction()
         self.dismiss(animated: true, completion: nil)
+        self.delegate?.loginAction()
 
     }
     

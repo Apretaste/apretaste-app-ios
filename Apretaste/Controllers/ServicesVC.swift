@@ -22,7 +22,7 @@ class ServicesVC: UIViewController {
     var textField: UITextField!
 
     
-    //MARK: life cycle
+    //MARK: - life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +38,7 @@ class ServicesVC: UIViewController {
         
     }
     
-    //MARK: setups
+    //MARK: - setups
     
     private func setupView(){
         
@@ -75,6 +75,11 @@ class ServicesVC: UIViewController {
             self.stopAnimating()
             
             if error != nil{
+                
+                let alert = UIAlertController(title: "Error", message: "Verifique su conexión a internet", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .cancel)
+                alert.addAction(action)
+                self.present(alert, animated: true, completion: nil)
                 return
             }
             
@@ -323,6 +328,11 @@ class ServicesVC: UIViewController {
                     self.stopAnimating()
                     // validate error //
                     if error != nil{
+                        
+                        let alert = UIAlertController(title: "Error", message: "Verifique su conexión a internet", preferredStyle: .alert)
+                        let action = UIAlertAction(title: "OK", style: .cancel)
+                        alert.addAction(action)
+                        self.present(alert, animated: true, completion: nil)
                         return
                     }
                     
@@ -331,7 +341,7 @@ class ServicesVC: UIViewController {
                     servicesVC.urlHtml = html
                     servicesVC.command = newCommand
                     servicesVC.title = String(command.split(separator: " ").first!)
-                    TEMPManager.shared.saveChangesInServices()
+                    TEMPManager.shared.saveVisitedServices()
                     self.navigationController?.pushViewController(servicesVC, animated: true)
                     
                 }
@@ -355,6 +365,11 @@ class ServicesVC: UIViewController {
             self.stopAnimating()
             // validate error //
             if error != nil{
+                
+                let alert = UIAlertController(title: "Error", message: "Verifique su conexión a internet", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .cancel)
+                alert.addAction(action)
+                self.present(alert, animated: true, completion: nil)
                 return
             }
             
@@ -363,7 +378,7 @@ class ServicesVC: UIViewController {
             servicesVC.urlHtml = html
             servicesVC.command = command
             servicesVC.title = String(command.split(separator: " ").first!)
-            TEMPManager.shared.saveChangesInServices()
+            TEMPManager.shared.saveVisitedServices()
             self.navigationController?.pushViewController(servicesVC, animated: true)
             
         }
@@ -371,7 +386,7 @@ class ServicesVC: UIViewController {
     }
 }
 
-//MARK: WebView Delegate //
+//MARK: - WebView Delegate //
 
 extension ServicesVC: UIWebViewDelegate{
 

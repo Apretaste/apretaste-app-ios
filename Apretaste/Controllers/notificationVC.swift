@@ -138,6 +138,11 @@ extension notificationVC:UITableViewDelegate, UITableViewDataSource{
             self.stopAnimating()
             
             if error != nil{
+                
+                let alert = UIAlertController(title: "Error", message: "Verifique su conexión a internet", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .cancel)
+                alert.addAction(action)
+                self.present(alert, animated: true, completion: nil)
                 return
             }
             
