@@ -118,11 +118,10 @@ class TEMPManager{
         // se cargan servicios visitados
         
         if let visitedServices = TEMPManager.keychainAccess.get(KeychainKeys.visitedServices.rawValue){
-            
             // se guarda la data local //
             self.visitedServices = Mapper<ServicesModel>().mapArray(JSONString: visitedServices)!
-            }
         }
+    }
     
     func clearData(){
         TEMPManager.keychainAccess.clear()

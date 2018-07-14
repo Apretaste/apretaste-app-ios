@@ -20,7 +20,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ConfigurationLoginDelegate
     
     var subject = ""
     
-    //MARK: life cycle //
+    //MARK: - life cycle //
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,6 +81,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ConfigurationLoginDelegate
             
             // set connection type //
             ConnectionManager.shared.connectionType = .smtp
+            SMTPManager.shared.saveConfig()
             
             let storyboard = UIStoryboard(name: "tabBarMenu", bundle: nil)
             let homeVC = storyboard.instantiateInitialViewController()!
@@ -90,7 +91,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ConfigurationLoginDelegate
     }
     
     
-    //MARK: setups
+    //MARK: - setups
     
     private func setupView(){
         
@@ -106,7 +107,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ConfigurationLoginDelegate
         
     }
     
-    //MARK: selectors
+    //MARK: - selectors
     
     @objc func emailObserver(){
         
@@ -138,7 +139,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ConfigurationLoginDelegate
         self.navigationController?.popViewController(animated: true)
     }
     
-    //MARK: actions buttons
+    //MARK: - actions buttons
     
     @IBAction func loginActionButton(_ sender: Any) {
         
@@ -187,7 +188,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ConfigurationLoginDelegate
          
     }
     
-    //MARK: textfield delegate
+    //MARK: - textfield delegate
 
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -204,7 +205,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ConfigurationLoginDelegate
         }
     }
     
-    //MARK: configuration delegate
+    //MARK: - configuration delegate
     
     func loginAction() {
         

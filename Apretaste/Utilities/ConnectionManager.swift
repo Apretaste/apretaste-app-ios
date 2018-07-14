@@ -22,9 +22,31 @@ class ConnectionManager{
     
     static var shared = ConnectionManager()
     
-    var connectionType: ConnectionType = .http
+    var connectionType: ConnectionType = .http{
+        
+        didSet{
+            self.saveConnectionType()
+        }
+    }
 
-    private init(){}
+    private init(){
+        
+        // load data
+        let keychain = KeychainSwift()
+        
+        if let type = keychain.get(KeychainKeys.connectionType.rawValue){
+            
+            let connectionType = ConnectionType(rawValue: type)!
+            self.connectionType = connectionType
+        }
+    }
+    
+    
+    func saveConnectionType(){
+        
+        let keychain = KeychainSwift()
+        keychain.set(self.connectionType.rawValue, forKey: KeychainKeys.connectionType.rawValue)
+    }
     
     //Methods //
     

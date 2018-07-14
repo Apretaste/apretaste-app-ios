@@ -97,6 +97,8 @@ extension SettingsVC: ConfigurationLoginDelegate{
     
     func loginAction() {
         
+        SMTPManager.shared.saveConfig()
+
         let alert = UIAlertController(title: "Actualizado", message: "sus cambios han sido guardados", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alert.addAction(action)

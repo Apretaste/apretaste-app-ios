@@ -34,6 +34,27 @@ class SMTPManager: Mappable{
     
     private init(){
         
+        let keychain = KeychainSwift()
+        
+        if let smtpConfig = keychain.get(KeychainKeys.smtpConfig.rawValue){
+            
+           let data = SMTPManager(JSONString: smtpConfig)!
+            
+            self.email = data.email
+            self.password = data.password
+            self.serverSMTP = data.serverSMTP
+            self.portSMTP = data.portSMTP
+            self.securitySMTP = data.securitySMTP
+            self.serverIMAP = data.serverIMAP
+            self.portSMTP = data.portIMAP
+            self.securityIMAP = data.securityIMAP
+            
+        }
+            
+            
+            
+        
+        
     }
     
     
@@ -54,6 +75,16 @@ class SMTPManager: Mappable{
     
     
     //MARK: -  smtp manager methods
+    
+    func saveConfig(){
+        
+        let keychain = KeychainSwift()
+        
+        let jsonConfig = self.toJSONString()!
+        keychain.set(jsonConfig, forKey: KeychainKeys.smtpConfig.rawValue)
+        
+        
+    }
     
  
     /**  Retorna el subject del correo enviando, si la respuesta es nil Ocurrio un Error*/

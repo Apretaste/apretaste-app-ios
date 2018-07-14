@@ -15,5 +15,7 @@ enum KeychainKeys: String{
     case UserFile = "UnzipPath2"
     case CacheData = "cacheData2"
     case visitedServices = "cacheVkisitedServices"
+    case smtpConfig = "smtpConfig"
+    case connectionType = "connectionType"
     
 }
