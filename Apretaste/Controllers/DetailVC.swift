@@ -14,7 +14,6 @@ class DetailVC: UIViewController {
     @IBOutlet weak var serviceName: UILabel!
     @IBOutlet weak var serviceDescription: UILabel!
     @IBOutlet weak var serviceCreator: UILabel!
-    @IBOutlet weak var serviceVersion: UILabel!
     @IBOutlet weak var serivceCategory: UILabel!
     
     
@@ -59,7 +58,6 @@ class DetailVC: UIViewController {
         self.serviceDescription.text = selectedServices.description
         self.serviceCreator.text = selectedServices.creator
         self.serivceCategory.text = selectedServices.category
-        self.serviceVersion.text = selectedServices.update
         
         do{
             let dataImage = try Data.init(contentsOf: urlImage)
