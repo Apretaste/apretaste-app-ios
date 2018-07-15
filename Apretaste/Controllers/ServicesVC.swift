@@ -16,9 +16,7 @@ class ServicesVC: UIViewController {
     var command:String!
     var urlHtml:URL!
     var jsContext: JSContext!
-    
     var selectComponents:[String] = []
-    
     var textField: UITextField!
 
     
@@ -98,8 +96,15 @@ class ServicesVC: UIViewController {
         
         var contentFile = ""
         let stringError = "<h4>Existe un problema con este servicio. Intente más tarde.</h4>"
+        
         do{
-             contentFile = try String.init(contentsOf: self.urlHtml)
+            
+            if self.command.lowercased().contains("escuela"){
+                contentFile = try String.init(contentsOf: self.urlHtml, encoding: .ascii)
+            }else{
+                contentFile = try String.init(contentsOf: self.urlHtml)
+            }
+
         }catch{
             return stringError
         }

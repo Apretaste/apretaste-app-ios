@@ -30,7 +30,8 @@ class TEMPManager{
         didSet{
             
           TEMPManager.keychainAccess.set(fetchData.toJSONString()!, forKey: KeychainKeys.UserKeys.rawValue)
-           self.receiveNotification()
+          SMTPManager.shared.mailBox = fetchData.mailbox
+          self.receiveNotification()
         }
     }
     
@@ -63,6 +64,12 @@ class TEMPManager{
     }
     
     //MARK: - funcs
+    
+    func saveMailBox(){
+        
+        TEMPManager.keychainAccess.set(fetchData.toJSONString()!, forKey: KeychainKeys.UserKeys.rawValue)
+
+    }
     
     
     func receiveNotification(){

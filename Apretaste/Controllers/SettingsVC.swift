@@ -17,9 +17,9 @@ class SettingsVC: UIViewController {
     @IBOutlet weak var connectionType: PickerTextField!
     
     var quality: [String] = [
-        "Baja",
-        "Media",
-        "Alta"
+        "original",
+        "reducida",
+        "sin imagenes"
     ]
     
     var connection:[String] = [
@@ -87,6 +87,14 @@ class SettingsVC: UIViewController {
     @IBAction func suscriptionSwitchTapped(_ sender: UISwitch) {
         
         
+    }
+    
+    @IBAction func changeBuzonButtonTapped(_ sender: Any) {
+        
+        let storyboard = UIStoryboard(name: "ChangeMail", bundle: nil)
+        let vc = storyboard.instantiateInitialViewController()!
+        
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }

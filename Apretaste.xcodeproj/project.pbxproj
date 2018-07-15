@@ -15,6 +15,8 @@
 		A82542E520AE3B210000A206 /* MenuLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82542E420AE3B210000A206 /* MenuLoginVC.swift */; };
 		A82542E820AE5B170000A206 /* SimpleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82542E720AE5B170000A206 /* SimpleTextField.swift */; };
 		A82542EA20AE5B340000A206 /* CustomPickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82542E920AE5B340000A206 /* CustomPickerTextField.swift */; };
+		A82788C320FA685000A84520 /* ChangeMail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A82788C220FA685000A84520 /* ChangeMail.storyboard */; };
+		A82788C520FA68BA00A84520 /* ChangeMailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82788C420FA68BA00A84520 /* ChangeMailVC.swift */; };
 		A82B8E9620A7FEA400E98599 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82B8E9520A7FEA400E98599 /* Task.swift */; };
 		A82B8E9820A8786E00E98599 /* FetchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82B8E9720A8786E00E98599 /* FetchModel.swift */; };
 		A836E18920AFD2E6007AB39F /* Notification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A836E18820AFD2E6007AB39F /* Notification.storyboard */; };
@@ -95,6 +97,8 @@
 		A82542E420AE3B210000A206 /* MenuLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuLoginVC.swift; sourceTree = "<group>"; };
 		A82542E720AE5B170000A206 /* SimpleTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextField.swift; sourceTree = "<group>"; };
 		A82542E920AE5B340000A206 /* CustomPickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerTextField.swift; sourceTree = "<group>"; };
+		A82788C220FA685000A84520 /* ChangeMail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChangeMail.storyboard; sourceTree = "<group>"; };
+		A82788C420FA68BA00A84520 /* ChangeMailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeMailVC.swift; sourceTree = "<group>"; };
 		A82B8E9520A7FEA400E98599 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		A82B8E9720A8786E00E98599 /* FetchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchModel.swift; sourceTree = "<group>"; };
 		A836E18820AFD2E6007AB39F /* Notification.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notification.storyboard; sourceTree = "<group>"; };
@@ -251,6 +255,7 @@
 				A857CFAC20E9505900292FF8 /* About.storyboard */,
 				A8AAB89E20EAF989007B66D7 /* Recents.storyboard */,
 				A8B7A6C020F8CA3E009A2302 /* Settings.storyboard */,
+				A82788C220FA685000A84520 /* ChangeMail.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -293,6 +298,7 @@
 				A857CFB220E9508800292FF8 /* AboutVC.swift */,
 				A8AAB89C20EAF970007B66D7 /* RecentsVC.swift */,
 				A8B7A6C220F8CC3D009A2302 /* SettingsVC.swift */,
+				A82788C420FA68BA00A84520 /* ChangeMailVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -462,6 +468,7 @@
 				A8553EC220A74238008BC393 /* Main.storyboard in Resources */,
 				A8553ED420A742ED008BC393 /* Login.storyboard in Resources */,
 				A8553ED620A75272008BC393 /* ConfigurationLogin.storyboard in Resources */,
+				A82788C320FA685000A84520 /* ChangeMail.storyboard in Resources */,
 				A8B7A6C120F8CA3E009A2302 /* Settings.storyboard in Resources */,
 				A857CFAF20E9506B00292FF8 /* Detail.storyboard in Resources */,
 				A857CFBC20E9A5B600292FF8 /* resource.js in Resources */,
@@ -552,6 +559,7 @@
 				A8D8C5D720A781E700CDE7C0 /* HTTPManager.swift in Sources */,
 				A857CFB520E96EEA00292FF8 /* PrincipalNavigation.swift in Sources */,
 				A88D867120A8A2120073FA33 /* HomeVC.swift in Sources */,
+				A82788C520FA68BA00A84520 /* ChangeMailVC.swift in Sources */,
 				A8AAB89D20EAF970007B66D7 /* RecentsVC.swift in Sources */,
 				A8553EBF20A74238008BC393 /* ViewController.swift in Sources */,
 				A82B8E9820A8786E00E98599 /* FetchModel.swift in Sources */,

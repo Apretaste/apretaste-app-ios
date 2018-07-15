@@ -17,5 +17,6 @@ enum KeychainKeys: String{
     case visitedServices = "cacheVkisitedServices"
     case smtpConfig = "smtpConfig"
     case connectionType = "connectionType"
+    case httpConfig = "httpConfig"
     
 }

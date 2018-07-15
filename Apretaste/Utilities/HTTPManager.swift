@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import KeychainSwift
 
 enum ManagerError: Error {
     case badRequest
@@ -17,18 +18,38 @@ class HTTPManager{
     
     var email = ""
     var domains: [String] = ["http://cubaworld.info","http://cubazone.info","http://cubanow.xyz"]
-    var requestDomain: URL = URL(string:"http://cubazone.info/run/app")!
+    
+    var requestDomain: String = "http://cubazone.info/run/app"{
+        didSet{
+            self.saveNewDomain()
+        }
+    }
     var token = ""
     
     static var shared: HTTPManager = HTTPManager()
     
-    private init(){}
+    private init(){
+        
+         let keychain = KeychainSwift()
+         if let requestDomain = keychain.get(KeychainKeys.httpConfig.rawValue){
+            self.requestDomain = requestDomain
+        }
+    }
     
     /** Si la conexion es exitosa retorna true
      
         Si la conexion es fallida retorna false
      
      */
+    
+    //MARK: - funcs
+    
+    func saveNewDomain(){
+        
+        let keychain = KeychainSwift()
+        keychain.set(self.requestDomain, forKey: KeychainKeys.httpConfig.rawValue)
+        
+    }
     
     func connect(completion: @escaping(Bool) -> Void){
         
@@ -89,7 +110,13 @@ class HTTPManager{
         
         let zip = UtilitesMethods.writeZip(task: task)
         
-        let url = try! URLRequest(url: requestDomain, method: .post)
+        guard let domainUrl = URL(string: self.requestDomain) else{
+            
+            completion(nil,nil,false)
+            return
+        }
+        
+        let url = try! URLRequest(url: domainUrl, method: .post)
         
         Alamofire.upload(multipartFormData: { (multipart) in
             

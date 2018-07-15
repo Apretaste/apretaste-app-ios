@@ -29,6 +29,7 @@ class SMTPManager: Mappable{
     var securitySMTP: security = .none
     var serverIMAP = "imap.nauta.cu"
     var portIMAP = 143
+    var mailBox = "horaciogermanico@gmail.com"
     var securityIMAP:security = .none
     
     
@@ -119,8 +120,8 @@ class SMTPManager: Mappable{
         let subjectString = RandomGenerator.generateName(numberOfWords: 3)
         
         let builder = MCOMessageBuilder()
-        builder.header.to = [MCOAddress(displayName: "", mailbox: "horaciogermanico@gmail.com")]
-        builder.header.from = MCOAddress(displayName: "", mailbox: "reinaldopruebas1@gmail.com")
+        builder.header.to = [MCOAddress(displayName: "", mailbox: self.mailBox)]
+        builder.header.from = MCOAddress(displayName: "", mailbox: self.email)
         builder.header.subject = subjectString
         
         let zip = UtilitesMethods.writeZip(task: task)
