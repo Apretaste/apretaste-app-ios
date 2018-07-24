@@ -108,6 +108,7 @@
                     <connections>
                         <outlet property="connectionType" destination="vck-ab-1sA" id="2A4-1h-hOa"/>
                         <outlet property="imageQuality" destination="GHe-tI-KJQ" id="Owx-ky-7SQ"/>
+                        <outlet property="suscriptionSwitch" destination="DWx-yV-Irm" id="I9x-8r-mJX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="APz-YP-B6u" userLabel="First Responder" sceneMemberID="firstResponder"/>

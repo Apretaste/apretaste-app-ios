@@ -71,7 +71,6 @@ class LoginVC: UIViewController, UITextFieldDelegate, ConfigurationLoginDelegate
             
             // salvamos la data//
             
-            
             // abrimos nueva vista //
             
             // save data //
@@ -81,6 +80,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ConfigurationLoginDelegate
             
             // set connection type //
             ConnectionManager.shared.connectionType = .smtp
+                        
             SMTPManager.shared.saveConfig()
             
             let storyboard = UIStoryboard(name: "tabBarMenu", bundle: nil)

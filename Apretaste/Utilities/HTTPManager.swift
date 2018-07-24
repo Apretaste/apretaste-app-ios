@@ -255,11 +255,14 @@ class HTTPManager{
             
             let folder = unzipFolder.0
             let path = unzipFolder.1
-            let jsonUrl = folder.filter({ (filePath) -> Bool in
-                
+            
+            guard let jsonUrl = folder.filter({ (filePath) -> Bool in
                 return filePath.absoluteString.contains("html")
-                
-            }).first!
+           }).first else{
+                let error = ManagerError.badRequest
+                completion(error,nil,nil)
+                return
+            }
             
             let jsonFile = try! String.init(contentsOf: jsonUrl)
             

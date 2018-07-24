@@ -18,7 +18,7 @@ class notificationVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Notificaciones"
+        self.title = "Notificaciones"                                 
         
         self.tableView.tableFooterView = UIView()
         
@@ -39,6 +39,7 @@ class notificationVC: UIViewController {
         
         
     }
+    
 
     
     @objc func deleteButtonTapped(){

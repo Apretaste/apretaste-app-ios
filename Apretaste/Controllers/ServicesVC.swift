@@ -143,6 +143,10 @@ class ServicesVC: UIViewController {
     
     func createCustomTextField(_ textField: UITextField,message:String) {
         
+        if message.hasPrefix("n:"){
+            textField.keyboardType = .numberPad
+        }
+        
         if message.hasPrefix("m:"){
             
             // delete prefix //
@@ -180,6 +184,9 @@ class ServicesVC: UIViewController {
             
             datePicker.addTarget(self, action: #selector(self.changeDataPicker(_:)), for: .valueChanged)
             
+        }
+        
+        if message.hasPrefix("u:"){
             
             
         }
@@ -208,7 +215,7 @@ class ServicesVC: UIViewController {
             
         }
         
-        if message.hasPrefix("d:"){
+        if message.hasPrefix("d:") || message.hasPrefix("n:"){
             
             // delete prefix //
             var newMessage = message
@@ -217,6 +224,7 @@ class ServicesVC: UIViewController {
             return newMessage
             
         }
+        
         
         return message
     }

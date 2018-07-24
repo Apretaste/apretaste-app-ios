@@ -48,7 +48,7 @@ class ChangeMailVC: UIViewController {
         SMTPManager.shared.mailBox = self.mailBox.text!
         TEMPManager.shared.fetchData.mailbox = self.mailBox.text!
         
-        TEMPManager.shared.saveMailBox()
+        TEMPManager.shared.saveTempData()
         
         let alert = UIAlertController(title: "Operación exitosa", message: "Se han guardado los cambios", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .cancel)

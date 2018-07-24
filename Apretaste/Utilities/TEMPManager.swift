@@ -65,7 +65,7 @@ class TEMPManager{
     
     //MARK: - funcs
     
-    func saveMailBox(){
+    func saveTempData(){
         
         TEMPManager.keychainAccess.set(fetchData.toJSONString()!, forKey: KeychainKeys.UserKeys.rawValue)
 

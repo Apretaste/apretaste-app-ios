@@ -13,13 +13,14 @@ class SettingsVC: UIViewController {
     //MARK: - vars
     
     @IBOutlet weak var imageQuality: PickerTextField!
-    
     @IBOutlet weak var connectionType: PickerTextField!
     
+    @IBOutlet weak var suscriptionSwitch: UISwitch!
+    
     var quality: [String] = [
-        "original",
-        "reducida",
-        "sin imagenes"
+        "ORIGINAL",
+        "REDUCIDA",
+        "SIN_IMAGENES"
     ]
     
     var connection:[String] = [
@@ -38,6 +39,9 @@ class SettingsVC: UIViewController {
         // add target
         
         self.connectionType.addTarget(self, action: #selector(self.changedConnectionType(_:)), for: .editingDidEnd)
+        
+        self.imageQuality.addTarget(self, action: #selector(self.changedImageQuality(_:)), for: .editingDidEnd)
+
 
     }
     
@@ -45,18 +49,44 @@ class SettingsVC: UIViewController {
     
     private func setupView(){
         
-        
         // set data //
         self.title = "Configuraciones"
-       self.connectionType.dataSource = [connection]
-       self.imageQuality.dataSource = [quality]
+        self.connectionType.dataSource = [connection]
+        self.imageQuality.dataSource = [quality]
         
+        self.imageQuality.text = TEMPManager.shared.fetchData.img_quality
         self.connectionType.text = ConnectionManager.shared.connectionType.rawValue
-        
         
     }
     
     //MARK: - funcs
+    
+    @objc func changedImageQuality(_ textField:UITextField){
+
+        let command = "PERFIL IMAGEN \(textField.text!)"
+        
+        self.startAnimating(message:"Ejecutando..")
+        
+        ConnectionManager.shared.requestAwait(command: command) { (success) in
+            
+            self.stopAnimating()
+            
+            if success{
+                TEMPManager.shared.fetchData.img_quality = textField.text!
+                TEMPManager.shared.saveTempData()
+            }
+            
+            let title = success ? "Operación completada" : "Ocurrio un error intente más tarde."
+            
+            let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+            let done = UIAlertAction(title: "OK", style: .cancel)
+            alert.addAction(done)
+            self.present(alert, animated: true, completion: nil)
+            
+        }
+        
+        
+    }
 
     @objc func changedConnectionType(_ textField:UITextField){
         
@@ -85,6 +115,25 @@ class SettingsVC: UIViewController {
     
     
     @IBAction func suscriptionSwitchTapped(_ sender: UISwitch) {
+        
+        var command = "SUSCRIPCION LISTA"
+        command = sender.isOn ? "\(command) ENTRAR" : "\(command) SALIR"
+        
+        self.startAnimating()
+        
+        ConnectionManager.shared.requestAwait(command: command) { (success) in
+            
+            self.stopAnimating()
+            
+            let title = success ? "Operación completada" : "Ocurrio un error intente más tarde."
+            
+            let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+            let done = UIAlertAction(title: "OK", style: .cancel)
+            alert.addAction(done)
+            self.present(alert, animated: true, completion: nil)
+            
+        }
+        
         
         
     }
