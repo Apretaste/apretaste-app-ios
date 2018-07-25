@@ -143,6 +143,8 @@ class ServicesVC: UIViewController {
     
     func createCustomTextField(_ textField: UITextField,message:String) {
         
+        textField.placeholder = self.extractMessage(message: message)
+        
         if message.hasPrefix("n:"){
             textField.keyboardType = .numberPad
         }
@@ -256,19 +258,32 @@ class ServicesVC: UIViewController {
             
             if popup{
                 
-                let userMessage = self.extractMessage(message: message)
+                let userMessage = "Ingrese los datos solicitados"
                 
                 let alertText = UIAlertController(title: self.title, message: userMessage, preferredStyle: .alert)
                 
-                alertText.addTextField { (textfield) in
+                let messagesTextFields = message.split(separator: "|")
+                
+                for messageTextField in messagesTextFields{
                     
-                    self.createCustomTextField(textfield, message: message)
+                    let message = String(messageTextField)
+                    
+                    alertText.addTextField { (textfield) in
+                        
+                        self.createCustomTextField(textfield, message: message)
+                    }
                 }
                 
                 
                 let done = UIAlertAction(title: "Aceptar", style: .default, handler: { (_) in
                     
-                    let searchString = alertText.textFields![0].text!
+                    var searchString = ""
+                    
+                    for textField in alertText.textFields ?? []{
+                        
+                        searchString = searchString + " " + textField.text!
+                        
+                    }
                     
                     self.startAnimating(message:"cargando")
                     
@@ -318,19 +333,31 @@ class ServicesVC: UIViewController {
         
         if popup{
             
-            let userMessage = self.extractMessage(message: message)
+            let userMessage = "Ingrese los datos solicitados"
             
             let alertText = UIAlertController(title: self.title, message: userMessage, preferredStyle: .alert)
             
-            alertText.addTextField { (textField) in
+            let messagesTextFields = message.split(separator: "|")
+            
+            for messageTextField in messagesTextFields{
                 
-                self.createCustomTextField(textField, message: message)
+                let message = String(messageTextField)
                 
+                alertText.addTextField { (textfield) in
+                    
+                    self.createCustomTextField(textfield, message: message)
+                }
             }
             
             let done = UIAlertAction(title: "Aceptar", style: .default, handler: { (_) in
                 
-                let searchString = alertText.textFields![0].text!
+                var searchString = ""
+                
+                for textField in alertText.textFields ?? []{
+                    
+                    searchString = searchString + " " + textField.text!
+
+                }
                 
                 self.startAnimating(message:"cargando")
                 
