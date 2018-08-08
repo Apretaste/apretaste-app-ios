@@ -53,7 +53,8 @@ class SettingsVC: UIViewController {
         self.title = "Configuraciones"
         self.connectionType.dataSource = [connection]
         self.imageQuality.dataSource = [quality]
-        
+        self.suscriptionSwitch.isOn = TEMPManager.shared.isSubscribed
+    
         self.imageQuality.text = TEMPManager.shared.fetchData.img_quality
         self.connectionType.text = ConnectionManager.shared.connectionType.rawValue
         
@@ -105,12 +106,9 @@ class SettingsVC: UIViewController {
     @IBAction func setNautaButtonTapped(_ sender: Any) {
         
         let storyboard = UIStoryboard(name: "ConfigurationLogin", bundle: nil)
-        
         let configurationVC = storyboard.instantiateInitialViewController()! as! ConfigurationLoginVC
         configurationVC.delegate = self
-        configurationVC.modalTransitionStyle = .crossDissolve
-        configurationVC.modalPresentationStyle = .overFullScreen
-        self.present(configurationVC, animated: true, completion: nil)
+        self.navigationController?.pushViewController(configurationVC, animated: true)
     }
     
     
@@ -127,6 +125,10 @@ class SettingsVC: UIViewController {
             
             let title = success ? "Operación completada" : "Ocurrio un error intente más tarde."
             
+            // save status //
+            
+            TEMPManager.shared.saveSuscriptionMail(isSubscribed: sender.isOn)
+            
             let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
             let done = UIAlertAction(title: "OK", style: .cancel)
             alert.addAction(done)
@@ -142,7 +144,6 @@ class SettingsVC: UIViewController {
         
         let storyboard = UIStoryboard(name: "ChangeMail", bundle: nil)
         let vc = storyboard.instantiateInitialViewController()!
-        
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

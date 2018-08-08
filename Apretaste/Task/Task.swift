@@ -11,9 +11,8 @@ import Foundation
 
 enum Command: String{
     
-    case getProfile = "perfil status 2017-04-25 19:46:01"
-    case updateProfile = "q"
-    case getData = "d"
+    case getProfile = "perfil status"
+
     static func generateCommand(command:String) ->String {
         
        let token = TEMPManager.shared.fetchData.token

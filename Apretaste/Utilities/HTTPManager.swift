@@ -12,6 +12,7 @@ import KeychainSwift
 
 enum ManagerError: Error {
     case badRequest
+    case badSmtpConfig
 }
 
 class HTTPManager{
@@ -19,7 +20,7 @@ class HTTPManager{
     var email = ""
     var domains: [String] = ["http://cubaworld.info","http://cubazone.info","http://cubanow.xyz"]
     
-    var requestDomain: String = "http://cubazone.info/run/app"{
+    var requestDomain: String = "cubazone.info"{
         didSet{
             self.saveNewDomain()
         }
@@ -110,8 +111,7 @@ class HTTPManager{
         
         let zip = UtilitesMethods.writeZip(task: task)
         
-        guard let domainUrl = URL(string: self.requestDomain) else{
-            
+        guard let domainUrl = URL(string: "http://\(self.requestDomain)/run/app") else{
             completion(nil,nil,false)
             return
         }

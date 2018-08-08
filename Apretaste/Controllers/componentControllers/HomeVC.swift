@@ -46,9 +46,7 @@ class HomeVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.prefersLargeTitles = true
-        }
+
     }
     
     //MARK: -  setups
@@ -139,6 +137,7 @@ class HomeVC: UIViewController {
             navigationController?.navigationBar.largeTitleTextAttributes =
                 [NSAttributedStringKey.foregroundColor: UIColor.white]
             
+            navigationController?.navigationBar.prefersLargeTitles = false
             navigationItem.searchController = searchController
           
         } else {
@@ -192,6 +191,32 @@ class HomeVC: UIViewController {
             self.stopAnimating()
             // validate error //
             if error != nil{
+                
+                if let parserError = error as? ManagerError{
+                    
+                    // custom error //
+                    
+                    if parserError == .badSmtpConfig{
+                        
+                        let alert = UIAlertController(title: "Error", message: "Usted esta intentando comunicarse con el servidor usando su correo Nauta, por favor verifique su configuración y vuelva a intentarlo.", preferredStyle: .alert)
+                       
+                        let action =  UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
+                            
+                            let storyboard = UIStoryboard(name: "ConfigurationLogin", bundle: nil)
+                            let configurationVC = storyboard.instantiateInitialViewController()! as! ConfigurationLoginVC
+                              configurationVC.delegate = self
+                            self.navigationController?.pushViewController(configurationVC, animated: true)
+                            
+                        })
+                       
+                        alert.addAction(action)
+                        self.present(alert, animated: true, completion: nil)
+                        return
+                    }
+                    
+                }
+                
+                //default errror //
                 
                 let alert = UIAlertController(title: "Error", message: "Verifique su conexión a internet", preferredStyle: .alert)
                 let action = UIAlertAction(title: "OK", style: .cancel)
@@ -327,6 +352,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     
 }
 
+//MARK: - IMPLEMENT SEARCH CONTROLLER
 extension HomeVC: UISearchControllerDelegate,UISearchBarDelegate,UISearchResultsUpdating{
    
     func updateSearchResults(for searchController: UISearchController) {
@@ -346,3 +372,21 @@ extension HomeVC: UISearchControllerDelegate,UISearchBarDelegate,UISearchResults
     }
 
 }
+
+//MARK: - implement configuration delegate
+
+extension HomeVC: ConfigurationLoginDelegate{
+    
+    func loginAction() {
+        
+        SMTPManager.shared.saveConfig()
+        
+        let alert = UIAlertController(title: "Actualizado", message: "sus cambios han sido guardados", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
+}
+

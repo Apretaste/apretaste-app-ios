@@ -21,7 +21,7 @@ class AboutVC: UIViewController {
     
     private func setupView(){
         
-        self.versionLabel.text = "versión 3.1"
+        self.versionLabel.text = "versión 1.0"
     }
     
 

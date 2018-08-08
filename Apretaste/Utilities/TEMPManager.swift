@@ -25,6 +25,8 @@ class TEMPManager{
     
     var visitedServices:[ServicesModel] = []
     
+    var isSubscribed = false
+    
     var fetchData: FetchModel!{
        
         didSet{
@@ -57,18 +59,23 @@ class TEMPManager{
     static var shared = TEMPManager()
     static var keychainAccess = KeychainSwift()
     
+    //MARK: - funcs
+
     
     func saveVisitedServices(){
         
         TEMPManager.keychainAccess.set(visitedServices.toJSONString()!, forKey: KeychainKeys.visitedServices.rawValue)
     }
     
-    //MARK: - funcs
+    func saveSuscriptionMail(isSubscribed: Bool){
+        
+        self.isSubscribed = isSubscribed
+        TEMPManager.keychainAccess.set(isSubscribed, forKey: KeychainKeys.subscribedKey.rawValue)
+    }
     
     func saveTempData(){
         
         TEMPManager.keychainAccess.set(fetchData.toJSONString()!, forKey: KeychainKeys.UserKeys.rawValue)
-
     }
     
     
@@ -85,16 +92,12 @@ class TEMPManager{
             self.metaNotification.notificationsCount = self.notifications.count
 
         }
-        
 
-        
     }
     
     func automaticConfig(){
         
         // save email //
-        
-        
         
         // se accede al keychain //
         
@@ -128,6 +131,12 @@ class TEMPManager{
             // se guarda la data local //
             self.visitedServices = Mapper<ServicesModel>().mapArray(JSONString: visitedServices)!
         }
+        
+        if let subscribed = TEMPManager.keychainAccess.getBool(KeychainKeys.subscribedKey.rawValue){
+            // se guarda la data local //
+           self.isSubscribed = subscribed
+        }
+        
     }
     
     func clearData(){

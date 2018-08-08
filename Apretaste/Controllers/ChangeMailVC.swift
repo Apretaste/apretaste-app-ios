@@ -29,6 +29,7 @@ class ChangeMailVC: UIViewController {
         self.title = "Cambiar buzón"
         
         self.domainTextField.text = HTTPManager.shared.requestDomain
+        
         self.mailBox.text = TEMPManager.shared.fetchData.mailbox
         
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save

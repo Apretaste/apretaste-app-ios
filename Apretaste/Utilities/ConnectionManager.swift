@@ -12,8 +12,8 @@ import KeychainSwift
 
 enum ConnectionType: String{
     
-    case smtp = "SMTP"
-    case http = "HTTP"
+    case smtp = "EMAIL"
+    case http = "INTERNET"
     
 }
 
@@ -71,7 +71,7 @@ class ConnectionManager{
         
     }
     
-    func request(withCaching cache: Bool = true , command: String,completion:@escaping(Error?,URL?  ) -> Void){
+    func request(withCaching cache: Bool = true , withImage sendImage:Bool = false ,command: String,completion:@escaping(Error?,URL?  ) -> Void){
         
         if cache{
         
@@ -113,7 +113,7 @@ class ConnectionManager{
                     
                     guard let subject = subject else{
                         
-                        let error = ManagerError.badRequest
+                        let error = ManagerError.badSmtpConfig
                         completion(error,nil)
                         return
                     }

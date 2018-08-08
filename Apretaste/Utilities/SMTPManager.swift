@@ -47,14 +47,10 @@ class SMTPManager: Mappable{
             self.portSMTP = data.portSMTP
             self.securitySMTP = data.securitySMTP
             self.serverIMAP = data.serverIMAP
-            self.portSMTP = data.portIMAP
+            self.portIMAP = data.portIMAP
             self.securityIMAP = data.securityIMAP
             
         }
-            
-            
-            
-        
         
     }
     
@@ -71,6 +67,7 @@ class SMTPManager: Mappable{
         securitySMTP <- map["securitySMTP"]
         serverIMAP <- map["serverIMAP"]
         portIMAP <- map["portIMAP"]
+        portSMTP <- map["portSMTP"]
         securityIMAP <- map["securityIMAP"]
     }
     

@@ -187,11 +187,6 @@ class ServicesVC: UIViewController {
             datePicker.addTarget(self, action: #selector(self.changeDataPicker(_:)), for: .valueChanged)
             
         }
-        
-        if message.hasPrefix("u:"){
-            
-            
-        }
 
     }
     
@@ -259,6 +254,18 @@ class ServicesVC: UIViewController {
             if popup{
                 
                 let userMessage = "Ingrese los datos solicitados"
+                
+                // validating upload image //
+                
+                if message.hasPrefix("u:"){
+                    
+                    let pickerVC = UIImagePickerController()
+                    pickerVC.sourceType = .photoLibrary
+                    pickerVC.delegate = self
+                    self.present(pickerVC, animated: true, completion: nil)
+                    return
+                    
+                }
                 
                 let alertText = UIAlertController(title: self.title, message: userMessage, preferredStyle: .alert)
                 
@@ -441,6 +448,8 @@ extension ServicesVC: UIWebViewDelegate{
     }
 }
 
+//MARK: - implement picker delegate
+
 extension ServicesVC: UIPickerViewDelegate, UIPickerViewDataSource{
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -459,7 +468,37 @@ extension ServicesVC: UIPickerViewDelegate, UIPickerViewDataSource{
         self.textField.text = self.selectComponents[row]
         
     }
+}
+
+extension ServicesVC:  UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        
+        navigationController.navigationBar.isTranslucent = false
+        
+        let backgroundImage = UIImage.imageWithColor(color: UIColor.greenApp)
+        navigationController.navigationBar.setBackgroundImage(backgroundImage, for: .default)
+        
+        let textAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
+        navigationController.navigationBar.titleTextAttributes = textAttributes
+        
+        navigationController.navigationBar.barTintColor = .white
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        ConnectionManager.shared.request(withImage: true, command: "sadasd") { (error, response) in
+            
+        }
+        
+    }
     
     
 }

@@ -11,12 +11,13 @@ import Foundation
 
 enum KeychainKeys: String{
     
-    case UserKeys = "UserKeys3"
-    case UserFile = "UnzipPath3"
-    case CacheData = "cacheData3"
-    case visitedServices = "cacheVkisitedServices3"
-    case smtpConfig = "smtpConfig3"
-    case connectionType = "connectionType3"
-    case httpConfig = "httpConfig3"
+    case UserKeys = "UserKeys4"
+    case UserFile = "UnzipPath4"
+    case CacheData = "cacheData4"
+    case visitedServices = "cacheVkisitedServices4"
+    case smtpConfig = "smtpConfig4"
+    case connectionType = "connectionType4"
+    case httpConfig = "httpConfig4"
+    case subscribedKey = "isSubcribed"
     
 }

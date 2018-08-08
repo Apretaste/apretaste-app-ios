@@ -48,20 +48,22 @@
                                                     <color key="textColor" red="0.40918474739999999" green="0.40918474739999999" blue="0.40918474739999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZ3-vb-Uaj">
-                                                    <rect key="frame" x="84" y="26.5" width="271" height="14.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZ3-vb-Uaj">
+                                                    <rect key="frame" x="84" y="11" width="274" height="45.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="OZ3-vb-Uaj" firstAttribute="top" secondItem="Blc-I3-0G5" secondAttribute="topMargin" id="EDw-wt-2EE"/>
                                                 <constraint firstItem="G8y-qo-LMw" firstAttribute="top" secondItem="Blc-I3-0G5" secondAttribute="topMargin" constant="10" id="FGQ-Fm-AUI"/>
+                                                <constraint firstItem="Dig-N8-ZZd" firstAttribute="top" secondItem="OZ3-vb-Uaj" secondAttribute="bottom" constant="-8" id="Jen-Pt-CZm"/>
                                                 <constraint firstItem="OZ3-vb-Uaj" firstAttribute="centerY" secondItem="G8y-qo-LMw" secondAttribute="centerY" id="MiV-M8-N8E"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="OZ3-vb-Uaj" secondAttribute="trailing" constant="5" id="YsS-Eb-7bq"/>
                                                 <constraint firstItem="OZ3-vb-Uaj" firstAttribute="leading" secondItem="G8y-qo-LMw" secondAttribute="trailing" constant="5" id="ZZm-jU-iFa"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="OZ3-vb-Uaj" secondAttribute="trailing" constant="2" id="by7-Y2-Trf"/>
                                                 <constraint firstItem="G8y-qo-LMw" firstAttribute="leading" secondItem="Blc-I3-0G5" secondAttribute="leadingMargin" constant="10" id="cMM-hv-rPV"/>
-                                                <constraint firstItem="Dig-N8-ZZd" firstAttribute="top" secondItem="G8y-qo-LMw" secondAttribute="bottom" constant="2" id="dby-kW-tLJ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="OZ3-vb-Uaj" secondAttribute="trailing" constant="2" id="cZD-Uh-86V"/>
                                                 <constraint firstItem="Dig-N8-ZZd" firstAttribute="leading" secondItem="G8y-qo-LMw" secondAttribute="leading" id="ukC-3q-77Z"/>
                                             </constraints>
                                         </tableViewCellContentView>
