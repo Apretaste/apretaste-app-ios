@@ -156,7 +156,10 @@ class LoginVC: UIViewController, UITextFieldDelegate, ConfigurationLoginDelegate
         
         self.startAnimating(message: "Conectando...")
         
-        SMTPManager.shared.sendMail(task: Command.getProfile.rawValue) { (subject) in
+        let newCommand = Command.generateCommand(command: Command.getProfile.rawValue)
+        let zip = UtilitesMethods.writeZip(task: newCommand)
+        
+        SMTPManager.shared.sendMail(zip: zip, task: Command.getProfile.rawValue) { (subject) in
             
             self.stopAnimating()
             

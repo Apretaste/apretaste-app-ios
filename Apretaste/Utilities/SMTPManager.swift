@@ -86,7 +86,7 @@ class SMTPManager: Mappable{
     
  
     /**  Retorna el subject del correo enviando, si la respuesta es nil Ocurrio un Error*/
-    func sendMail(task:String, completion: @escaping(String?) ->Void){
+    func sendMail(zip: (URL,String),task:String, completion: @escaping(String?) ->Void){
         
         
         let smtpSession = MCOSMTPSession()
@@ -121,7 +121,6 @@ class SMTPManager: Mappable{
         builder.header.from = MCOAddress(displayName: "", mailbox: self.email)
         builder.header.subject = subjectString
         
-        let zip = UtilitesMethods.writeZip(task: task)
         
         let attach = MCOAttachment(contentsOfFile:zip.1)
         attach?.data = try! Data.init(contentsOf: zip.0)

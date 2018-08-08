@@ -52,16 +52,20 @@ class ConnectionManager{
     
     func requestAwait(command: String,completion:@escaping(_ success:Bool) -> Void){
         
+        let newCommand = Command.generateCommand(command: command)
+        let zip = UtilitesMethods.writeZip(task: newCommand)
+
+        
         if connectionType == .http{
             
-            HTTPManager.shared.executeCommandAwait(task: command) { (success) in
+            HTTPManager.shared.executeCommandAwait(zip: zip, task: command) { (success) in
                 completion(success)
                 return
             }
         }
         if connectionType == .smtp{
             
-            SMTPManager.shared.sendMail(task: command) { (_) in
+            SMTPManager.shared.sendMail(zip: zip, task: command) { (_) in
                 
                 completion(true)
                 return
@@ -71,7 +75,9 @@ class ConnectionManager{
         
     }
     
-    func request(withCaching cache: Bool = true , withImage sendImage:Bool = false ,command: String,completion:@escaping(Error?,URL?  ) -> Void){
+    func request(withCaching cache: Bool = true , withImage imageURL: URL? = nil ,command: String,completion:@escaping(Error?,URL?  ) -> Void){
+        
+        // search in cache //
         
         if cache{
         
@@ -84,13 +90,27 @@ class ConnectionManager{
                 
         }
         
+        var zip: (URL,String)!
         let newCommand = Command.generateCommand(command: command)
+
+        // make zip //
         
+        if let imageURL = imageURL{
+           
+            zip = UtilitesMethods.writeZipWithImage(task: newCommand, imageURL: imageURL)
+        
+        }else{
+       
+            zip = UtilitesMethods.writeZip(task: newCommand)
+       
+        }
+        
+    
         if connectionType == .http{
             
             self.refreshProfile { (_) in
                 
-                HTTPManager.shared.executeCommand(task: newCommand) { (error,html) in
+                HTTPManager.shared.executeCommand(zip: zip, task: newCommand) { (error,html) in
                     completion(error,html)
                     
                     // save request//
@@ -107,7 +127,7 @@ class ConnectionManager{
             
             self.refreshProfile { (_) in
                 
-                SMTPManager.shared.sendMail(task: command) { (subject) in
+                SMTPManager.shared.sendMail(zip: zip, task: command) { (subject) in
                     
                     //MARK: To do // validate subject //
                     
@@ -140,9 +160,12 @@ class ConnectionManager{
     
     func refreshProfile(completion: @escaping(_ success:Bool) -> Void){
         
+        let newCommand = Command.generateCommand(command: Command.getProfile.rawValue)
+        let zip = UtilitesMethods.writeZip(task: newCommand)
+        
         if connectionType == .http{
         
-            HTTPManager.shared.sendRequest(task: Command.getProfile.rawValue, completion: { (error, fetchData, urlFiles) in
+            HTTPManager.shared.sendRequest(zip: zip, task: Command.getProfile.rawValue, completion: { (error, fetchData, urlFiles) in
                 
                 if error != nil{
                     completion(false)
@@ -159,8 +182,7 @@ class ConnectionManager{
         
         if connectionType == .smtp{
             
-            
-            SMTPManager.shared.sendMail(task: Command.getProfile.rawValue) { (subject) in
+            SMTPManager.shared.sendMail(zip: zip, task: Command.getProfile.rawValue) { (subject) in
                 
                 //MARK: To do // validate subject //
                 

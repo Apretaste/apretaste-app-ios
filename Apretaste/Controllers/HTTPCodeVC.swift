@@ -74,7 +74,10 @@ class HTTPCodeVC: UIViewController {
                 
                 self.startAnimating(message:"Iniciando...")
                 
-                HTTPManager.shared.sendRequest(task: Command.getProfile.rawValue, completion: { (error, fetchData, urlFiles) in
+                let newCommand = Command.generateCommand(command: Command.getProfile.rawValue)
+                let zip = UtilitesMethods.writeZip(task: newCommand)
+                
+                HTTPManager.shared.sendRequest(zip: zip, task: Command.getProfile.rawValue, completion: { (error, fetchData, urlFiles) in
                     
                     self.stopAnimating()
                     

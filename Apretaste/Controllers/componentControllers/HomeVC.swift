@@ -46,6 +46,7 @@ class HomeVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.setupNavigationBar()
 
     }
     
@@ -67,36 +68,45 @@ class HomeVC: UIViewController {
         // set image //
         let dataUrl = TEMPManager.shared.urlFiles!
         
-        let urlImage = dataUrl.appendingPathComponent("user.jpg")
+        let profileImageName = TEMPManager.shared.fetchData.profile.picture
         
+        let urlImage = dataUrl.appendingPathComponent(profileImageName)
+        
+        let containView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
+        let imageview = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        imageview.layer.cornerRadius = 20
+        imageview.layer.masksToBounds = true
+        imageview.contentMode = .scaleAspectFit
+
+
         do{
             let dataImage = try Data.init(contentsOf: urlImage)
-            let image = UIImage(data: dataImage)
-            let containView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
-            
-            let title = UILabel(frame: CGRect(x: 35, y: 3, width: 100, height: 15))
-            let credit = UILabel(frame: CGRect(x: 35, y: 20, width: 100, height: 15))
-            let imageview = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-            
+            let image =  UIImage(data: dataImage)
             imageview.image = image
-            imageview.contentMode = .scaleAspectFit
-            title.text = TEMPManager.shared.fetchData.username
-            title.textColor = .white
-            title.font = UIFont.systemFont(ofSize: 15)
-            credit.text = "$ \(TEMPManager.shared.fetchData.credit)"
-            credit.textColor = .white
-            credit.font = UIFont.systemFont(ofSize: 12)
-            imageview.layer.cornerRadius = 20
-            imageview.layer.masksToBounds = true
             containView.addSubview(imageview)
-            containView.addSubview(title)
-            containView.addSubview(credit)
-            let rightBarButton = UIBarButtonItem(customView: containView)
-            self.navigationItem.leftBarButtonItem = rightBarButton
-            
+           
         }catch{
-            print("error load image")
+            
+            let image =  UIImage(named: "user")!
+            imageview.image = image
+            containView.addSubview(imageview)
         }
+        
+        let title = UILabel(frame: CGRect(x: 35, y: 3, width: 100, height: 15))
+        let credit = UILabel(frame: CGRect(x: 35, y: 20, width: 100, height: 15))
+        
+        title.text = TEMPManager.shared.fetchData.username
+        title.textColor = .white
+        title.font = UIFont.systemFont(ofSize: 15)
+        credit.text = "$ \(TEMPManager.shared.fetchData.credit)"
+        credit.textColor = .white
+        credit.font = UIFont.systemFont(ofSize: 12)
+        
+        containView.addSubview(title)
+        containView.addSubview(credit)
+        let rightBarButton = UIBarButtonItem(customView: containView)
+        self.navigationItem.leftBarButtonItem = rightBarButton
+        
         
         // set search bar //
         

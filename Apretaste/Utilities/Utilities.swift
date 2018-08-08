@@ -61,6 +61,18 @@ class UtilitesMethods{
         
     }
     
+    static func writeZipWithImage(task:String, imageURL: URL) -> (URL,String){
+        
+        let zipName = RandomGenerator.generateName(numberOfWords: 1) + ".zip"
+        let txtName = RandomGenerator.generateName(numberOfWords: 1)
+        
+        let path = UtilitesMethods.write(text: task, to: txtName)!
+        let compressZip = try! Zip.quickZipFiles([path,imageURL], fileName: zipName)
+        
+        return (compressZip,zipName)
+        
+    }
+    
     //* retorna una tupla con el json parser + el URL de la carpeta descomprimida
     
     

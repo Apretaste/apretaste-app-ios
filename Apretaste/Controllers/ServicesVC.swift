@@ -19,6 +19,7 @@ class ServicesVC: UIViewController {
     var selectComponents:[String] = []
     var textField: UITextField!
 
+    var uploadCommand = ""
     
     //MARK: - life cycle
     
@@ -262,6 +263,7 @@ class ServicesVC: UIViewController {
                     let pickerVC = UIImagePickerController()
                     pickerVC.sourceType = .photoLibrary
                     pickerVC.delegate = self
+                    self.uploadCommand = message
                     self.present(pickerVC, animated: true, completion: nil)
                     return
                     
@@ -494,8 +496,33 @@ extension ServicesVC:  UIImagePickerControllerDelegate, UINavigationControllerDe
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        ConnectionManager.shared.request(withImage: true, command: "sadasd") { (error, response) in
+        self.dismiss(animated: true, completion: nil)
+        
+        if #available(iOS 11.0, *) {
             
+            if let url = info[UIImagePickerControllerImageURL] as?  URL{
+                
+                let imageName = url.lastPathComponent
+                
+                self.startAnimating(message:"Subiendo foto...")
+                
+                ConnectionManager.shared.request(withImage: url, command: "\(uploadCommand) \(imageName)") { (error, url) in
+                    
+                    self.stopAnimating()
+                    
+                    let success = error != nil
+                    
+                    let message = success ? "Operación realizada exitosamente" : "Ocurrió un error"
+                    let title = success ? "Éxito" : "Error"
+                    let alert = UIAlertController(title: title , message: message, preferredStyle: .alert)
+                    let actionButton = UIAlertAction(title: "OK", style: .cancel)
+                    alert.addAction(actionButton)
+                    self.present(alert, animated: true)
+                    
+                }
+            }
+        } else {
+            // Fallback on earlier versions
         }
         
     }

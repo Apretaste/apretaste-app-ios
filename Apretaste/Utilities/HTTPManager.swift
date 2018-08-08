@@ -107,9 +107,8 @@ class HTTPManager{
         }
     }
     
-    private func internalRequest(task: String,completion:@escaping(_ data:Data?,_ url: String?,_ await:Bool) -> Void){
+    private func internalRequest(zip:(URL,String), task: String,completion:@escaping(_ data:Data?,_ url: String?,_ await:Bool) -> Void){
         
-        let zip = UtilitesMethods.writeZip(task: task)
         
         guard let domainUrl = URL(string: "http://\(self.requestDomain)/run/app") else{
             completion(nil,nil,false)
@@ -188,10 +187,10 @@ class HTTPManager{
     }
     
     
-    func executeCommand(task: String,completion:@escaping(Error?,URL?) -> Void){
+    func executeCommand(zip:(URL,String),task: String,completion:@escaping(Error?,URL?) -> Void){
         
         
-        self.internalRequest(task: task) { (zipData, name, _)  in
+        self.internalRequest(zip: zip, task: task) { (zipData, name, _)  in
             
             guard let zipData = zipData else{
                 
@@ -225,18 +224,18 @@ class HTTPManager{
     }
     
     
-    func executeCommandAwait(task: String,completion:@escaping(Bool) -> Void){
+    func executeCommandAwait(zip:(URL,String),task: String,completion:@escaping(Bool) -> Void){
         
-        self.internalRequest(task: task) { (_, _,await) in
+        self.internalRequest(zip: zip, task: task) { (_, _,await) in
             
            completion(await)
         }
     }
     
     
-    func sendRequest(task: String,completion:@escaping(Error?,FetchModel?,String?) -> Void){
+    func sendRequest(zip:(URL,String),task: String,completion:@escaping(Error?,FetchModel?,String?) -> Void){
         
-        self.internalRequest(task: task) { (zipData, name,_) in
+        self.internalRequest(zip: zip, task: task) { (zipData, name,_) in
             
             guard let zipData = zipData else{
                 let error = ManagerError.badRequest
