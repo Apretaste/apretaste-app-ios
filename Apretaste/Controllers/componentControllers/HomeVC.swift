@@ -14,12 +14,16 @@ class HomeVC: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     private let reuseIdentifier = "HomeCell"
+    private let searchReuseIdentifier = "SearchCell"
     
     var fetchData: FetchModel!
     var dataUrl: URL!
     var isFilter = false
     
     var filterServices: [ServicesModel] = []
+    
+    var searchController = UISearchController(searchResultsController: nil)
+
     
     //MARK: - life cycle
     override func viewDidLoad() {
@@ -107,20 +111,18 @@ class HomeVC: UIViewController {
         let rightBarButton = UIBarButtonItem(customView: containView)
         self.navigationItem.leftBarButtonItem = rightBarButton
         
-        
-        // set search bar //
+        // set title //
         
         self.title = "Apretaste"
         
+        // set search bar //
+        
         self.view.backgroundColor = .greenApp
         self.navigationController?.navigationBar.barTintColor = .greenApp
-        self.navigationController?.navigationBar.backgroundColor = UIColor.greenApp
+        self.navigationController?.navigationBar.backgroundColor = .greenApp
         
-        
-        let searchController = UISearchController(searchResultsController: nil)
-        
-        searchController.searchBar.tintColor = UIColor.white
-        searchController.searchBar.barTintColor = UIColor.greenApp
+        searchController.searchBar.tintColor = .white
+        searchController.searchBar.barTintColor = .greenApp
         searchController.searchBar.backgroundColor = .greenApp
         
         if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
@@ -128,11 +130,11 @@ class HomeVC: UIViewController {
             if let backgroundview = textfield.subviews.first {
                 
                 // Background color
-                backgroundview.backgroundColor = UIColor.white
+                backgroundview.backgroundColor = .white
                 
                 // Rounded corner
                 backgroundview.layer.cornerRadius = 10;
-                backgroundview.clipsToBounds = true;
+                backgroundview.clipsToBounds = true
                 
             }
         }
@@ -150,16 +152,16 @@ class HomeVC: UIViewController {
             navigationController?.navigationBar.prefersLargeTitles = false
             navigationItem.searchController = searchController
           
-        } else {
-            
-           
-        }
+        } 
     }
     
     private func setupCell(){
         
-        let nib = UINib(nibName: self.reuseIdentifier, bundle: nil)
+        var nib = UINib(nibName: self.reuseIdentifier, bundle: nil)
         self.collectionView.register(nib, forCellWithReuseIdentifier: self.reuseIdentifier)
+        
+        nib = UINib(nibName: self.searchReuseIdentifier, bundle: nil)
+        self.collectionView.register(nib, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: self.searchReuseIdentifier)
     }
     
     //MARK: - funcs
@@ -257,10 +259,69 @@ class HomeVC: UIViewController {
 //MARK: - CollectionView methods
 extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if section == 0{
+            return 0
+        }
 
         return self.isFilter ? self.filterServices.count : fetchData.services.count
     }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+
+
+        if kind == UICollectionElementKindSectionHeader {
+            
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: self.searchReuseIdentifier, for: indexPath) as! SearchCell
+            
+            if let textfield = headerView.searchBar.value(forKey: "searchField") as? UITextField {
+                //textfield.textColor = // Set text color
+                if let backgroundview = textfield.subviews.first {
+                    
+                    // Background color
+                    backgroundview.backgroundColor = .white
+                    
+                    // Rounded corner
+                    backgroundview.layer.cornerRadius = 10;
+                    backgroundview.clipsToBounds = true
+                    
+                    textfield.clearButtonMode = .never
+                    
+                }
+            }
+            
+            headerView.searchBar.delegate = self
+            
+            return headerView
+            
+        }
+        
+        return UICollectionReusableView()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
+        // section 1 = section of elements
+        if section == 1 {
+            return .zero
+        }
+        
+        // not show Header searchBar  in ios 11
+        if #available(iOS 11.0, *) {
+            return .zero
+        }
+        
+        // show header search bar in IOS 10
+        return CGSize(width: UIScreen.main.bounds.width, height: 45)
+    }
+    
+  
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -297,6 +358,8 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     
  
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        self.view.endEditing(true)
         
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
@@ -363,11 +426,43 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
 }
 
 //MARK: - IMPLEMENT SEARCH CONTROLLER
-extension HomeVC: UISearchControllerDelegate,UISearchBarDelegate,UISearchResultsUpdating{
+extension HomeVC: UISearchControllerDelegate,UISearchBarDelegate,UISearchResultsUpdating, UITextFieldDelegate{
    
     func updateSearchResults(for searchController: UISearchController) {
         
         let searchText = searchController.searchBar.text!
+        self.searchAction(searchText: searchText)
+    }
+    
+    //MARK: ios 10 compatibility
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+       
+        if(!searchBar.text!.isEmpty){
+            self.searchAction(searchText: searchBar.text!)
+        }
+        
+        self.view.endEditing(true)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+       
+        if(!searchText.isEmpty){
+            print(searchText)
+            self.searchAction(searchText: searchText)
+        }
+    }
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        
+        self.searchAction(searchText: textField.text!)
+        return true
+    }
+ 
+    
+    //MARK: helper
+    
+    private func searchAction(searchText:String){
         
         self.isFilter = !searchText.isEmpty
         
@@ -376,9 +471,11 @@ extension HomeVC: UISearchControllerDelegate,UISearchBarDelegate,UISearchResults
             return service.name.lowercased().contains(searchText.lowercased())
         }
         
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-        }
+        self.collectionView.performBatchUpdates({
+            let indexSet = IndexSet(integersIn: 1...1)
+            self.collectionView.reloadSections(indexSet)
+        })
+        
     }
 
 }

@@ -498,33 +498,33 @@ extension ServicesVC:  UIImagePickerControllerDelegate, UINavigationControllerDe
         
         self.dismiss(animated: true, completion: nil)
         
+        var url: URL!
+        
         if #available(iOS 11.0, *) {
-            
-            if let url = info[UIImagePickerControllerImageURL] as?  URL{
-                
-                let imageName = url.lastPathComponent
-                let command = "\(uploadCommand) \(imageName)"
-                
-                self.startAnimating(message:"Subiendo foto...")
-                
-                ConnectionManager.shared.requestAwait(command: command, withImage: url) { (success) in
-                    
-                    self.stopAnimating()
-                    
-                    let message = success ? "Operación realizada exitosamente" : "Ocurrió un error, verifique su conexión a internet o su configuración de conexión."
-                    let title = success ? "Éxito" : "Error"
-                    let alert = UIAlertController(title: title , message: message, preferredStyle: .alert)
-                    let actionButton = UIAlertAction(title: "OK", style: .cancel)
-                    alert.addAction(actionButton)
-                    self.present(alert, animated: true)
-                    
-                }
+            if let tempURL = info[UIImagePickerControllerImageURL] as? URL{
+                url = tempURL
             }
         } else {
-            // Fallback on earlier versions
+            if let tempURL = info[UIImagePickerControllerReferenceURL] as? NSURL{
+                url = URL(string: tempURL.absoluteString!)!
+            }
         }
         
+        let imageName = url.lastPathComponent
+        let command = "\(uploadCommand) \(imageName)"
+        
+        self.startAnimating(message:"Subiendo foto...")
+        
+        ConnectionManager.shared.requestAwait(command: command, withImage: url) { (success) in
+            
+            self.stopAnimating()
+            
+            let message = success ? "Operación realizada exitosamente" : "Ocurrió un error, verifique su conexión a internet o su configuración de conexión."
+            let title = success ? "Éxito" : "Error"
+            let alert = UIAlertController(title: title , message: message, preferredStyle: .alert)
+            let actionButton = UIAlertAction(title: "OK", style: .cancel)
+            alert.addAction(actionButton)
+            self.present(alert, animated: true)
+        }
     }
-    
-    
 }
