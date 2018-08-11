@@ -48,12 +48,25 @@ class ConnectionManager{
         keychain.set(self.connectionType.rawValue, forKey: KeychainKeys.connectionType.rawValue)
     }
     
-    //Methods //
+    //MARK: - Methods //
     
-    func requestAwait(command: String,completion:@escaping(_ success:Bool) -> Void){
+    func requestAwait(command: String,withImage imageURL: URL? = nil,completion:@escaping(_ success:Bool) -> Void){
         
+
+        // make zip //
+        var zip: (URL,String)!
         let newCommand = Command.generateCommand(command: command)
-        let zip = UtilitesMethods.writeZip(task: newCommand)
+
+        
+        if let imageURL = imageURL{
+            
+            zip = UtilitesMethods.writeZipWithImage(task: newCommand, imageURL: imageURL)
+            
+        }else{
+            
+            zip = UtilitesMethods.writeZip(task: newCommand)
+            
+        }
 
         
         if connectionType == .http{
@@ -65,9 +78,10 @@ class ConnectionManager{
         }
         if connectionType == .smtp{
             
-            SMTPManager.shared.sendMail(zip: zip, task: command) { (_) in
+            SMTPManager.shared.sendMail(zip: zip, task: command) { (success) in
                 
-                completion(true)
+                
+                completion(success != nil)
                 return
             }
             
@@ -75,7 +89,7 @@ class ConnectionManager{
         
     }
     
-    func request(withCaching cache: Bool = true , withImage imageURL: URL? = nil ,command: String,completion:@escaping(Error?,URL?  ) -> Void){
+    func request(withCaching cache: Bool = true,command: String,completion:@escaping(Error?,URL?  ) -> Void){
         
         // search in cache //
         
@@ -94,18 +108,8 @@ class ConnectionManager{
         let newCommand = Command.generateCommand(command: command)
 
         // make zip //
-        
-        if let imageURL = imageURL{
-           
-            zip = UtilitesMethods.writeZipWithImage(task: newCommand, imageURL: imageURL)
-        
-        }else{
+        zip = UtilitesMethods.writeZip(task: newCommand)
        
-            zip = UtilitesMethods.writeZip(task: newCommand)
-       
-        }
-        
-    
         if connectionType == .http{
             
             self.refreshProfile { (_) in

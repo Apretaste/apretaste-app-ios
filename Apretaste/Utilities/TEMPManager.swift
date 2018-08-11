@@ -67,6 +67,11 @@ class TEMPManager{
         TEMPManager.keychainAccess.set(visitedServices.toJSONString()!, forKey: KeychainKeys.visitedServices.rawValue)
     }
     
+    func saveNotifications(){
+        
+        TEMPManager.keychainAccess.set(notifications.toJSONString()!, forKey: KeychainKeys.notifications.rawValue)
+    }
+    
     func saveSuscriptionMail(isSubscribed: Bool){
         
         self.isSubscribed = isSubscribed
@@ -91,6 +96,10 @@ class TEMPManager{
             appDelegate.scheduleNotification(at: Date(), body: notification.text)
             self.metaNotification.notificationsCount = self.notifications.count
 
+        }
+        
+        if !self.notifications.isEmpty{
+            self.saveNotifications()
         }
 
     }
@@ -130,6 +139,12 @@ class TEMPManager{
         if let visitedServices = TEMPManager.keychainAccess.get(KeychainKeys.visitedServices.rawValue){
             // se guarda la data local //
             self.visitedServices = Mapper<ServicesModel>().mapArray(JSONString: visitedServices)!
+        }
+        
+        
+        if let notification = TEMPManager.keychainAccess.get(KeychainKeys.notifications.rawValue){
+            // se guarda la data local //
+            self.notifications = Mapper<NotificationModel>().mapArray(JSONString: notification)!
         }
         
         if let subscribed = TEMPManager.keychainAccess.getBool(KeychainKeys.subscribedKey.rawValue){

@@ -15,7 +15,6 @@ class LoginVC: UIViewController, UITextFieldDelegate, ConfigurationLoginDelegate
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
     @IBOutlet weak var scrollView: UIScrollView!
     
     var subject = ""

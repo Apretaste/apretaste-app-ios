@@ -9,11 +9,15 @@
 import UIKit
 
 class notificationVC: UIViewController {
+    
+    //MARK: - vars
 
     @IBOutlet weak var tableView: UITableView!
     private let reuseIdentifier = "NotificationCell"
     
     var notifications:[NotificationModel] = []
+    
+    //MARK: - life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +44,7 @@ class notificationVC: UIViewController {
         
     }
     
+    //MARK: - funcs
 
     
     @objc func deleteButtonTapped(){
@@ -50,6 +55,8 @@ class notificationVC: UIViewController {
             
             TEMPManager.shared.notifications = []
             self.notifications = []
+            TEMPManager.shared.saveNotifications()
+
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -123,7 +130,7 @@ extension notificationVC:UITableViewDelegate, UITableViewDataSource{
         
         let currentNotification = self.notifications[indexPath.row]
         cell.serviceName.text = currentNotification.service
-        cell.messageLabel.text = currentNotification.text
+        cell.messageLabel.text = " asdhasiduahsdkuasdhasiudhasdiuashdaisudhaiudhasiduhasdiashdiasudhsiudhcurrentNotification.text"
         cell.dateLabel.text = self.formatingDate(stringDate: currentNotification.received)
     
         return cell
@@ -161,11 +168,12 @@ extension notificationVC:UITableViewDelegate, UITableViewDataSource{
             self.notifications.remove(at: indexPath.row)
             TEMPManager.shared.notifications.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            TEMPManager.shared.saveNotifications()
         }
         
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 100
     }
 }

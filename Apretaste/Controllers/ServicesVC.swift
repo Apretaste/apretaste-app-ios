@@ -213,7 +213,7 @@ class ServicesVC: UIViewController {
             
         }
         
-        if message.hasPrefix("d:") || message.hasPrefix("n:"){
+        if message.hasPrefix("d:") || message.hasPrefix("n:") || message.hasPrefix("a:"){
             
             // delete prefix //
             var newMessage = message
@@ -263,7 +263,7 @@ class ServicesVC: UIViewController {
                     let pickerVC = UIImagePickerController()
                     pickerVC.sourceType = .photoLibrary
                     pickerVC.delegate = self
-                    self.uploadCommand = message
+                    self.uploadCommand = command
                     self.present(pickerVC, animated: true, completion: nil)
                     return
                     
@@ -503,16 +503,15 @@ extension ServicesVC:  UIImagePickerControllerDelegate, UINavigationControllerDe
             if let url = info[UIImagePickerControllerImageURL] as?  URL{
                 
                 let imageName = url.lastPathComponent
+                let command = "\(uploadCommand) \(imageName)"
                 
                 self.startAnimating(message:"Subiendo foto...")
                 
-                ConnectionManager.shared.request(withImage: url, command: "\(uploadCommand) \(imageName)") { (error, url) in
+                ConnectionManager.shared.requestAwait(command: command, withImage: url) { (success) in
                     
                     self.stopAnimating()
                     
-                    let success = error != nil
-                    
-                    let message = success ? "Operación realizada exitosamente" : "Ocurrió un error"
+                    let message = success ? "Operación realizada exitosamente" : "Ocurrió un error, verifique su conexión a internet o su configuración de conexión."
                     let title = success ? "Éxito" : "Error"
                     let alert = UIAlertController(title: title , message: message, preferredStyle: .alert)
                     let actionButton = UIAlertAction(title: "OK", style: .cancel)

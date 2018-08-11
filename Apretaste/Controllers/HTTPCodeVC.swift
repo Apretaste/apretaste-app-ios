@@ -66,7 +66,7 @@ class HTTPCodeVC: UIViewController {
         self.startAnimating(message:"Validando código")
 
         
-        HTTPManager.shared.validateMail(pin: self.codeTextField.text!) { (response, success) in
+        HTTPManager.shared.validateMail(pin: self.codeTextField.text!) { (token, success) in
             
             self.stopAnimating()
             
@@ -74,7 +74,7 @@ class HTTPCodeVC: UIViewController {
                 
                 self.startAnimating(message:"Iniciando...")
                 
-                let newCommand = Command.generateCommand(command: Command.getProfile.rawValue)
+                let newCommand = Command.generateCommandWithToken(command:Command.getProfile.rawValue, token: token)
                 let zip = UtilitesMethods.writeZip(task: newCommand)
                 
                 HTTPManager.shared.sendRequest(zip: zip, task: Command.getProfile.rawValue, completion: { (error, fetchData, urlFiles) in
@@ -100,7 +100,7 @@ class HTTPCodeVC: UIViewController {
                 
             }else{
                 
-                let alert = UIAlertController(title: "Error", message: response, preferredStyle: .alert)
+                let alert = UIAlertController(title: "Error", message: "Ha ocurrido un error. Compruebe que tenga conexión a internet", preferredStyle: .alert)
                 let action = UIAlertAction(title: "OK", style: .destructive)
                 alert.addAction(action)
                 self.present(alert, animated: true)
