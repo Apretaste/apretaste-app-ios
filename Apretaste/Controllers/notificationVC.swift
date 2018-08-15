@@ -77,7 +77,7 @@ class notificationVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-         self.notifications = TEMPManager.shared.notifications
+         self.notifications = TEMPManager.shared.notifications.reversed()
         // delete badge
         
          TEMPManager.shared.metaNotification.notificationsCount = 0
@@ -130,7 +130,7 @@ extension notificationVC:UITableViewDelegate, UITableViewDataSource{
         
         let currentNotification = self.notifications[indexPath.row]
         cell.serviceName.text = currentNotification.service
-        cell.messageLabel.text = " asdhasiduahsdkuasdhasiudhasdiuashdaisudhaiudhasiduhasdiashdiasudhsiudhcurrentNotification.text"
+        cell.messageLabel.text = currentNotification.text
         cell.dateLabel.text = self.formatingDate(stringDate: currentNotification.received)
     
         return cell

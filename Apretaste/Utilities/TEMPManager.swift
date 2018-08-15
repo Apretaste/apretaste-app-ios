@@ -33,7 +33,10 @@ class TEMPManager{
             
           TEMPManager.keychainAccess.set(fetchData.toJSONString()!, forKey: KeychainKeys.UserKeys.rawValue)
           SMTPManager.shared.mailBox = fetchData.mailbox
-          self.receiveNotification()
+            
+            if !self.fetchData.notifications.isEmpty{
+                self.receiveNotification()
+            }
         }
     }
     

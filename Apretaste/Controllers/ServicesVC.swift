@@ -99,8 +99,7 @@ class ServicesVC: UIViewController {
         let stringError = "<h4>Existe un problema con este servicio. Intente más tarde.</h4>"
         
         do{
-            
-            if self.command.lowercased().contains("escuela"){
+            if self.command.lowercased().contains("escuela") || self.command.lowercased().contains("publicidad"){
                 contentFile = try String.init(contentsOf: self.urlHtml, encoding: .ascii)
             }else{
                 contentFile = try String.init(contentsOf: self.urlHtml)

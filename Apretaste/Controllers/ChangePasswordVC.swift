@@ -1,20 +1,16 @@
 //
-//  ConfigurationLoginVC.swift
+//  ChangePasswordVC.swift
 //  Apretaste
 //
-//  Created by Juan  Vasquez on 12/5/18.
+//  Created by Juan  Vasquez on 14/8/18.
 //  Copyright © 2018 JavffCompany. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
-protocol ConfigurationLoginDelegate: class{
+class ChangePasswordVC: UIViewController , UIPickerViewDelegate, UIPickerViewDataSource {
     
-    func loginAction()
-}
-
-class ConfigurationLoginVC: UIViewController , UIPickerViewDelegate, UIPickerViewDataSource {
-   
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var emailTextfield: UITextField!
@@ -33,13 +29,13 @@ class ConfigurationLoginVC: UIViewController , UIPickerViewDelegate, UIPickerVie
     var securityImapPicker = UIPickerView()
     
     weak var delegate:ConfigurationLoginDelegate?
-
+    
     
     var securityOptions: [security] = [.none,.SSL]
-
+    
     
     //MARK: - life cyrcle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
@@ -65,14 +61,14 @@ class ConfigurationLoginVC: UIViewController , UIPickerViewDelegate, UIPickerVie
         self.securityImapTextField.delegate = self
         self.securitySmtpTextField.delegate = self
         
-
+        
     }
     
     
     //MARK: - setups
     
     private func setupView(){
-
+        
         self.securityPicker.backgroundColor = UIColor.white
         self.securitySmtpTextField.inputView = self.securityPicker
         
@@ -97,11 +93,11 @@ class ConfigurationLoginVC: UIViewController , UIPickerViewDelegate, UIPickerVie
         
     }
     
-  
-  
     
     
-
+    
+    
+    
     //MARK: - actions buttons
     @IBAction func extendButton(_ sender: Any) {
         
@@ -117,11 +113,11 @@ class ConfigurationLoginVC: UIViewController , UIPickerViewDelegate, UIPickerVie
     
     
     @IBAction func nextButton(_ sender: Any) {
-       
+        
         self.view.endEditing(true)
         self.dismiss(animated: true, completion: nil)
         self.delegate?.loginAction()
-
+        
     }
     
     
@@ -150,7 +146,7 @@ class ConfigurationLoginVC: UIViewController , UIPickerViewDelegate, UIPickerVie
         if pickerView == self.securityImapPicker{
             
             self.securityImapTextField.text = self.securityOptions[row].rawValue
-
+            
         }
         
     }
@@ -161,7 +157,7 @@ class ConfigurationLoginVC: UIViewController , UIPickerViewDelegate, UIPickerVie
 
 //MARK: IMPLEMENT PROTOCOL FOR textfields
 
-extension ChangePasswordVC: UITextFieldDelegate{
+extension ConfigurationLoginVC: UITextFieldDelegate{
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         
@@ -180,20 +176,20 @@ extension ChangePasswordVC: UITextFieldDelegate{
             SMTPManager.shared.portIMAP = Int(textField.text!)!
             
         }
-
+        
         
         if textField == self.portSmtpTextField{
             
             if !(textField.text?.isEmpty)!{
-            
+                
                 SMTPManager.shared.portSMTP = Int(textField.text!)!
             }
         }
-
+        
         if textField == self.serverImapTextField{
             
             if !(textField.text?.isEmpty)!{
-            
+                
                 SMTPManager.shared.serverIMAP = textField.text!
             }
             
@@ -214,9 +210,7 @@ extension ChangePasswordVC: UITextFieldDelegate{
             
             SMTPManager.shared.securityIMAP = security(rawValue: textField.text!)!
         }
-
+        
     }
     
 }
-
-

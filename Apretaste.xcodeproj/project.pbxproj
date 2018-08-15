@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		771E642BAC008239D3589DF3 /* Pods_Apretaste.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92954E860EC3CBFCFDB14EDC /* Pods_Apretaste.framework */; };
+		A8004DD42123ACB300FC9A1D /* ChangePassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8004DD32123ACB300FC9A1D /* ChangePassword.storyboard */; };
+		A8004DD62123AD4000FC9A1D /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8004DD52123AD4000FC9A1D /* ChangePasswordVC.swift */; };
 		A824466120A7C6390028AEC8 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824466020A7C6390028AEC8 /* Utilities.swift */; };
 		A824466320A7F49B0028AEC8 /* RandomGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824466220A7F49B0028AEC8 /* RandomGenerator.swift */; };
 		A82542E120AE39B60000A206 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82542E020AE39B60000A206 /* ProfileVC.swift */; };
@@ -91,6 +93,8 @@
 /* Begin PBXFileReference section */
 		3FD24E5ACDA8A95B1995D8E4 /* Pods-Apretaste.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Apretaste.release.xcconfig"; path = "Pods/Target Support Files/Pods-Apretaste/Pods-Apretaste.release.xcconfig"; sourceTree = "<group>"; };
 		92954E860EC3CBFCFDB14EDC /* Pods_Apretaste.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Apretaste.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8004DD32123ACB300FC9A1D /* ChangePassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChangePassword.storyboard; sourceTree = "<group>"; };
+		A8004DD52123AD4000FC9A1D /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
 		A824465F20A7C2C60028AEC8 /* sendMail_bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sendMail_bridge.h; sourceTree = "<group>"; };
 		A824466020A7C6390028AEC8 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		A824466220A7F49B0028AEC8 /* RandomGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomGenerator.swift; sourceTree = "<group>"; };
@@ -260,6 +264,7 @@
 				A8AAB89E20EAF989007B66D7 /* Recents.storyboard */,
 				A8B7A6C020F8CA3E009A2302 /* Settings.storyboard */,
 				A82788C220FA685000A84520 /* ChangeMail.storyboard */,
+				A8004DD32123ACB300FC9A1D /* ChangePassword.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -303,6 +308,7 @@
 				A8AAB89C20EAF970007B66D7 /* RecentsVC.swift */,
 				A8B7A6C220F8CC3D009A2302 /* SettingsVC.swift */,
 				A82788C420FA68BA00A84520 /* ChangeMailVC.swift */,
+				A8004DD52123AD4000FC9A1D /* ChangePasswordVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -464,6 +470,7 @@
 				A8B6839820ACBAEF00FB193A /* MenuLogin.storyboard in Resources */,
 				A8AAB89F20EAF989007B66D7 /* Recents.storyboard in Resources */,
 				A836E18D20B08A28007AB39F /* HttpCode.storyboard in Resources */,
+				A8004DD42123ACB300FC9A1D /* ChangePassword.storyboard in Resources */,
 				A8DE3DF120ACD00E00DA5B20 /* LoginHttp.storyboard in Resources */,
 				A8D28CCF211E886600A6EB04 /* SearchCell.xib in Resources */,
 				A8553EC720A74238008BC393 /* LaunchScreen.storyboard in Resources */,
@@ -594,6 +601,7 @@
 				A8D8C5D320A781B400CDE7C0 /* AppSettings.swift in Sources */,
 				A88F31DF20B2443A0036AAED /* TEMPManager.swift in Sources */,
 				A857CFB720E96F2800292FF8 /* UIIMageExtension.swift in Sources */,
+				A8004DD62123AD4000FC9A1D /* ChangePasswordVC.swift in Sources */,
 				A87EDE8D20CDFA740047009C /* ConnectionManager.swift in Sources */,
 				A82542EA20AE5B340000A206 /* CustomPickerTextField.swift in Sources */,
 				A857CFB320E9508800292FF8 /* AboutVC.swift in Sources */,

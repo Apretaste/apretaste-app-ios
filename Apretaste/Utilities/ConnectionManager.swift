@@ -112,11 +112,11 @@ class ConnectionManager{
        
         if connectionType == .http{
             
-            self.refreshProfile { (_) in
+          //  self.refreshProfile { (_) in
                 
                 HTTPManager.shared.executeCommand(zip: zip, task: newCommand) { (error,html) in
                     completion(error,html)
-                    
+                
                     // save request//
                     if error == nil{
                         self.saveRequest(url: html!.absoluteString, command: command)
@@ -124,13 +124,11 @@ class ConnectionManager{
                     return
                 }
                 
-            }
+          //  }
             
         }
         if connectionType == .smtp{
             
-            self.refreshProfile { (_) in
-                
                 SMTPManager.shared.sendMail(zip: zip, task: command) { (subject) in
                     
                     //MARK: To do // validate subject //
@@ -154,9 +152,6 @@ class ConnectionManager{
                         return
                     })
                 }
-                
-            }
-
         }
         
     }
@@ -217,7 +212,7 @@ class ConnectionManager{
         }
     }
     
-    
+    // save request in cache //
     private func saveRequest(url:String,command:String){
         
         let keychain = KeychainSwift()

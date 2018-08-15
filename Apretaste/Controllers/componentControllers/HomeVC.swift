@@ -76,8 +76,8 @@ class HomeVC: UIViewController {
         
         let urlImage = dataUrl.appendingPathComponent(profileImageName)
         
-        let containView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
-        let imageview = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        let containView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 30))
+        let imageview = UIImageView(frame: CGRect(x: -10, y: -5, width: 40, height: 40))
         imageview.layer.cornerRadius = 20
         imageview.layer.masksToBounds = true
         imageview.contentMode = .scaleAspectFit
@@ -96,13 +96,13 @@ class HomeVC: UIViewController {
             containView.addSubview(imageview)
         }
         
-        let title = UILabel(frame: CGRect(x: 35, y: 3, width: 100, height: 15))
-        let credit = UILabel(frame: CGRect(x: 35, y: 20, width: 100, height: 15))
+        let title = UILabel(frame: CGRect(x: 35, y: 0, width: 100, height: 15))
+        let credit = UILabel(frame: CGRect(x: 40, y: 15, width: 100, height: 15))
         
         title.text = TEMPManager.shared.fetchData.username
         title.textColor = .white
         title.font = UIFont.systemFont(ofSize: 15)
-        credit.text = "$ \(TEMPManager.shared.fetchData.credit)"
+        credit.text = "§ \(TEMPManager.shared.fetchData.credit)"
         credit.textColor = .white
         credit.font = UIFont.systemFont(ofSize: 12)
         
@@ -178,6 +178,7 @@ class HomeVC: UIViewController {
                 
                 DispatchQueue.main.async {
                     
+                    self.setupNavigationBar()
                     self.fetchData = TEMPManager.shared.fetchData
                     self.dataUrl = TEMPManager.shared.urlFiles
                     self.collectionView.reloadData()
@@ -214,9 +215,8 @@ class HomeVC: UIViewController {
                        
                         let action =  UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
                             
-                            let storyboard = UIStoryboard(name: "ConfigurationLogin", bundle: nil)
-                            let configurationVC = storyboard.instantiateInitialViewController()! as! ConfigurationLoginVC
-                              configurationVC.delegate = self
+                            let storyboard = UIStoryboard(name: "Settings", bundle: nil)
+                            let configurationVC = storyboard.instantiateInitialViewController()! as! SettingsVC
                             self.navigationController?.pushViewController(configurationVC, animated: true)
                             
                         })
@@ -480,20 +480,4 @@ extension HomeVC: UISearchControllerDelegate,UISearchBarDelegate,UISearchResults
 
 }
 
-//MARK: - implement configuration delegate
-
-extension HomeVC: ConfigurationLoginDelegate{
-    
-    func loginAction() {
-        
-        SMTPManager.shared.saveConfig()
-        
-        let alert = UIAlertController(title: "Actualizado", message: "sus cambios han sido guardados", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alert.addAction(action)
-        self.present(alert, animated: true, completion: nil)
-        
-    }
-    
-}
 

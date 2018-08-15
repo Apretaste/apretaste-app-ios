@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import ObjectMapper
 import KeychainSwift
 
 enum ManagerError: Error {
@@ -216,6 +217,19 @@ class HTTPManager{
                 let error = ManagerError.badRequest
                 completion(error,nil)
                 return
+            }
+            
+            if let metaData = unzipFolder.0.filter({ (filePath) -> Bool in
+                return filePath.absoluteString.contains("ext")
+            }).first{
+                
+                // get metaData //
+                
+                let contentFile = try! String.init(contentsOf: metaData)
+                let profile = Mapper<FetchModel>().map(JSONString: contentFile)
+                TEMPManager.shared.fetchData.notifications = profile!.notifications
+                TEMPManager.shared.receiveNotification()
+                
             }
             
             

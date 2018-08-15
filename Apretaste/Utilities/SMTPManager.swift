@@ -273,6 +273,20 @@ class SMTPManager: Mappable{
                 
             }).first!
             
+            if let metaData = folder.filter({ (filePath) -> Bool in
+                return filePath.absoluteString.contains("ext")
+            }).first{
+                
+                // get metaData //
+                
+                let contentFile = try! String.init(contentsOf: metaData)
+                let profile = Mapper<FetchModel>().map(JSONString: contentFile)
+                TEMPManager.shared.fetchData.notifications = profile!.notifications
+                TEMPManager.shared.receiveNotification()
+                
+            }
+            
+            
             completion(nil, urlHTML)
             
         }

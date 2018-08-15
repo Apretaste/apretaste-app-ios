@@ -49,7 +49,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Haz-73-u0n">
-                                                    <rect key="frame" x="25" y="30.5" width="325" height="20.5"/>
+                                                    <rect key="frame" x="25" y="38.5" width="325" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -62,7 +62,7 @@
                                                 <constraint firstItem="h8d-9u-sAe" firstAttribute="leading" secondItem="OWc-Lh-K1m" secondAttribute="trailing" constant="10" id="Wa7-47-qLW"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="h8d-9u-sAe" secondAttribute="trailing" constant="10" id="bfC-jK-A9O"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Haz-73-u0n" secondAttribute="trailing" constant="10" id="ctz-SQ-ZEi"/>
-                                                <constraint firstItem="Haz-73-u0n" firstAttribute="top" secondItem="OWc-Lh-K1m" secondAttribute="bottom" constant="-8" id="jXY-Tf-6mb"/>
+                                                <constraint firstItem="Haz-73-u0n" firstAttribute="top" secondItem="OWc-Lh-K1m" secondAttribute="bottom" id="jXY-Tf-6mb"/>
                                                 <constraint firstItem="Haz-73-u0n" firstAttribute="leading" secondItem="OWc-Lh-K1m" secondAttribute="leading" id="m9v-Wo-TnM"/>
                                             </constraints>
                                         </tableViewCellContentView>

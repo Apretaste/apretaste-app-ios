@@ -105,8 +105,8 @@ class SettingsVC: UIViewController {
    
     @IBAction func setNautaButtonTapped(_ sender: Any) {
         
-        let storyboard = UIStoryboard(name: "ConfigurationLogin", bundle: nil)
-        let configurationVC = storyboard.instantiateInitialViewController()! as! ConfigurationLoginVC
+        let storyboard = UIStoryboard(name: "ChangePassword", bundle: nil)
+        let configurationVC = storyboard.instantiateInitialViewController()! as! ChangePasswordVC
         configurationVC.delegate = self
         self.navigationController?.pushViewController(configurationVC, animated: true)
     }
@@ -156,13 +156,32 @@ extension SettingsVC: ConfigurationLoginDelegate{
     func loginAction() {
         
         SMTPManager.shared.saveConfig()
-
-        let alert = UIAlertController(title: "Actualizado", message: "sus cambios han sido guardados", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alert.addAction(action)
-        self.present(alert, animated: true, completion: nil)
         
+        // verify connection
         
+        let command = "PERFIL IMAGEN \(self.imageQuality.text!)"
+        
+        self.startAnimating(message:"Comprobando..")
+        
+        let previusType =  ConnectionManager.shared.connectionType
+        ConnectionManager.shared.connectionType = .smtp
+        
+        // testing smtp config //
+        
+        ConnectionManager.shared.requestAwait(command: command) { (success) in
+            
+            self.stopAnimating()
+            
+             ConnectionManager.shared.connectionType = previusType
+            
+            let title = success ? "Se han guardado sus cambios." : "Hubo un error, compruebe sus datos."
+            
+            let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+            let done = UIAlertAction(title: "OK", style: .cancel)
+            alert.addAction(done)
+            self.present(alert, animated: true, completion: nil)
+            
+        }
     }
     
 }
