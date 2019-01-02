@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SearchCell" id="sVd-xw-kME" customClass="SearchCell" customModule="Apretaste" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vVz-JU-rMy">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                    <subviews>
+                        <searchBar contentMode="redraw" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G93-Gs-5Yk">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                            <color key="barTintColor" red="0.87811320552182748" green="0.87811320552182748" blue="0.87811320552182748" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="G93-Gs-5Yk" secondAttribute="bottom" id="Mix-Be-Luu"/>
+                        <constraint firstItem="G93-Gs-5Yk" firstAttribute="top" secondItem="vVz-JU-rMy" secondAttribute="top" id="Rlc-Vn-676"/>
+                        <constraint firstItem="G93-Gs-5Yk" firstAttribute="leading" secondItem="vVz-JU-rMy" secondAttribute="leading" id="SQg-hY-Fvr"/>
+                        <constraint firstAttribute="trailing" secondItem="G93-Gs-5Yk" secondAttribute="trailing" id="cZW-YB-fwM"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="vVz-JU-rMy" firstAttribute="top" secondItem="sVd-xw-kME" secondAttribute="top" id="ILX-k4-Ir8"/>
+                <constraint firstAttribute="bottom" secondItem="vVz-JU-rMy" secondAttribute="bottom" id="N6J-MA-5W2"/>
+                <constraint firstItem="nyj-9G-JV9" firstAttribute="trailing" secondItem="vVz-JU-rMy" secondAttribute="trailing" id="cM4-nF-nVp"/>
+                <constraint firstItem="vVz-JU-rMy" firstAttribute="leading" secondItem="nyj-9G-JV9" secondAttribute="leading" id="v5x-5m-eMd"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="nyj-9G-JV9"/>
+            <connections>
+                <outlet property="searchBar" destination="G93-Gs-5Yk" id="S1P-dS-Uy4"/>
+            </connections>
+            <point key="canvasLocation" x="82" y="-244"/>
+        </collectionReusableView>
+    </objects>
+</document>

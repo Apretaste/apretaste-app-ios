@@ -11,18 +11,24 @@ import UIKit
 
 class TabBarMenuVC: UITabBarController {
     
-    //MARK: life cycle
+    //MARK: - vars
+    
+    var observers = [NSKeyValueObservation]()
+
+    
+    //MARK: - life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setupTabs()
         self.setupView()
+        self.observeModel()
         
     }
     
     
-    //MARK: setups
+    //MARK: - setups
     
     private func setupTabs(){
         
@@ -68,20 +74,41 @@ class TabBarMenuVC: UITabBarController {
         
         self.tabBar.tintColor = UIColor.white
         self.tabBar.barTintColor = UIColor.greenApp
+        self.tabBar.isTranslucent = false
+
+        
         if #available(iOS 10.0, *) {
             self.tabBar.unselectedItemTintColor = UIColor.darkGray
-        } else {
-            // Fallback on earlier versions
         }
-        
         // set navigation bar style //
         
-        self.title = "Apretaste"
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         
-        let backButton = UIBarButtonItem(title: "", style: .plain, target: navigationController, action: nil)
-        navigationItem.leftBarButtonItem = backButton
+    }
+    
+    func observeModel() {
+        
+        self.observers = [
+            
+            TEMPManager.shared.metaNotification.observe(\.notificationsCount, options: [.initial]) { (model, change) in
+                
+                let badge: String? = TEMPManager.shared.metaNotification.notificationsCount == 0 ? nil :  String(TEMPManager.shared.metaNotification.notificationsCount)
+               
+                self.tabBar.items![0].badgeValue = badge
+                
+            },
+            
+        
+            TEMPManager.shared.metaNotification.observe(\.notificationTapped, options: [.initial]) { (model, change) in
+                
+                if model.notificationTapped{
+                    
+                    self.selectedIndex = 0
 
+                }
+                
+            }]
+        
         
     }
     

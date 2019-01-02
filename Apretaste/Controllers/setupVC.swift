@@ -12,13 +12,22 @@ class setupVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupView()
 
-        // Do any additional setup after loading the view.
-    }
-
-    @IBAction func passChangeButton(_ sender: Any) {
     }
     
+    
+    //MARK: - setups
+    
+    
+    private func setupView(){
+    
+    
+    }
+    
+    //MARK: - funcs
+
+
     @IBAction func mailboxButton(_ sender: Any) {
     }
     
@@ -28,13 +37,9 @@ class setupVC: UIViewController {
     @IBAction func conectionChangeButton(_ sender: Any) {
     }
     
-    @IBAction func dateDeleteButton(_ sender: Any) {
-    }
-    
+
     @IBAction func SubscriptsSwitch(_ sender: Any) {
     }
-    
-    @IBAction func LogoutButton(_ sender: Any) {
-    }
+
 }
 

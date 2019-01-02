@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sV8-7W-ctG">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--SettingsVC-->
+        <scene sceneID="dRo-IG-v5H">
+            <objects>
+                <viewController id="sV8-7W-ctG" customClass="SettingsVC" customModule="Apretaste" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="twP-a3-x8s">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GHe-tI-KJQ" customClass="PickerTextField" customModule="Apretaste" customModuleProvider="target">
+                                <rect key="frame" x="10" y="56" width="355" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vck-ab-1sA" customClass="PickerTextField" customModule="Apretaste" customModuleProvider="target">
+                                <rect key="frame" x="10" y="147" width="355" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calidad De Imagen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hu4-l3-k3v">
+                                <rect key="frame" x="10" y="30" width="153" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tipo de Conexión" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gyf-83-0MJ">
+                                <rect key="frame" x="10" y="116" width="141" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Suscripción de correo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAc-vj-Lum">
+                                <rect key="frame" x="10" y="207" width="179.5" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="DWx-yV-Irm">
+                                <rect key="frame" x="316" y="202" width="51" height="31"/>
+                                <color key="onTintColor" red="0.40000000000000002" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="suscriptionSwitchTapped:" destination="sV8-7W-ctG" eventType="valueChanged" id="ciC-Fm-ZKs"/>
+                                </connections>
+                            </switch>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Zq-Pk-epY">
+                                <rect key="frame" x="10" y="323" width="355" height="30"/>
+                                <color key="backgroundColor" red="0.46274509800000002" green="0.72156862749999995" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Cambiar contraseña nauta">
+                                    <color key="titleColor" red="1" green="1" blue="0.99999994039999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="setNautaButtonTapped:" destination="sV8-7W-ctG" eventType="touchUpInside" id="3bU-oD-Tvr"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pyU-s0-u9N">
+                                <rect key="frame" x="10" y="263" width="355" height="30"/>
+                                <color key="backgroundColor" red="0.46274509800000002" green="0.72156862749999995" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Cambiar buzón">
+                                    <color key="titleColor" red="1" green="1" blue="0.99999994039999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="changeBuzonButtonTapped:" destination="sV8-7W-ctG" eventType="touchUpInside" id="lZ1-uN-pik"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="pyU-s0-u9N" firstAttribute="top" secondItem="DWx-yV-Irm" secondAttribute="bottom" constant="30" id="0c2-70-T3D"/>
+                            <constraint firstItem="DWx-yV-Irm" firstAttribute="centerY" secondItem="eAc-vj-Lum" secondAttribute="centerY" id="1Gk-Ta-aD9"/>
+                            <constraint firstItem="hu4-l3-k3v" firstAttribute="leading" secondItem="dLK-0I-xfB" secondAttribute="leading" constant="10" id="30R-0D-Wke"/>
+                            <constraint firstItem="pyU-s0-u9N" firstAttribute="leading" secondItem="dLK-0I-xfB" secondAttribute="leading" constant="10" id="8k3-PH-Bx6"/>
+                            <constraint firstItem="eAc-vj-Lum" firstAttribute="top" secondItem="vck-ab-1sA" secondAttribute="bottom" constant="30" id="JQR-ma-Lsl"/>
+                            <constraint firstItem="DWx-yV-Irm" firstAttribute="trailing" secondItem="vck-ab-1sA" secondAttribute="trailing" id="Ngt-RS-wMS"/>
+                            <constraint firstItem="vck-ab-1sA" firstAttribute="top" secondItem="gyf-83-0MJ" secondAttribute="bottom" constant="10" id="PH2-SM-A0g"/>
+                            <constraint firstItem="GHe-tI-KJQ" firstAttribute="top" secondItem="hu4-l3-k3v" secondAttribute="bottom" constant="5" id="WiZ-jB-2Qp"/>
+                            <constraint firstItem="gyf-83-0MJ" firstAttribute="top" secondItem="GHe-tI-KJQ" secondAttribute="bottom" constant="30" id="Zkq-8B-Q4f"/>
+                            <constraint firstItem="dLK-0I-xfB" firstAttribute="trailing" secondItem="9Zq-Pk-epY" secondAttribute="trailing" constant="10" id="byo-x2-vcT"/>
+                            <constraint firstItem="9Zq-Pk-epY" firstAttribute="leading" secondItem="dLK-0I-xfB" secondAttribute="leading" constant="10" id="faf-4Y-alz"/>
+                            <constraint firstItem="dLK-0I-xfB" firstAttribute="trailing" secondItem="pyU-s0-u9N" secondAttribute="trailing" constant="10" id="gRj-Wf-uId"/>
+                            <constraint firstItem="9Zq-Pk-epY" firstAttribute="top" secondItem="pyU-s0-u9N" secondAttribute="bottom" constant="30" id="gsI-qu-DRu"/>
+                            <constraint firstItem="9Zq-Pk-epY" firstAttribute="leading" secondItem="dLK-0I-xfB" secondAttribute="leading" constant="10" id="hyE-2I-evu"/>
+                            <constraint firstItem="vck-ab-1sA" firstAttribute="trailing" secondItem="GHe-tI-KJQ" secondAttribute="trailing" id="jAJ-7M-OqI"/>
+                            <constraint firstItem="dLK-0I-xfB" firstAttribute="trailing" secondItem="9Zq-Pk-epY" secondAttribute="trailing" constant="10" id="jz6-NK-BWN"/>
+                            <constraint firstItem="eAc-vj-Lum" firstAttribute="leading" secondItem="vck-ab-1sA" secondAttribute="leading" id="l7T-cP-R6O"/>
+                            <constraint firstItem="GHe-tI-KJQ" firstAttribute="leading" secondItem="hu4-l3-k3v" secondAttribute="leading" id="nnR-0g-EST"/>
+                            <constraint firstItem="dLK-0I-xfB" firstAttribute="trailing" secondItem="GHe-tI-KJQ" secondAttribute="trailing" constant="10" id="sW6-me-COf"/>
+                            <constraint firstItem="vck-ab-1sA" firstAttribute="leading" secondItem="gyf-83-0MJ" secondAttribute="leading" id="tC0-3C-HdW"/>
+                            <constraint firstItem="hu4-l3-k3v" firstAttribute="top" secondItem="dLK-0I-xfB" secondAttribute="top" constant="10" id="vJs-D9-3ET"/>
+                            <constraint firstItem="gyf-83-0MJ" firstAttribute="leading" secondItem="GHe-tI-KJQ" secondAttribute="leading" id="zlc-lC-med"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dLK-0I-xfB"/>
+                    </view>
+                    <connections>
+                        <outlet property="connectionType" destination="vck-ab-1sA" id="2A4-1h-hOa"/>
+                        <outlet property="imageQuality" destination="GHe-tI-KJQ" id="Owx-ky-7SQ"/>
+                        <outlet property="suscriptionSwitch" destination="DWx-yV-Irm" id="I9x-8r-mJX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="APz-YP-B6u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-7.2000000000000002" y="69.715142428785612"/>
+        </scene>
+    </scenes>
+</document>

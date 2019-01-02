@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cqR-Cg-pJo">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--AboutVC-->
+        <scene sceneID="Jk5-6S-TJ5">
+            <objects>
+                <viewController id="cqR-Cg-pJo" customClass="AboutVC" customModule="Apretaste" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xif-Vd-Hg9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dDl-EW-m7F">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="l68-Lb-zyr">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cjs-m2-dnb">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="apretaste.logo.big.transp" translatesAutoresizingMaskIntoConstraints="NO" id="MJj-eD-WMV">
+                                                        <rect key="frame" x="50" y="10" width="275" height="130"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="130" id="9K8-CI-kga"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apretaste" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RnB-Ff-b3O">
+                                                        <rect key="frame" x="10" y="145" width="355" height="23"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="swS-28-F4y">
+                                                        <rect key="frame" x="110" y="173" width="155" height="0.0"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="35" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sa7-Hd-Vh9">
+                                                        <rect key="frame" x="20" y="178" width="335" height="507.5"/>
+                                                        <string key="text">Nuestra app es una colección de servicios gratuitos y nuestra meta es ofrecerle herramientas productivas, mantenerle más informado y entretenido. Esperamos que Apretaste sea de su agrado y esté a la altura de sus necesidades.
+
+Cuando tenga dudas o sugerencias, escríbanos al soporte y le responderemos en 72 horas. La mayoría de nuestras ideas vienen de usuarios como usted. Si tiene una buena idea, no dude en compartirla y nosotros la haremos realidad.
+
+Esta app adquiere información personal para ofrecerle un mejor servicio, por ejemplo su localización y contraseña de Nauta. Esta información nunca será compartida con nuestros voluntarios, institución o estado alguno, y siempre se encriptará con los estándares más seguros del mercado. Si desea cerrar su cuenta, su información personal será eliminada.
+
+¡Gracias por usar Apretaste!</string>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="RnB-Ff-b3O" firstAttribute="top" secondItem="MJj-eD-WMV" secondAttribute="bottom" constant="5" id="0Mk-zP-5my"/>
+                                                    <constraint firstItem="sa7-Hd-Vh9" firstAttribute="leading" secondItem="cjs-m2-dnb" secondAttribute="leading" constant="20" id="1QE-Ua-aeY"/>
+                                                    <constraint firstAttribute="trailing" secondItem="MJj-eD-WMV" secondAttribute="trailing" constant="50" id="3hq-Cr-Sz6"/>
+                                                    <constraint firstItem="MJj-eD-WMV" firstAttribute="top" secondItem="cjs-m2-dnb" secondAttribute="top" constant="10" id="96g-z1-gC7"/>
+                                                    <constraint firstItem="MJj-eD-WMV" firstAttribute="leading" secondItem="cjs-m2-dnb" secondAttribute="leading" constant="50" id="F0d-Q2-KC9"/>
+                                                    <constraint firstItem="swS-28-F4y" firstAttribute="top" secondItem="RnB-Ff-b3O" secondAttribute="bottom" constant="5" id="GsQ-ed-rsq"/>
+                                                    <constraint firstItem="swS-28-F4y" firstAttribute="leading" secondItem="cjs-m2-dnb" secondAttribute="leading" constant="110" id="RIN-Ap-fED"/>
+                                                    <constraint firstAttribute="trailing" secondItem="sa7-Hd-Vh9" secondAttribute="trailing" constant="20" id="Ywf-T5-iza"/>
+                                                    <constraint firstItem="sa7-Hd-Vh9" firstAttribute="top" secondItem="swS-28-F4y" secondAttribute="bottom" constant="5" id="ksJ-FV-BmB"/>
+                                                    <constraint firstItem="RnB-Ff-b3O" firstAttribute="leading" secondItem="cjs-m2-dnb" secondAttribute="leading" constant="10" id="kvc-NC-6Wr"/>
+                                                    <constraint firstAttribute="trailing" secondItem="swS-28-F4y" secondAttribute="trailing" constant="110" id="sDs-0R-HOV"/>
+                                                    <constraint firstAttribute="trailing" secondItem="RnB-Ff-b3O" secondAttribute="trailing" constant="10" id="vL9-eS-ZDc"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="cjs-m2-dnb" secondAttribute="bottom" id="6lj-F8-2ry"/>
+                                            <constraint firstAttribute="trailing" secondItem="cjs-m2-dnb" secondAttribute="trailing" id="EZU-CK-rNm"/>
+                                            <constraint firstAttribute="height" constant="800" id="TlZ-4j-cuZ"/>
+                                            <constraint firstItem="cjs-m2-dnb" firstAttribute="leading" secondItem="l68-Lb-zyr" secondAttribute="leading" id="a5t-Ny-ew6"/>
+                                            <constraint firstItem="cjs-m2-dnb" firstAttribute="top" secondItem="l68-Lb-zyr" secondAttribute="top" id="z5D-GH-hc6"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="l68-Lb-zyr" secondAttribute="trailing" id="01t-4H-zg0"/>
+                                    <constraint firstItem="l68-Lb-zyr" firstAttribute="leading" secondItem="dDl-EW-m7F" secondAttribute="leading" id="Eqf-I8-F7i"/>
+                                    <constraint firstItem="l68-Lb-zyr" firstAttribute="top" secondItem="dDl-EW-m7F" secondAttribute="top" id="KQK-QO-pu1"/>
+                                    <constraint firstItem="l68-Lb-zyr" firstAttribute="centerX" secondItem="dDl-EW-m7F" secondAttribute="centerX" id="pEb-gk-VFO"/>
+                                    <constraint firstAttribute="bottom" secondItem="l68-Lb-zyr" secondAttribute="bottom" id="qdd-MG-e83"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dDl-EW-m7F" firstAttribute="bottom" secondItem="ffg-FV-pNk" secondAttribute="bottom" id="1M5-7p-AXG"/>
+                            <constraint firstItem="dDl-EW-m7F" firstAttribute="top" secondItem="xif-Vd-Hg9" secondAttribute="top" id="S1W-bY-0GD"/>
+                            <constraint firstItem="dDl-EW-m7F" firstAttribute="leading" secondItem="ffg-FV-pNk" secondAttribute="leading" id="Tqr-3y-e6a"/>
+                            <constraint firstItem="dDl-EW-m7F" firstAttribute="top" secondItem="xif-Vd-Hg9" secondAttribute="top" id="hyV-9U-Tym"/>
+                            <constraint firstItem="dDl-EW-m7F" firstAttribute="trailing" secondItem="ffg-FV-pNk" secondAttribute="trailing" id="rgI-yi-zVX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ffg-FV-pNk"/>
+                    </view>
+                    <size key="freeformSize" width="375" height="800"/>
+                    <connections>
+                        <outlet property="versionLabel" destination="swS-28-F4y" id="WTJ-tg-hnE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2pX-EG-3me" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="599.20000000000005" y="-40.479760119940032"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="apretaste.logo.big.transp" width="500" height="182"/>
+    </resources>
+</document>

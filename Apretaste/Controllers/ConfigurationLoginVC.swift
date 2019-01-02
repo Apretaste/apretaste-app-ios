@@ -26,6 +26,9 @@ class ConfigurationLoginVC: UIViewController , UIPickerViewDelegate, UIPickerVie
     @IBOutlet weak var portImapTextField: UITextField!
     @IBOutlet weak var securityImapTextField: UITextField!
     
+    @IBOutlet weak var heightContraintImage: NSLayoutConstraint!
+    
+    
     var securityPicker = UIPickerView()
     var securityImapPicker = UIPickerView()
     
@@ -35,7 +38,7 @@ class ConfigurationLoginVC: UIViewController , UIPickerViewDelegate, UIPickerVie
     var securityOptions: [security] = [.none,.SSL]
 
     
-    //MARK: life cyrcle
+    //MARK: - life cyrcle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +68,8 @@ class ConfigurationLoginVC: UIViewController , UIPickerViewDelegate, UIPickerVie
 
     }
     
-    //MARK: setups
+    
+    //MARK: - setups
     
     private func setupView(){
 
@@ -74,7 +78,6 @@ class ConfigurationLoginVC: UIViewController , UIPickerViewDelegate, UIPickerVie
         
         self.securityImapPicker.backgroundColor = UIColor.white
         self.securityImapTextField.inputView = self.securityImapPicker
-        
         
     }
     
@@ -99,7 +102,7 @@ class ConfigurationLoginVC: UIViewController , UIPickerViewDelegate, UIPickerVie
     
     
 
-    //MARK: actions buttons
+    //MARK: - actions buttons
     @IBAction func extendButton(_ sender: Any) {
         
         self.view.endEditing(true)
@@ -110,12 +113,14 @@ class ConfigurationLoginVC: UIViewController , UIPickerViewDelegate, UIPickerVie
     
     @IBAction func nextButton(_ sender: Any) {
        
-        self.delegate?.loginAction()
+        self.view.endEditing(true)
         self.dismiss(animated: true, completion: nil)
+        self.delegate?.loginAction()
 
     }
     
-    //MARK: picker protocol
+    
+    //MARK: - picker protocol
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -151,7 +156,7 @@ class ConfigurationLoginVC: UIViewController , UIPickerViewDelegate, UIPickerVie
 
 //MARK: IMPLEMENT PROTOCOL FOR textfields
 
-extension ConfigurationLoginVC: UITextFieldDelegate{
+extension ChangePasswordVC: UITextFieldDelegate{
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         

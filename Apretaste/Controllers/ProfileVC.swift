@@ -10,7 +10,7 @@ import UIKit
 
 class ProfileVC: UIViewController {
     
-    
+    @IBOutlet weak var imageProfile: UIImageView!
     @IBOutlet weak var userNameTextField: simpleTextField!
     @IBOutlet weak var nameTextField: simpleTextField!
     @IBOutlet weak var birthdateTextField: CustomDatePickerTextField!
@@ -28,7 +28,7 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var provinceTextField: PickerTextField!
     @IBOutlet weak var interestTextField: simpleTextField!
     @IBOutlet weak var religionTextField: PickerTextField!
-    
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var sexValue: [String] = ["Masculino","Femenino"]
     var orientationSexValue: [String] = ["Hetero","Gay","Bisexual"]
@@ -42,15 +42,12 @@ class ProfileVC: UIViewController {
     var religionValue: [String] = ["Ateísmo","Secularismo","Agnosticismo","Catolicismo","Cristianismo","Islam","Raftafarismo","Judaísmo","Espiritismo","Sijismos","Budismo","Otra"]
 
 
-    
-
-
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
-        // Do any additional setup after loading the view.
+        
+    self.addObserversForHandlerKeyboard(scrollView: self.scrollView)
     }
 
     
@@ -70,13 +67,76 @@ class ProfileVC: UIViewController {
         self.provinceTextField.dataSource = [provinceValue]
         self.religionTextField.dataSource = [religionValue]
 
+        
+        // set data //
+        
+        self.userNameTextField.text = TEMPManager.shared.fetchData.username
 
 
+        // set rightBarButtons //
+        
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(self.saveButtonTapped))
 
-
-
+        self.navigationItem.rightBarButtonItems = [saveButton]
+        
+        // style profile image ///
+        
+        self.imageProfile.layer.cornerRadius = self.imageProfile.frame.width / 2
+        self.imageProfile.layer.borderColor = UIColor.greenApp.cgColor
+        self.imageProfile.layer.borderWidth = 5
+        self.imageProfile.layer.masksToBounds = true
+        
+        // add tap event for imageView //
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.imageProfileTapped))
+        self.imageProfile.addGestureRecognizer(gesture)
+        self.imageProfile.isUserInteractionEnabled = true
+        
 
     }
-   
+    
+    @objc func saveButtonTapped(){
+        
+    }
+    
+    @objc func imageProfileTapped(){
+        
+        let controller = UIImagePickerController()
+        controller.delegate = self
+        controller.sourceType = .photoLibrary
+        controller.allowsEditing = false
+        self.present(controller, animated: true, completion: nil)
+        
+    }
+}
 
+extension ProfileVC:  UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        
+        let backgroundImage = UIImage.imageWithColor(color: UIColor.greenApp)
+        navigationController.navigationBar.setBackgroundImage(backgroundImage, for: .default)
+        let textAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
+        navigationController.navigationBar.titleTextAttributes = textAttributes
+        navigationController.navigationBar.isTranslucent = false
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let image = info[UIImagePickerControllerOriginalImage] as?  UIImage{
+
+            self.imageProfile.image = image
+            self.dismiss(animated: true, completion: nil)
+
+            
+        } else{
+            print("Something went wrong")
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+    }
+    
 }

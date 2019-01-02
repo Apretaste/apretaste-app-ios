@@ -20,10 +20,13 @@ class HTTPCodeVC: UIViewController {
         self.setupView()
         
         self.addObserversForHandlerKeyboard(scrollView: self.scrollView)
+        
+        self.codeTextField.addTarget(self, action: #selector(self.codeValidator(_:)), for: .editingChanged)
+        
 
     }
     
-    //MARK: setups //
+    //MARK: - setups //
 
     
     private func setupView(){
@@ -32,9 +35,22 @@ class HTTPCodeVC: UIViewController {
 
     }
     
-    //MARK: action buttons //
+    //MARK: - funcs
+    
+    
+    @objc func codeValidator(_ textField:UITextField){
+        
+        if textField.text!.count > 4{
+            textField.text!.removeLast()
+        }
+        
+    }
+    
+    //MARK: -  action buttons //
   
     @IBAction func nextButtonAction(_ sender: Any) {
+        
+        self.view.endEditing(true)
         
         if self.codeTextField.text!.isEmpty{
             
@@ -45,10 +61,12 @@ class HTTPCodeVC: UIViewController {
             return
         }
         
+        
+        
         self.startAnimating(message:"Validando código")
 
         
-        HTTPManager.shared.validateMail(pin: self.codeTextField.text!) { (response, success) in
+        HTTPManager.shared.validateMail(pin: self.codeTextField.text!) { (token, success) in
             
             self.stopAnimating()
             
@@ -56,7 +74,10 @@ class HTTPCodeVC: UIViewController {
                 
                 self.startAnimating(message:"Iniciando...")
                 
-                HTTPManager.shared.sendRequest(task: Command.getProfile.rawValue, completion: { (error, fetchData, urlFiles) in
+                let newCommand = Command.generateCommandWithToken(command:Command.getProfile.rawValue, token: token)
+                let zip = UtilitesMethods.writeZip(task: newCommand)
+                
+                HTTPManager.shared.sendRequest(zip: zip, task: Command.getProfile.rawValue, completion: { (error, fetchData, urlFiles) in
                     
                     self.stopAnimating()
                     
@@ -79,7 +100,7 @@ class HTTPCodeVC: UIViewController {
                 
             }else{
                 
-                let alert = UIAlertController(title: "Error", message: response, preferredStyle: .alert)
+                let alert = UIAlertController(title: "Error", message: "Ha ocurrido un error. Compruebe que tenga conexión a internet", preferredStyle: .alert)
                 let action = UIAlertAction(title: "OK", style: .destructive)
                 alert.addAction(action)
                 self.present(alert, animated: true)

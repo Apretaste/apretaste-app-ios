@@ -8,23 +8,54 @@
 
 import Foundation
 import Alamofire
+import ObjectMapper
+import KeychainSwift
+
+
+
+enum ManagerError: Error {
+
+    case badRequest
+    case badSmtpConfig
+    case smtpNoReceived(String)
+}
 
 class HTTPManager{
     
     var email = ""
-    var domains: [String] = ["http://cubaworld.info","http://cubazone.info","http://cubanow.xyz"]
-    var requestDomain: URL = URL(string:"http://cubazone.info/run/app")!
+    var domains: [String] = ["https://apretaste.com","https://apretaste.com","https://apretaste.com"]
+    
+    var requestDomain: String = "apretaste.com"{
+        didSet{
+            self.saveNewDomain()
+        }
+    }
     var token = ""
     
     static var shared: HTTPManager = HTTPManager()
     
-    private init(){}
+    private init(){
+        
+         let keychain = KeychainSwift()
+         if let requestDomain = keychain.get(KeychainKeys.httpConfig.rawValue){
+            self.requestDomain = requestDomain
+        }
+    }
     
     /** Si la conexion es exitosa retorna true
      
         Si la conexion es fallida retorna false
      
      */
+    
+    //MARK: - funcs
+    
+    func saveNewDomain(){
+        
+        let keychain = KeychainSwift()
+        keychain.set(self.requestDomain, forKey: KeychainKeys.httpConfig.rawValue)
+        
+    }
     
     func connect(completion: @escaping(Bool) -> Void){
         
@@ -81,11 +112,15 @@ class HTTPManager{
         }
     }
     
-    private func internalRequest(task: String,completion:@escaping(Data,String) -> Void){
+    private func internalRequest(zip:(URL,String), task: String,completion:@escaping(_ data:Data?,_ url: String?,_ await:Bool) -> Void){
         
-        let zip = UtilitesMethods.writeZip(task: task)
         
-        let url = try! URLRequest(url: requestDomain, method: .post)
+        guard let domainUrl = URL(string: "https://\(self.requestDomain)/run/app") else{
+            completion(nil,nil,false)
+            return
+        }
+        
+        let url = try! URLRequest(url: domainUrl, method: .post)
         
         Alamofire.upload(multipartFormData: { (multipart) in
             
@@ -104,10 +139,19 @@ class HTTPManager{
                 
                 upload.responseJSON(completionHandler: { (data) in
                     
-                    guard let responseJSON = data.result.value as? NSDictionary else {return}
+                    guard let responseJSON = data.result.value as? NSDictionary else {
+                        
+                        // no internet connection //
+                        completion(nil,nil,false)
+                        return
+                        
+                    }
                     
                     let urlString = responseJSON["file"] as! String
-                    let urlFile = URL(string:urlString)!
+                    guard let urlFile = URL(string:urlString) else{
+                        completion(Data(),"",true)
+                        return
+                    }
                     let destination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory)
                     
                     
@@ -123,58 +167,119 @@ class HTTPManager{
                             
                         }).response(completionHandler: { (response) in
                             
-                            let zipData = try! Data.init(contentsOf: response.destinationURL!)
-                            let name = String(urlString.split(separator: "/").last!)
-                            
-                            completion(zipData,name)
-                            
-                           
+                            do{
+                               
+                                let zipData = try Data.init(contentsOf: response.destinationURL!)
+                                let name = String(urlString.split(separator: "/").last!)
+                                completion(zipData,name,false)
+                          
+                            }catch{
+                                
+                                completion(nil,nil,false)
+                                return
+                            }
+
                         })
                     
                 })
                 
-                
             case .failure(let encodingError):
+                completion(nil,nil,false)
                 print(encodingError)
             }
-            
             
         })
     }
     
     
-    func executeCommand(task: String,completion:@escaping(Error?,URL) -> Void){
+    func executeCommand(zip:(URL,String),task: String,completion:@escaping(Error?,URL?) -> Void){
         
-        self.internalRequest(task: task) { (zipData, name) in
+        
+        self.internalRequest(zip: zip, task: task) { (zipData, name, _)  in
+            
+            guard let zipData = zipData else{
+                
+                let error = ManagerError.badRequest
+                completion(error,nil)
+                return
+            }
+            
+            guard let name = name else{
+                let error = ManagerError.badRequest
+                completion(error,nil)
+                return
+            }
            
             let unzipFolder = UtilitesMethods.receiveZip(data: zipData, filename: name)
             
-            let urlHTML = unzipFolder.0.filter({ (filePath) -> Bool in
+            guard let urlHTML = unzipFolder.0.filter({ (filePath) -> Bool in
                 
                 return filePath.absoluteString.contains("html")
                 
-            }).first!
+            }).first else{
+                
+                let error = ManagerError.badRequest
+                completion(error,nil)
+                return
+            }
+            
+            if let metaData = unzipFolder.0.filter({ (filePath) -> Bool in
+                return filePath.absoluteString.contains("ext")
+            }).first{
+                
+                // get metaData //
+                
+                let contentFile = try! String.init(contentsOf: metaData)
+                let profile = Mapper<FetchModel>().map(JSONString: contentFile)
+                TEMPManager.shared.fetchData.notifications = profile!.notifications
+                TEMPManager.shared.receiveNotification()
+                
+            }
+            
             
             completion(nil, urlHTML)
         }
-        
-       
     }
     
     
-    func sendRequest(task: String,completion:@escaping(Error?,FetchModel?,String?) -> Void){
+    func executeCommandAwait(zip:(URL,String),task: String,completion:@escaping(Bool) -> Void){
         
-        self.internalRequest(task: task) { (zipData, name) in
+        self.internalRequest(zip: zip, task: task) { (_, _,await) in
+            
+           completion(await)
+        }
+    }
+    
+    
+    func sendRequest(zip:(URL,String),task: String,completion:@escaping(Error?,FetchModel?,String?) -> Void){
+        
+        self.internalRequest(zip: zip, task: task) { (zipData, name,_) in
+            
+            guard let zipData = zipData else{
+                let error = ManagerError.badRequest
+                completion(error,nil,nil)
+                return
+            }
+            
+            guard let name = name else{
+                
+                let error = ManagerError.badRequest
+                completion(error,nil,nil)
+                return
+            }
             
             let unzipFolder = UtilitesMethods.receiveZip(data: zipData, filename: name)
             
             let folder = unzipFolder.0
             let path = unzipFolder.1
-            let jsonUrl = folder.filter({ (filePath) -> Bool in
-                
-                return filePath.absoluteString.contains("html")
-                
-            }).first!
+            
+            guard let jsonUrl = folder.filter({ (filePath) -> Bool in
+                return filePath.absoluteString.contains("ext")
+           }).first else{
+                let error = ManagerError.badRequest
+                completion(error,nil,nil)
+                return
+            }
             
             let jsonFile = try! String.init(contentsOf: jsonUrl)
             

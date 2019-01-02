@@ -1,32 +1,42 @@
 PODS:
-  - Alamofire (4.7.0)
-  - AlamofireObjectMapper (5.0.0):
+  - Alamofire (4.7.3)
+  - AlamofireObjectMapper (5.1.0):
     - Alamofire (~> 4.1)
-    - ObjectMapper (~> 3.0)
-  - KeychainSwift (10.0.0)
+    - ObjectMapper (~> 3.3)
+  - KeychainSwift (12.0.0)
   - mailcore2-ios (0.6.4)
-  - NVActivityIndicatorView (4.1.1):
-    - NVActivityIndicatorView/Presenter (= 4.1.1)
-  - NVActivityIndicatorView/Presenter (4.1.1)
-  - ObjectMapper (3.1.0)
+  - NVActivityIndicatorView (4.4.0):
+    - NVActivityIndicatorView/Presenter (= 4.4.0)
+  - NVActivityIndicatorView/Presenter (4.4.0)
+  - ObjectMapper (3.3.0)
   - Zip (1.1.0)
 
 DEPENDENCIES:
-  - AlamofireObjectMapper (~> 5.0)
-  - KeychainSwift (= 10.0)
+  - AlamofireObjectMapper
+  - KeychainSwift
   - mailcore2-ios
   - NVActivityIndicatorView
-  - Zip (~> 1.1)
+  - Zip
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - AlamofireObjectMapper
+    - KeychainSwift
+    - mailcore2-ios
+    - NVActivityIndicatorView
+    - ObjectMapper
+    - Zip
 
 SPEC CHECKSUMS:
-  Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
-  AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
-  KeychainSwift: f9f7910449a0c0fd2cabc889121530dd2c477c33
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  AlamofireObjectMapper: 3395e698901d8b0e6f48b7d0c43bd47875325102
+  KeychainSwift: d5e776578587ee5958ce36601df22f168f65138a
   mailcore2-ios: 3ff0be2fa553d4da9c11d39c11d51863c768f24f
-  NVActivityIndicatorView: 60109b9bf46efc2e71ab81453196ccdfdfeea870
-  ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
+  NVActivityIndicatorView: ec7440a57af2450319d3a4181cca7da6fc127064
+  ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
   Zip: 8877eede3dda76bcac281225c20e71c25270774c
 
-PODFILE CHECKSUM: 3bb365e178158f299279ecef6c19f48d07ed5c0a
+PODFILE CHECKSUM: 7d22479787c9fead1638dce4a34efde68cfe5c4d
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

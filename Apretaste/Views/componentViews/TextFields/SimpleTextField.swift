@@ -11,6 +11,11 @@ import UIKit
 
 class simpleTextField: UITextField, UITextFieldDelegate{
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.setupView()
+    }
+    
     
     required init?(coder aDecoder: NSCoder) {
         

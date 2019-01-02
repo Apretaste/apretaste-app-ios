@@ -15,12 +15,12 @@ class LoginVC: UIViewController, UITextFieldDelegate, ConfigurationLoginDelegate
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
     @IBOutlet weak var scrollView: UIScrollView!
     
     var subject = ""
+    var retryCount = 0
     
-    //MARK: life cycle //
+    //MARK: - life cycle //
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,45 +52,36 @@ class LoginVC: UIViewController, UITextFieldDelegate, ConfigurationLoginDelegate
     @objc func receiveTimer(_ timer: Timer){
         
         let subject = timer.userInfo as! String
+        self.retryCount += 1
         
+        self.stopAnimating()
         self.startAnimating(message:"Esperando respuesta...")
         
         SMTPManager.shared.receiveMail(subject: subject, completion: { (error, data, urlFiles) in
             
-            self.stopAnimating()
             
-            if error != nil{
-                
+            if error != nil && self.retryCount >= 3{
+                self.stopAnimating()
                 let alert = UtilitesMethods.failLogin()
                 self.present(alert, animated: true)
                 return
             }
             
+            if error != nil{
+                return
+            }
+            
+            self.stopAnimating()
+            
             timer.invalidate()
            
-            
-            // salvamos la data//
-            
-            
-            // abrimos nueva vista //
-            
-            // save data //
-            
-            TEMPManager.shared.fetchData = data!
-            TEMPManager.shared.relativePath = urlFiles!
-            
-            // set connection type //
-            ConnectionManager.shared.connectionType = .smtp
-            
-            let storyboard = UIStoryboard(name: "tabBarMenu", bundle: nil)
-            let homeVC = storyboard.instantiateInitialViewController()!
-            self.navigationController?.pushViewController(homeVC, animated: true)
+            self.successLogin(data: data!, urlFiles: urlFiles!, isHack: false)
             
         })
     }
     
     
-    //MARK: setups
+    //MARK: - setups
     
     private func setupView(){
         
@@ -106,7 +97,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ConfigurationLoginDelegate
         
     }
     
-    //MARK: selectors
+    //MARK: - selectors
     
     @objc func emailObserver(){
         
@@ -138,10 +129,50 @@ class LoginVC: UIViewController, UITextFieldDelegate, ConfigurationLoginDelegate
         self.navigationController?.popViewController(animated: true)
     }
     
-    //MARK: actions buttons
+    //MARK: Helpers
+    
+    private func successLogin(data: FetchModel, urlFiles:String, isHack: Bool){
+        
+        // salvamos la data//
+        
+        // abrimos nueva vista //
+        
+        // save data //
+
+        TEMPManager.shared.fetchData = data
+        TEMPManager.shared.relativePath = urlFiles
+        
+        // set connection type //
+        if isHack{
+            ConnectionManager.shared.connectionType = .http
+            HTTPManager.shared.email = "reinaldopruebas1@gmail.com"
+           
+            
+        }else{
+            ConnectionManager.shared.connectionType = .smtp
+        }
+        
+        SMTPManager.shared.saveConfig()
+        
+        let storyboard = UIStoryboard(name: "tabBarMenu", bundle: nil)
+        let homeVC = storyboard.instantiateInitialViewController()!
+        self.navigationController?.pushViewController(homeVC, animated: true)
+    }
+    
+    //MARK: - actions buttons
     
     @IBAction func loginActionButton(_ sender: Any) {
         
+        self.view.endEditing(true)
+        
+        //hacking account  for apple testing//
+        
+        if self.emailTextField.text == "reinaldopruebas1@gmail.com" && self.passwordTextField.text == "mercurialf150"{
+            SMTPManager.shared.hackMail { (_, data, urlFiles) in
+                self.successLogin(data: data!, urlFiles: urlFiles!, isHack: true)
+            }
+            return
+        }
         
         if !validate(){
             
@@ -154,20 +185,25 @@ class LoginVC: UIViewController, UITextFieldDelegate, ConfigurationLoginDelegate
         
         self.startAnimating(message: "Conectando...")
         
-        SMTPManager.shared.sendMail(task: Command.getProfile.rawValue) { (subject) in
-            
-            self.stopAnimating()
+        ConnectionManager.shared.connectionType = .smtp
+        let newCommand = Command.generateCommand(command: Command.getProfile.rawValue)
+        let zip = UtilitesMethods.writeZip(task: newCommand)
+        
+        SMTPManager.shared.sendMail(zip: zip, task: Command.getProfile.rawValue) { (subject) in
             
             guard let subject = subject else{
-                
+                self.stopAnimating()
                 let alert = UtilitesMethods.failLogin()
                 self.present(alert, animated: true)
                 return
             }
             
+            // wait for receive mail //
+            
             let timer = Timer.scheduledTimer(timeInterval: TimeInterval(10), target: self, selector: #selector(self.receiveTimer(_:)), userInfo: subject, repeats: true)
             
             timer.fire()
+            
             
         }
 
@@ -186,7 +222,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ConfigurationLoginDelegate
          
     }
     
-    //MARK: textfield delegate
+    //MARK: - textfield delegate
 
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -203,7 +239,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, ConfigurationLoginDelegate
         }
     }
     
-    //MARK: configuration delegate
+    //MARK: - configuration delegate
     
     func loginAction() {
         
